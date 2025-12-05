@@ -1,3 +1,9 @@
+my-aws-website/
+│── index.html
+│── style.css
+└── images/
+      ├── banner.jpg
+      └── logo.png
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,39 +12,34 @@
     <title>Avengers Cricket Club</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <!-- NAVIGATION -->
-    <header>
-        <div class="logo">
-            <img src="images/logo.png" alt="Avengers Logo">
-        </div>
+<header>
+    <img src="images/logo.png" alt="Avengers Logo">
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About Us</a>
+        <a href="#">Team Players</a>
+        <a href="#">Fixtures</a>
+        <a href="#">Gallery</a>
+        <a href="#">Contact</a>
+        <a href="#">Sponsors</a>
+    </nav>
+</header>
 
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">About Us</a>
-            <a href="#">Team Players</a>
-            <a href="#">Fixtures</a>
-            <a href="#">Gallery</a>
-            <a href="#">Contact</a>
-            <a href="#">Sponsors</a>
-        </nav>
-    </header>
+<section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-text">
+        <h2>WELCOME TO</h2>
+        <h1>AVENGERS</h1>
+        <h3>CRICKET CLUB</h3>
+    </div>
+</section>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="overlay"></div>
-        <div class="hero-text">
-            <h2>WELCOME TO</h2>
-            <h1>AVENGERS</h1>
-            <h3>CRICKET CLUB</h3>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2025 Avengers Cricket Club | All Rights Reserved</p>
-    </footer>
+<footer>
+    © 2025 Avengers Cricket Club | All Rights Reserved
+</footer>
 
 </body>
 </html>
@@ -54,21 +55,22 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px;
+    padding: 20px;
     background: #0b1221;
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 header img {
-    height: 40px;
+    height: 45px;
 }
 
 nav a {
     color: white;
     margin-left: 20px;
     text-decoration: none;
-    font-weight: bold;
+    font-size: 16px;
 }
+
 nav a:hover {
     color: #ff5a1f;
 }
@@ -82,11 +84,9 @@ nav a:hover {
 
 .overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.4);
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
 }
 
 .hero-text {
@@ -101,9 +101,9 @@ nav a:hover {
 }
 
 .hero-text h1 {
-    font-size: 80px;
-    color: #ff4f1f;
-    margin: 10px 0;
+    font-size: 60px;
+    margin: 0;
+    color: #ff5a1f;
 }
 
 .hero-text h3 {
@@ -117,11 +117,4 @@ footer {
     padding: 20px;
     background: #0b1221;
     margin-top: 40px;
-    border-top: 1px solid rgba(255,255,255,0.1);
 }
-my-aws-website/
-│── index.html
-│── style.css
-└── images/
-      ├── banner.jpg
-      └── logo.png
