@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b1221;
+  color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #0b1221;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+header img {
+  height: 45px;
+}
+
+nav a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.hero {
+  position: relative;
+  height: 85vh;
+  background: url('images/banner.jpg') no-repeat center center/cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+}
+
+.hero-text {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+}
+
+.hero-text h1 {
+  font-size: 60px;
+  margin: 0;
+}
+
+.hero-text h3 {
+  font-size: 32px;
+  margin-top: -10px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #0b1221;
+  margin-top: 40px;
+}
