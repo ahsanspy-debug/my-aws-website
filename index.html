@@ -1,16 +1,236 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Avengers Cricket Club - Canberra</title>
-  <style>
-    body { font-family: Arial; text-align: center; margin-top: 60px; }
-    h1 { color: #2b4c7e; }
-    p { font-size: 20px; }
-  </style>
+<meta charset="UTF-8">
+<title>Avengers Cricket Club – Canberra</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+/* General Styling */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f5f5;
+  color: #222;
+}
+
+/* Header / Hero Section */
+.hero {
+  background: linear-gradient(to right, #001f3f, #0074D9);
+  color: white;
+  padding: 70px 20px;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+.hero p {
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+/* Section Title */
+.section-title {
+  text-align: center;
+  font-size: 32px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  color: #003d75;
+  font-weight: bold;
+}
+
+/* Player Grid */
+.players {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+  padding: 20px 40px;
+}
+
+.player-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+.player-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.player-name {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #004b8d;
+}
+
+.player-stats {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.4;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 25px;
+  background: #001f3f;
+  color: white;
+  margin-top: 50px;
+  font-size: 14px;
+}
+</style>
+
 </head>
 <body>
-  <h1>Welcome to Avengers Cricket Club</h1>
-  <p>Canberra most explosive T20 cricket team.</p>
-  <p>Match scores, player stats, and club updates coming soon.</p>
+
+<!-- HERO SECTION -->
+<div class="hero">
+  <h1>Avengers Cricket Club – Canberra</h1>
+  <p>Elite. Powerful. Unstoppable. Canberra’s premier cricket powerhouse.</p>
+</div>
+
+<!-- PLAYERS SECTION -->
+<h2 class="section-title">Our Squad – 2025 Season</h2>
+
+<div class="players">
+
+  <div class="player-card">
+    <div class="player-name">Umer (Captain)</div>
+    <div class="player-stats">
+      Runs: 4,520<br>
+      Wickets: 148<br>
+      Strike Rate: 152.3
+    </div>
+  </div>
+
+  <div class="player-card">
+    <div class="player-name">Jas</div>
+    <div class="player-stats">
+      Runs: 3,980<br>
+      Wickets: 112<br>
+      Economy: 6.2
+    </div>
+  </div>
+
+  <div class="player-card">
+    <div class="player-name">Ahsan</div>
+    <div class="player-stats">
+      Runs: 5,240<br>
+      Highest Score: 103*<br>
+      Strike Rate: 146.8
+    </div>
+  </div>
+
+  <div class="player-card">
+    <div class="player-name">Razi</div>
+    <div class="player-stats">
+      Runs: 2,870<br>
+      Wickets: 89<br>
+      Best: 5/21
+    </div>
+  </div>
+
+  <div class="player-card">
+    <div class="player-name">Deepak</div>
+    <div class="player-stats">
+      Runs: 3,550<br>
+      Wickets: 102<br>
+      Strike Rate: 139.1
+    </div>
+  </div>
+
+  <div class="player-card">
+    <div class="player-name">Harjit</div>
+    <div class="player-stats">
+      Runs: 4,010<br>
+      Wickets: 176<br>
+      Best: 6/18
+    </div>
+  </div>
+
+  <div class="player-card">
+    <div class="player-name">Salman</div>
+    <div class="player-stats">
+      Runs: 2,660<br>
+      Wickets: 94<br>
+      Economy: 6.8
+    </div>
+  </div>
+
+  <div class="player-card">
+    <div class="player-name">Shazab</div>
+    <div class="player-stats">
+      Runs: 3,330<br>
+      Sixes: 118<br>
+      Strike Rate: 161.7
+    </div>
+  </div>
+
+  <div class="player-card">
+    <div class="player-name">Ali</div>
+    <div class="player-stats">
+      Runs: 4,780<br>
+      Wickets: 133<br>
+      Powerplay Avg: 48.2
+    </div>
+  </div>
+
+  <div class="player-card">
+    <div class="player-name">Sikander</div>
+    <div class="player-stats">
+      Runs: 2,440<br>
+      Wickets: 71<br>
+      Best: 4/12
+    </div>
+  </div>
+
+  <div class="player-card">
+    <div class="player-name">Haseeb</div>
+    <div class="player-stats">
+      Runs: 3,770<br>
+      Wickets: 129<br>
+      Strike Rate: 142.5
+    </div>
+  </div>
+
+  <div class="player-card">
+    <div class="player-name">Saram</div>
+    <div class="player-stats">
+      Runs: 2,910<br>
+      Wickets: 65<br>
+      Best: 3/9
+    </div>
+  </div>
+
+  <div class="player-card">
+    <div class="player-name">Fawad</div>
+    <div class="player-stats">
+      Runs: 3,540<br>
+      Sixes: 140<br>
+      Strike Rate: 155.4
+    </div>
+  </div>
+
+  <div class="player-card">
+    <div class="player-name">Shubham</div>
+    <div class="player-stats">
+      Runs: 4,220<br>
+      Wickets: 101<br>
+      Avg: 52.3
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  © 2025 Avengers Cricket Club Canberra — All Rights Reserved.
+</div>
+
 </body>
 </html>
