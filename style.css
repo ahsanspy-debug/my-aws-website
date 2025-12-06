@@ -17,18 +17,25 @@ header {
   position: relative;
   z-index: 10;
 }
-
-/* ----------- FIXED AVENGERS LOGO ----------- */
+/* ----------- FIXED AVENGERS LOGO (WIDER) ----------- */
 header img {
-    height: 70px;                      /* bigger & visible */
-    width: auto;
-    background: #0b1221;               /* blends with top bar */
-    padding: 6px;                      /* makes logo look clean */
-    border-radius: 8px;                /* optional smooth look */
+    height: 75px;
+    width: 95px;                      /* makes logo WIDER */
+    object-fit: contain;              /* keeps proportions clean */
 
-    filter: drop-shadow(0 0 12px #ff4d4d);  /* soft glow */
-    transition: 0.3s ease;
+    background: #0b1221;
+    padding: 8px;
+    border-radius: 10px;
+
+    filter: drop-shadow(0 0 14px #ff4d4d);
+    transition: 0.25s ease;
 }
+
+header img:hover {
+    filter: drop-shadow(0 0 22px #ff6b6b);
+    transform: scale(1.08);
+}
+
 
 header img:hover {
     filter: drop-shadow(0 0 20px #ff6b6b);  /* stronger glow */
