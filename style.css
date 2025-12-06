@@ -17,30 +17,22 @@ header {
   position: relative;
   z-index: 10;
 }
-/* ----------- FIXED AVENGERS LOGO (WIDER) ----------- */
 header img {
-    height: 75px;
-    width: 95px;                      /* makes logo WIDER */
-    object-fit: contain;              /* keeps proportions clean */
-
-    background: #0b1221;
+    width: 25%;              /* NEW: takes 25% of top bar */
+    max-width: 260px;        /* prevents extreme stretching on big screens */
+    min-width: 150px;        /* keeps it visible on mobiles */
+    height: auto;
+    background: #0d1623;     /* SAME as top bar background */
+    border-radius: 12px;
     padding: 8px;
-    border-radius: 10px;
-
-    filter: drop-shadow(0 0 14px #ff4d4d);
-    transition: 0.25s ease;
+    box-shadow: 0 0 25px rgba(255, 75, 75, 0.7); /* keep glow */
+    transition: transform 0.3s ease;
 }
 
 header img:hover {
-    filter: drop-shadow(0 0 22px #ff6b6b);
-    transform: scale(1.08);
+    transform: scale(1.05);
 }
 
-
-header img:hover {
-    filter: drop-shadow(0 0 20px #ff6b6b);  /* stronger glow */
-    transform: scale(1.05);                 /* small lift */
-}
 
 nav a {
   color: white;
