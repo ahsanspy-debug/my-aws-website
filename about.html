@@ -6,7 +6,40 @@
     <title>About Us - Avengers Cricket Club</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<div id="meteor-layer"></div>
 
+<script>
+function createMeteor() {
+  const layer = document.getElementById("meteor-layer");
+  if (!layer) return;
+
+  const meteor = document.createElement("div");
+  meteor.classList.add("meteor");
+
+  const startX = Math.random() * 100;
+  const startY = -10 - Math.random() * 10;
+
+  const travelX = 40 + Math.random() * 40;
+  const travelY = 40 + Math.random() * 30;
+
+  const angle = -20 - Math.random() * 15;
+
+  meteor.style.left = startX + "vw";
+  meteor.style.top = startY + "vh";
+  meteor.style.setProperty("--tx", travelX + "vw");
+  meteor.style.setProperty("--ty", travelY + "vh");
+  meteor.style.setProperty("--angle", angle + "deg");
+
+  const duration = 1.8 + Math.random() * 1;
+  meteor.style.animationDuration = duration + "s";
+
+  layer.appendChild(meteor);
+
+  setTimeout(() => meteor.remove(), (duration + 0.5) * 1000);
+}
+
+setInterval(createMeteor, 450);
+</script>
 <body>
     <!-- GLOWING FIRE / SPACE BACKGROUND -->
     <div id="fire-bg">
