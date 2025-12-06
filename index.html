@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    <div id="avengers-bg"></div>
 
 <header>
     <img src="images/logo.png" alt="Avengers Logo">
@@ -33,6 +34,19 @@
 <footer>
     © 2025 Avengers Cricket Club | All Rights Reserved
 </footer>
+    <script>
+function createParticle() {
+  const bg = document.getElementById("avengers-bg");
+  const p = document.createElement("div");
+  p.classList.add("particle");
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.bottom = "-10px";
+  p.style.animationDuration = (4 + Math.random() * 4) + "s";
+  bg.appendChild(p);
+  setTimeout(() => p.remove(), 8000);
+}
+setInterval(createParticle, 120);
+</script>
 
 </body>
 </html>
