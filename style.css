@@ -1,3 +1,4 @@
+/* ---------------- GLOBAL ---------------- */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -5,6 +6,7 @@ body {
   color: white;
 }
 
+/* ---------------- HEADER ---------------- */
 header {
   display: flex;
   justify-content: space-between;
@@ -12,6 +14,8 @@ header {
   padding: 20px;
   background: #0b1221;
   border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+  z-index: 10;
 }
 
 header img {
@@ -25,16 +29,17 @@ nav a {
   font-size: 18px;
 }
 
+/* ---------------- HERO SECTION ---------------- */
 .hero {
   position: relative;
   height: 85vh;
   background: url('images/banner.jpg') no-repeat center center/cover;
+  z-index: 5;
 }
 
 .overlay {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  inset: 0;
   background: rgba(0,0,0,0.4);
 }
 
@@ -44,132 +49,103 @@ nav a {
   left: 10%;
 }
 
-.hero-text h1 {
-  font-size: 60px;
-  margin: 0;
-}
+.hero-text h1 { font-size: 60px; margin: 0; }
+.hero-text h3 { font-size: 42px; margin-top: -10px; }
 
-.hero-text h3 {
-  font-size: 42px;
-  margin-top: -10px;
-}
-
+/* ---------------- FOOTER ---------------- */
 footer {
   text-align: center;
   padding: 20px;
   background: #0b1221;
   margin-top: 40px;
 }
+
+/* ---------------- PAGE STYLE ---------------- */
 .page {
-    max-width: 900px;
-    margin: 80px auto;
-    padding: 20px;
-    line-height: 1.6;
-    color: #fff;
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 20px;
+  line-height: 1.6;
+  color: #fff;
 }
+
 .page h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
+  font-size: 36px;
+  margin-bottom: 20px;
 }
+
+/* ---------------- PLAYER GRID ---------------- */
 .players-section {
-    text-align: center;
-    padding: 40px;
-    background-color: #0a0f1a;
-    color: white;
+  text-align: center;
+  padding: 40px;
+  background-color: #0a0f1a;
+  color: white;
 }
 
 .players-section h1 {
-    font-size: 40px;
-    margin-bottom: 30px;
-    color: #ff4d4d;
-    letter-spacing: 3px;
+  font-size: 40px;
+  margin-bottom: 30px;
+  color: #ff4d4d;
+  letter-spacing: 3px;
 }
 
 .players-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
 }
 
 .player-card {
-    background: #111827;
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-    border: 2px solid #ff4d4d;
-    transition: 0.3s ease;
+  background: #111827;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  border: 2px solid #ff4d4d;
+  transition: 0.3s ease;
 }
 
 .player-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px #ff4d4db0;
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #ff4d4db0;
 }
 
 .player-card img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 12px;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
 }
 
-.player-card h2 {
-    font-size: 22px;
-    margin: 8px 0;
-    color: #ff8080;
-}
-
-.role {
-    font-size: 14px;
-    margin-bottom: 15px;
-    color: #cccccc;
-}
+.player-card h2 { font-size: 22px; margin: 8px 0; color: #ff8080; }
+.role { font-size: 14px; margin-bottom: 15px; color: #cccccc; }
 
 .stats {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .stat-box {
-    background: #ff4d4d;
-    padding: 10px;
-    border-radius: 8px;
-    color: white;
-    font-size: 13px;
-    width: 70px;
+  background: #ff4d4d;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
+  font-size: 13px;
+  width: 70px;
 }
 
 .stat-box span {
-    display: block;
-    font-size: 18px;
-    font-weight: bold;
-}
-#avengers-bg {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: #000;
-  z-index: -1;
-  overflow: hidden;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-.particle {
-  position: absolute;
-  width: 4px; height: 4px;
-  background: rgba(255,140,0,0.9);
-  border-radius: 50%;
-  animation: float 6s linear infinite;
-}
-
-/* ---- FIXED TOP-LAYER FLARES ---- */
+/* ---------------- FLAIR / PARTICLES ---------------- */
 #avengers-bg {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;     /* highest layer */
+  inset: 0;
+  z-index: 999;
   pointer-events: none;
   overflow: hidden;
 }
@@ -183,8 +159,8 @@ footer {
       rgba(255,60,0,0.8) 40%,
       rgba(255,20,0,0.2) 80%);
   border-radius: 50%;
-  filter: blur(3px);
   opacity: 0.9;
+  filter: blur(3px);
   animation: particleMove 6s linear infinite;
 }
 
@@ -193,14 +169,12 @@ footer {
   100% { transform: translate(var(--dx), var(--dy)) scale(2); opacity: 0; }
 }
 
-/* ---- ABOUT PAGE FIRE BG ---- */
+/* ---------------- ABOUT PAGE FIRE BG ---------------- */
 #fire-bg {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  inset: 0;
   z-index: -1;
+  overflow: hidden;
   background: #080d12;
 }
 
@@ -210,12 +184,15 @@ footer {
   height: 200%;
   top: -50%;
   left: -50%;
+  filter: blur(80px);
+  animation: fireMove 18s infinite linear;
+}
+
+.fire-layer:nth-child(1) {
   background: radial-gradient(circle at 50% 60%,
       rgba(255,140,0,0.3),
       rgba(255,50,0,0.1),
       transparent 70%);
-  filter: blur(80px);
-  animation: fireMove 12s infinite linear;
 }
 
 .fire-layer:nth-child(2) {
@@ -223,8 +200,7 @@ footer {
       rgba(255,40,0,0.35),
       rgba(255,0,0,0.12),
       transparent 75%);
-  animation-duration: 18s;
-  animation-direction: reverse;
+  animation-duration: 22s;
 }
 
 .fire-layer:nth-child(3) {
@@ -232,133 +208,23 @@ footer {
       rgba(255,180,0,0.28),
       rgba(255,50,0,0.15),
       transparent 80%);
-  animation-duration: 25s;
+  animation-duration: 30s;
 }
 
 @keyframes fireMove {
-  0%   { transform: rotate(0deg) scale(1); }
-  50%  { transform: rotate(180deg) scale(1.3); }
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.3); }
   100% { transform: rotate(360deg) scale(1); }
 }
 
-/* ---- ABOUT PAGE TITLES ---- */
+/* ---------------- TITLE FLICKER ---------------- */
 .section-title {
   position: relative;
-  color: #fff;
   text-shadow: 0 0 10px rgba(255,140,0,0.7);
   animation: flicker 3s infinite;
 }
 
 @keyframes flicker {
-  0%, 100% { opacity: 1; text-shadow: 0 0 12px rgba(255,140,0,0.8); }
-  50%      { opacity: 0.85; text-shadow: 0 0 22px rgba(255,40,0,1); }
-}
-  
-#avengers-bg {
-  position: fixed;
-  top: 0; 
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;           /* brings flares ABOVE wallpaper */
-  pointer-events: none; /* allows clicks through the flares */
-}
-
-.particle {
-  position: absolute;
-  width: 8px; 
-  height: 8px;
-  background: radial-gradient(circle, rgba(255,140,0,1) 0%, rgba(255,60,0,0.8) 40%, rgba(255,20,0,0.2) 80%);
-  border-radius: 50%;
-  opacity: 0.9;
-  filter: blur(2px);
-  animation: float 6s linear infinite;
-}
-
-@keyframes float {
-  0% { transform: translate(0,0) scale(1); opacity: 1; }
-  100% { transform: translate(var(--dx), var(--dy)) scale(2); opacity: 0; }
-}
-#about-bg {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: -1;
-  background: radial-gradient(circle at 50% 50%, #101820, #0a0f15);
-  overflow: hidden;
-}
-
-.smoke {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: rgba(255, 80, 0, 0.08);
-  border-radius: 50%;
-  filter: blur(80px);
-  animation: drift 18s infinite ease-in-out;
-}
-
-@keyframes drift {
-  0%   { transform: translate(-20vw, -20vh) scale(1); }
-  50%  { transform: translate(20vw, 10vh) scale(1.4); }
-  100% { transform: translate(-20vw, -20vh) scale(1); }
-}
-
-.section-title {
-  position: relative;
-  color: #fff;
-  text-shadow: 0 0 10px rgba(255,140,0,0.7);
-  animation: flicker 3s infinite;
-}
-
-@keyframes flicker {
-  0%, 100% { opacity: 1; text-shadow: 0 0 12px rgba(255,140,0,0.8); }
-  50%      { opacity: 0.85; text-shadow: 0 0 20px rgba(255,40,0,1); }
-}
-#fire-bg {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: -1;
-  background: #080d12;
-}
-
-.fire-layer {
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  background: radial-gradient(circle at 50% 60%, rgba(255,140,0,0.3), rgba(255,50,0,0.1), transparent 70%);
-  filter: blur(80px);
-  animation: fireMove 12s infinite linear;
-}
-
-.fire-layer:nth-child(2) {
-  background: radial-gradient(circle at 40% 70%, rgba(255,40,0,0.35), rgba(255,0,0,0.12), transparent 75%);
-  animation-duration: 18s;
-  animation-direction: reverse;
-}
-
-.fire-layer:nth-child(3) {
-  background: radial-gradient(circle at 60% 40%, rgba(255,180,0,0.28), rgba(255,50,0,0.15), transparent 80%);
-  animation-duration: 25s;
-}
-
-@keyframes fireMove {
-  0% {
-    transform: rotate(0deg) scale(1);
-  }
-  50% {
-    transform: rotate(180deg) scale(1.3);
-  }
-  100% {
-    transform: rotate(360deg) scale(1);
-  }
-}
-.hero {
-  position: relative;
-  z-index: 1;
+  0%,100% { opacity:1; text-shadow:0 0 12px rgba(255,140,0,0.8); }
+  50% { opacity:.85; text-shadow:0 0 22px rgba(255,40,0,1); }
 }
