@@ -412,3 +412,121 @@ footer {
   0%,100% { opacity:1; text-shadow:0 0 12px rgba(255,255,255,0.9); }
   50% { opacity:.85; text-shadow:0 0 22px rgba(160,200,255,1); }
 }
+/* ========================================================= */
+/* ------------------- HERO TEXT UPGRADE ------------------- */
+/* ========================================================= */
+
+.hero-text.upgraded {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    z-index: 5;
+}
+
+.tiny-tag {
+    font-size: 22px;
+    letter-spacing: 4px;
+    opacity: 0.9;
+    text-shadow: 0 0 10px rgba(255,180,180,0.8);
+    animation: fadePulse 3s infinite;
+}
+
+.main-title {
+    font-size: 78px;
+    font-weight: 900;
+    margin: 10px 0;
+    color: white;
+    text-shadow: 
+        0 0 25px rgba(255,90,90,0.9),
+        0 0 55px rgba(255,120,80,0.8);
+    animation: titleGlow 6s infinite alternate;
+}
+
+.sub-title {
+    font-size: 48px;
+    margin-top: -10px;
+    text-shadow: 
+        0 0 18px rgba(255,140,110,1),
+        0 0 35px rgba(255,90,90,0.9);
+    animation: slideFade 2s ease-out;
+}
+
+.est-tag {
+    margin-top: 25px;
+    font-size: 22px;
+    letter-spacing: 6px;
+    opacity: 0.85;
+    text-shadow: 0 0 12px rgba(255,150,150,1);
+    animation: fadePulse 4s infinite;
+}
+
+/* ---------------- FLARE EFFECT ---------------- */
+.flare {
+    position: absolute;
+    left: -5%;
+    top: 50%;
+    width: 160%;
+    height: 12px;
+    background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,200,150,1) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    filter: blur(12px);
+    animation: flareSweep 4s infinite;
+}
+
+/* ---------------- FIRE BACK-GLOW ---------------- */
+.fire-glow {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    left: -80px;
+    top: -60px;
+    background: radial-gradient(
+        circle,
+        rgba(255,100,60,0.35),
+        rgba(255,60,30,0.15),
+        transparent 70%
+    );
+    filter: blur(40px);
+    opacity: 0.7;
+    animation: firePulse 5s infinite ease-in-out;
+}
+
+/* ---------------- ANIMATIONS ---------------- */
+@keyframes fadePulse {
+    0%,100% { opacity: 0.9; }
+    50% { opacity: 0.4; }
+}
+
+@keyframes titleGlow {
+    0% {
+        text-shadow:
+            0 0 15px rgba(255,60,60,0.9),
+            0 0 35px rgba(255,110,80,0.9);
+    }
+    100% {
+        text-shadow:
+            0 0 45px rgba(255,140,100,1),
+            0 0 85px rgba(255,80,60,1);
+    }
+}
+
+@keyframes slideFade {
+    0% { opacity: 0; transform: translateY(25px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes flareSweep {
+    0% { transform: translateX(-120%); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateX(120%); opacity: 0; }
+}
+
+@keyframes firePulse {
+    0% { transform: scale(1); opacity: 0.55; }
+    50% { transform: scale(1.25); opacity: 0.95; }
+    100% { transform: scale(1); opacity: 0.55; }
+}
