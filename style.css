@@ -108,6 +108,87 @@ footer {
   transform: scale(1.05);
   box-shadow: 0 0 25px #ff4d4db0;
 }
+/* ---- INTERACTIVE PLAYER CARDS ---- */
+.player-card.interactive {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.player-card.interactive img {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.25s ease;
+}
+
+.player-card.interactive:hover {
+  transform: translateY(-6px) scale(1.06) rotateX(2deg);
+  border-color: #ff6b6b;
+  box-shadow: 0 0 30px rgba(255,107,107,0.9);
+}
+
+.player-card.interactive:hover img {
+  transform: translateY(-4px) scale(1.03);
+}
+
+/* glowing aura */
+.player-card .glow {
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255,80,80,0.35), transparent 60%),
+    radial-gradient(circle at 80% 100%, rgba(255,140,0,0.4), transparent 65%);
+  opacity: 0;
+  filter: blur(8px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.player-card.interactive:hover .glow {
+  opacity: 1;
+  animation: glowMove 2.2s linear infinite;
+}
+
+/* energy streak across the card */
+.player-card .sparks {
+  position: absolute;
+  width: 180%;
+  height: 3px;
+  top: 120%;
+  left: -40%;
+  background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.9),
+      rgba(255,230,180,0.9),
+      transparent
+  );
+  opacity: 0;
+  filter: blur(1px);
+  transform: rotate(-18deg);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.player-card.interactive:hover .sparks {
+  opacity: 1;
+  animation: sparkSweep 0.9s ease-out forwards;
+}
+
+/* keyframes */
+@keyframes glowMove {
+  0%   { transform: translate(-5%, -5%) scale(1); }
+  50%  { transform: translate(5%, 5%) scale(1.1); }
+  100% { transform: translate(-5%, -5%) scale(1); }
+}
+
+@keyframes sparkSweep {
+  0%   { top: 120%; opacity: 0; }
+  20%  { opacity: 1; }
+  100% { top: -40%; opacity: 0; }
+}
 
 .player-card img {
   width: 100%;
