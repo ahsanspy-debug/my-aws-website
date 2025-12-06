@@ -42,32 +42,59 @@ header img:hover {
 }
 nav {
   display: flex;
-  gap: 35px;                /* spacing between links */
-  align-items: center;      /* vertical alignment */
+  gap: 35px;
+  align-items: center;
 }
 
 nav a {
+  position: relative;
   color: #ffffff;
   font-size: 20px;
   text-decoration: none;
   letter-spacing: 1px;
-  transition: 0.3s ease;
   padding: 6px 10px;
-  border-radius: 6px;
+  transition: color 0.3s ease;
 }
 
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(
+      90deg,
+      rgba(255,90,70,0),
+      rgba(255,100,80,1),
+      rgba(255,160,120,1),
+      rgba(255,90,70,0)
+  );
+  box-shadow: 0 0 12px rgba(255,90,70,0.8);
+  transition: width 0.35s ease-out;
+  border-radius: 10px;
+}
+
+/* Hover effect */
 nav a:hover {
   color: #ff6b6b;
   text-shadow: 0 0 10px #ff6b6b;
-  transform: translateY(-2px);
 }
 
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Active page highlight */
 nav a.active {
   color: #ff6b6b;
   font-weight: bold;
   text-shadow: 0 0 12px #ff6b6b;
 }
 
+nav a.active::after {
+  width: 100%;
+}
 
 
 /* ---------------- HERO SECTION ---------------- */
