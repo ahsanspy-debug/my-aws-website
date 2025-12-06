@@ -8,49 +8,92 @@
 </head>
 
 <body>
+    <!-- GLOWING FIRE / SPACE BACKGROUND -->
     <div id="fire-bg">
-    <div class="fire-layer"></div>
-    <div class="fire-layer"></div>
-    <div class="fire-layer"></div>
-</div>
+        <div class="fire-layer"></div>
+        <div class="fire-layer"></div>
+        <div class="fire-layer"></div>
+    </div>
 
-<header>
-    <img src="images/logo.png" alt="Avengers Logo" class="logo">
+    <!-- METEOR FLARES (WHITE TRAILS) -->
+    <div id="meteor-layer"></div>
 
-    <nav>
-<a href="index.html">Home</a>
-<a href="about.html" class="active">About Us</a>
-<a href="team-players.html">Team Players</a>
-<a href="fixtures.html">Fixtures</a>
-<a href="gallery.html">Gallery</a>
-<a href="sponsors.html">Sponsors</a>
-    </nav>
-</header>
+    <header>
+        <img src="images/logo.png" alt="Avengers Logo" class="logo">
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About Us</a>
+            <a href="team-players.html">Team Players</a>
+            <a href="fixtures.html">Fixtures</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="sponsors.html">Sponsors</a>
+        </nav>
+    </header>
 
     <section class="page">
-    <h1>About Us</h1>
-    <p>The Avengers Cricket Club isn’t your average Canberra team — we play fast, fearless, and explosive cricket. When we walk onto the ground, the whole rhythm of a T20 changes. One good over is all we need to flip a match on its head.</p>
+        <h1>About Us</h1>
+        <p>The Avengers Cricket Club isn’t your average Canberra team — we play fast, fearless, and explosive cricket. When we walk onto the ground, the whole rhythm of a T20 changes. One good over is all we need to flip a match on its head.</p>
 
-    <h2 class="section-title">Power Hitters</h2>
-    <p>We’re known for our hitters who can lift the strike rate past 200 without blinking. One moment the field is calm, and the next it’s balls flying over covers, mid-wicket, long-on — bowlers left staring into the sky wondering where the ball disappeared.</p>
+        <h2 class="section-title">Power Hitters</h2>
+        <p>We’re known for our hitters who can lift the strike rate past 200 without blinking. One moment the field is calm, and the next it’s balls flying over covers, mid-wicket, long-on — bowlers left staring into the sky wondering where the ball disappeared.</p>
 
-    <h2 class="section-title">Bowling Attack</h2>
-    <p>Our fast bowlers don’t just bowl — they hunt. Toe-crushing yorkers, sharp bouncers, and that one ball every batter fears but never sees coming. You’ll often see batters stepping out of the crease just to stay in one piece.</p>
+        <h2 class="section-title">Bowling Attack</h2>
+        <p>Our fast bowlers don’t just bowl — they hunt. Toe-crushing yorkers, sharp bouncers, and that one ball every batter fears but never sees coming. You’ll often see batters stepping out of the crease just to stay in one piece.</p>
 
-    <p>And when the spinners come in? The ball starts on one side of the pitch and ends on the other. Huge turn, crazy drift, mind-games everywhere. Batters swing at shadows, lose their shape, and make mistakes for fun.</p>
+        <p>And when the spinners come in? The ball starts on one side of the pitch and ends on the other. Huge turn, crazy drift, mind-games everywhere. Batters swing at shadows, lose their shape, and make mistakes for fun.</p>
 
-    <h2 class="section-title">Our Identity</h2>
-    <p>Avengers is a well-oiled cricket engine — when it switches on fully, it crushes. The intensity rises, the pressure builds, and the opposition feels every second of it. That’s our peak mode.</p>
+        <h2 class="section-title">Our Identity</h2>
+        <p>Avengers is a well-oiled cricket engine — when it switches on fully, it crushes. The intensity rises, the pressure builds, and the opposition feels every second of it. That’s our peak mode.</p>
 
-    <h2 class="section-title">But Here’s the Truth</h2>
-    <p>Even with all the firepower, we stay humble. We respect the game, respect every opponent, and want everyone to enjoy cricket. We don’t go full throttle in every match — the goal is to compete hard, have fun, and keep the spirit of cricket alive.</p>
+        <h2 class="section-title">But Here’s the Truth</h2>
+        <p>Even with all the firepower, we stay humble. We respect the game, respect every opponent, and want everyone to enjoy cricket. We don’t go full throttle in every match — the goal is to compete hard, have fun, and keep the spirit of cricket alive.</p>
 
-    <p>Welcome to Avengers Cricket Club — fast, fearless, entertaining, and always ready for the next battle.</p>
-</section>
+        <p>Welcome to Avengers Cricket Club — fast, fearless, entertaining, and always ready for the next battle.</p>
+    </section>
 
-<footer>
-    © 2025 Avengers Cricket Club | All Rights Reserved
-</footer>
+    <footer>
+        © 2025 Avengers Cricket Club | All Rights Reserved
+    </footer>
 
+    <!-- METEOR SCRIPT -->
+    <script>
+      function createMeteor() {
+        const layer = document.getElementById("meteor-layer");
+        if (!layer) return;
+
+        const meteor = document.createElement("div");
+        meteor.classList.add("meteor");
+
+        // random starting position slightly above top edge
+        const startX = Math.random() * 100;       // vw
+        const startY = -10 - Math.random() * 10;  // vh above the screen
+
+        // travel direction & distance (diagonal down-right)
+        const travelX = 40 + Math.random() * 40;  // vw
+        const travelY = 40 + Math.random() * 30;  // vh
+
+        // slight random angle for variety
+        const angle = -20 - Math.random() * 15;   // degrees
+
+        meteor.style.left = startX + "vw";
+        meteor.style.top  = startY + "vh";
+        meteor.style.setProperty("--tx", travelX + "vw");
+        meteor.style.setProperty("--ty", travelY + "vh");
+        meteor.style.setProperty("--angle", angle + "deg");
+
+        // random speed
+        const duration = 1.8 + Math.random() * 0.9; // 1.8–2.7s
+        meteor.style.animationDuration = duration + "s";
+
+        layer.appendChild(meteor);
+
+        // clean up after animation
+        setTimeout(() => meteor.remove(), (duration + 0.5) * 1000);
+      }
+
+      // spawn meteors regularly
+      setInterval(createMeteor, 450);  // lower number = more meteors
+    </script>
 </body>
 </html>
