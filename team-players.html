@@ -294,3 +294,23 @@
 </script>
 </body>
 </html>
+<!-- 🔥 Cricket Ball Flame Animation Script -->
+<script>
+// Remove any existing flame animation
+const oldFlame = document.querySelector('.cricket-ball-animate');
+if (oldFlame) oldFlame.remove();
+
+// Create container div
+const flameDiv = document.createElement('div');
+flameDiv.className = 'cricket-ball-animate';
+
+// Create image element
+const flameImg = document.createElement('img');
+flameImg.src = 'images/fireball.png'; // ✅ Make sure this path is correct
+flameImg.alt = '';
+flameImg.style.width = '100%';
+flameImg.style.height = 'auto';
+
+flameDiv.appendChild(flameImg);
+document.body.appendChild(flameDiv);
+</script>
