@@ -897,3 +897,126 @@ nav a::after {
   90%  { opacity: 1; }
   100% { left: 110vw; opacity: 0; }
 }
+/* ===================== SPONSORS SECTION ===================== */
+.sponsors-section {
+  text-align: center;
+  padding: 80px 20px;
+  background: radial-gradient(circle at 20% 20%, #0d0f1a, #07090f);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.sponsors-section h1 {
+  font-size: 50px;
+  margin-bottom: 60px;
+  color: #ff4d4d;
+  text-shadow: 0 0 15px rgba(255, 77, 77, 0.8);
+  letter-spacing: 2px;
+}
+
+/* Triangle layout */
+.sponsor-triangle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.bottom-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+/* Sponsor Card */
+.sponsor-card {
+  background: #101622;
+  border: 2px solid #ff4d4d;
+  border-radius: 15px;
+  padding: 20px;
+  width: 280px;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(255, 75, 75, 0.25);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.sponsor-card.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease-out;
+}
+
+.sponsor-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 100, 100, 0.9);
+}
+
+.sponsor-card img {
+  width: 120px;
+  height: auto;
+  margin: 15px 0;
+  filter: drop-shadow(0 0 5px #ff4d4d);
+}
+
+.sponsor-info h3 {
+  font-size: 20px;
+  margin: 10px 0 6px;
+  color: #ff8080;
+}
+
+.sponsor-info p {
+  font-size: 14px;
+  color: #cccccc;
+}
+
+.sponsor-tag {
+  display: inline-block;
+  background: #ff4d4d;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 0 10px rgba(255, 77, 77, 0.7);
+}
+
+.est-text {
+  margin-top: 60px;
+  font-size: 18px;
+  color: #cccccc;
+  letter-spacing: 4px;
+}
+
+/* Sparkling particles background effect */
+.sponsors-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity: 0.03;
+  z-index: 0;
+  animation: bgMove 80s linear infinite;
+}
+
+@keyframes bgMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 1000px 1000px; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sponsor-card {
+    width: 90%;
+  }
+  .bottom-row {
+    flex-direction: column;
+    align-items: center;
+  }
+}
