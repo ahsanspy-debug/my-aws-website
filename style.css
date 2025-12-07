@@ -1300,3 +1300,217 @@ body {
     width: 90%;
   }
 }
+/* ==== GLOBAL RESET ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0b0f1a;
+  color: white;
+}
+
+/* ==== HEADER ==== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #0b1221;
+  border-bottom: 1px solid rgba(255, 90, 90, 0.2);
+  box-shadow: 0 0 20px rgba(255, 77, 77, 0.4);
+}
+
+header img {
+  height: 70px;
+  padding: 8px 60px;
+  background: #0d1623;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(255, 75, 75, 0.7);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+header img:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 25px #ff6b6b);
+}
+
+nav {
+  display: flex;
+  gap: 35px;
+  align-items: center;
+}
+
+nav a {
+  position: relative;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 6px 12px;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #ff4d4d, #ffaa88);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 6px rgba(255, 90, 90, 0.4);
+  transition: all 0.3s ease;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(255,100,80,1), transparent);
+  box-shadow: 0 0 12px rgba(255,90,70,0.8);
+  transition: width 0.35s ease-out;
+  border-radius: 10px;
+}
+
+nav a:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 12px rgba(255, 100, 100, 0.8);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a.active {
+  color: #ff6b6b;
+  font-weight: bold;
+  text-shadow: 0 0 12px #ff6b6b;
+}
+
+/* ==== SPONSORS SECTION ==== */
+.sponsors-section {
+  text-align: center;
+  padding: 80px 20px;
+  background: #0b0f1a;
+  position: relative;
+  overflow: hidden;
+}
+
+.sponsors-section h1,
+.section-title {
+  font-size: 48px;
+  color: #ff4d4d;
+  margin-bottom: 60px;
+  text-shadow: 0 0 15px rgba(255, 77, 77, 0.6);
+  letter-spacing: 3px;
+}
+
+/* Layout container */
+.sponsor-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* Sponsor card */
+.sponsor-card {
+  background: #111827;
+  border-radius: 18px;
+  padding: 30px 20px;
+  width: 280px;
+  text-align: center;
+  border: 2px solid transparent;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: white;
+  text-decoration: none;
+}
+
+.sponsor-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(255, 100, 100, 0.4);
+}
+
+/* Tier label */
+.sponsor-card .tier {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+/* Tier styles */
+.sponsor-card.gold {
+  border-color: #ffcc00;
+  box-shadow: 0 0 15px #ffcc00aa;
+}
+.sponsor-card.gold .tier {
+  color: #ffcc00;
+}
+
+.sponsor-card.silver {
+  border-color: #cccccc;
+  box-shadow: 0 0 15px #ccccccaa;
+}
+.sponsor-card.silver .tier {
+  color: #cccccc;
+}
+
+.sponsor-card.bronze {
+  border-color: #cd7f32;
+  box-shadow: 0 0 15px #cd7f32aa;
+}
+.sponsor-card.bronze .tier {
+  color: #cd7f32;
+}
+
+/* Logo */
+.sponsor-card img {
+  max-width: 120px;
+  margin: 10px auto 18px;
+  display: block;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+/* Text */
+.sponsor-card h3 {
+  font-size: 20px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.sponsor-card p {
+  font-size: 14px;
+  color: #dddddd;
+  line-height: 1.5;
+}
+
+/* Footer Text */
+.est-text {
+  margin-top: 60px;
+  font-size: 18px;
+  color: #ff4d4d;
+  letter-spacing: 4px;
+  text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 768px) {
+  .sponsor-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sponsor-card {
+    width: 90%;
+  }
+
+  .section-title {
+    font-size: 36px;
+  }
+}
