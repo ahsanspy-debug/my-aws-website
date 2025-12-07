@@ -10,7 +10,7 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center;a
   padding: 20px;
   background: #0b1221;
   border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -18,19 +18,28 @@ header {
   z-index: 10;
 }
 header img {
-  height: 70px;
-  width: auto;
-  padding: 8px 60px;
-  background: #0d1623;
-  border-radius: 12px;
-  box-shadow: 0 0 25px rgba(255, 75, 75, 0.7);
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-header img:hover {
-  transform: scale(1.08);
-  filter: drop-shadow(0 0 25px #ff6b6b);
+    height: 70px;                  /* fixed height */
+    width: auto;                   /* logo stays natural */
+    
+    /* NEW → widen the background panel */
+    padding: 8px 60px;             /* 60px left/right = wider box */
+    
+    background: #0d1623;
+    border-radius: 12px;
+
+    box-shadow: 0 0 25px rgba(255, 75, 75, 0.7);
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
+header img:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 25px #ff6b6b);
+}
+
+header img:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 25px #ff6b6b);
+}
 nav {
   display: flex;
   gap: 35px;
@@ -55,17 +64,18 @@ nav a::after {
   width: 0%;
   height: 3px;
   background: linear-gradient(
-    90deg,
-    rgba(255,90,70,0),
-    rgba(255,100,80,1),
-    rgba(255,160,120,1),
-    rgba(255,90,70,0)
+      90deg,
+      rgba(255,90,70,0),
+      rgba(255,100,80,1),
+      rgba(255,160,120,1),
+      rgba(255,90,70,0)
   );
   box-shadow: 0 0 12px rgba(255,90,70,0.8);
   transition: width 0.35s ease-out;
   border-radius: 10px;
 }
 
+/* Hover effect */
 nav a:hover {
   color: #ff6b6b;
   text-shadow: 0 0 10px #ff6b6b;
@@ -75,6 +85,7 @@ nav a:hover::after {
   width: 100%;
 }
 
+/* Active page highlight */
 nav a.active {
   color: #ff6b6b;
   font-weight: bold;
@@ -84,6 +95,7 @@ nav a.active {
 nav a.active::after {
   width: 100%;
 }
+
 
 /* ---------------- HERO SECTION ---------------- */
 .hero {
@@ -164,151 +176,357 @@ footer {
   transform: scale(1.05);
   box-shadow: 0 0 25px #ff4d4db0;
 }
-
-/* ---------------- ENHANCED SPONSORS SECTION ---------------- */
-.sponsors-section {
-  background: linear-gradient(to bottom right, #FFE5B4, #FFDAB9);
-  padding: 80px 30px;
-  text-align: center;
-  color: #333;
-}
-
-.sponsors-section h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 60px;
-  color: #d35400;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
-
-.sponsor-triangle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 60px;
-}
-
-.bottom-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 80px;
-}
-
-.sponsor-card {
-  width: 280px;
-  min-height: 320px;
-  background-color: #fff;
-  border-radius: 18px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  overflow: hidden;
+/* ---- INTERACTIVE PLAYER CARDS ---- */
+.player-card.interactive {
   position: relative;
-  transition: all 0.3s ease;
-  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.sponsor-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+.player-card.interactive img {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.25s ease;
 }
 
-.sponsor-inner {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.player-card.interactive:hover {
+  transform: translateY(-6px) scale(1.06) rotateX(2deg);
+  border-color: #ff6b6b;
+  box-shadow: 0 0 30px rgba(255,107,107,0.9);
 }
 
-.sponsor-tag {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  padding: 6px 12px;
-  border-radius: 20px;
-  color: white;
+.player-card.interactive:hover img {
+  transform: translateY(-4px) scale(1.03);
+}
+
+/* glowing aura */
+.player-card .glow {
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255,80,80,0.35), transparent 60%),
+    radial-gradient(circle at 80% 100%, rgba(255,140,0,0.4), transparent 65%);
+  opacity: 0;
+  filter: blur(8px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.player-card.interactive:hover .glow {
+  opacity: 1;
+  animation: glowMove 2.2s linear infinite;
+}
+
+/* energy streak across the card */
+.player-card .sparks {
+  position: absolute;
+  width: 180%;
+  height: 3px;
+  top: 120%;
+  left: -40%;
+  background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.9),
+      rgba(255,230,180,0.9),
+      transparent
+  );
+  opacity: 0;
+  filter: blur(1px);
+  transform: rotate(-18deg);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.player-card.interactive:hover .sparks {
+  opacity: 1;
+  animation: sparkSweep 0.9s ease-out forwards;
+}
+
+/* keyframes */
+@keyframes glowMove {
+  0%   { transform: translate(-5%, -5%) scale(1); }
+  50%  { transform: translate(5%, 5%) scale(1.1); }
+  100% { transform: translate(-5%, -5%) scale(1); }
+}
+
+@keyframes sparkSweep {
+  0%   { top: 120%; opacity: 0; }
+  20%  { opacity: 1; }
+  100% { top: -40%; opacity: 0; }
+}
+
+.player-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
   margin-bottom: 12px;
 }
 
-.sponsor-tag.gold {
-  background-color: #FFD700;
-  color: #000;
+.player-card h2 { font-size: 22px; margin: 8px 0; color: #ff8080; }
+.role { font-size: 14px; margin-bottom: 15px; color: #cccccc; }
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
-.sponsor-tag.silver {
-  background-color: #C0C0C0;
-  color: #000;
+.stat-box {
+  background: #ff4d4d;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
+  font-size: 13px;
+  width: 70px;
 }
 
-.sponsor-tag.bronze {
-  background-color: #CD7F32;
-  color: #fff;
+.stat-box span {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-.sponsor-card img {
-  max-width: 100%;
-  max-height: 100px;
-  margin-bottom: 20px;
-  object-fit: contain;
+/* ========================================================= */
+/* ---------------- METEOR SHOOTING STARS ------------------- */
+/* ========================================================= */
+
+#meteor-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 20;     /* ABOVE background, BELOW header */
+  pointer-events: none;
+  overflow: hidden;
 }
 
-.sponsor-info h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: #e67e22;
+.meteor {
+  position: absolute;
+  width: 220px;  /* trail length */
+  height: 3px;
+  background: linear-gradient(
+      to left,
+      rgba(255,255,255,0),
+      rgba(255,255,255,0.9),
+      rgba(255,255,255,1)
+  );
+  border-radius: 999px;
+  box-shadow:
+      0 0 12px rgba(255,255,255,0.9),
+      0 0 25px rgba(180,220,255,0.8);
+  transform-origin: 100% 50%;
+  transform: rotate(var(--angle, -30deg));
+  animation: meteorMove linear forwards;
 }
 
-.sponsor-info p {
-  font-size: 0.95rem;
-  color: #555;
-  text-align: center;
+.meteor::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  transform: translate(50%, -50%);
+  background: radial-gradient(circle,
+      white 0%,
+      #d6e8ff 40%,
+      rgba(255,255,255,0) 100%);
+  filter: blur(1px);
 }
 
-.est-text {
-  margin-top: 60px;
-  font-size: 1.1rem;
-  font-style: italic;
-  color: #666;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .bottom-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
+@keyframes meteorMove {
+  0% {
+    opacity: 0;
+    transform: translate(0,0) rotate(var(--angle));
   }
-
-  .sponsors-section h1 {
-    font-size: 2.2rem;
+  10% {
+    opacity: 1;
   }
-
-  .sponsor-card {
-    width: 90%;
-  }
-
-  .center-top {
-    width: 90%;
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) rotate(var(--angle));
   }
 }
 
-/* OPTIONAL DARK MODE SUPPORT */
-@media (prefers-color-scheme: dark) {
-  .sponsors-section {
-    background: #2c3e50;
-    color: #ecf0f1;
-  }
+/* ========================================================= */
+/* ---------------- ABOUT PAGE FIRE BG ---------------------- */
+/* ========================================================= */
 
-  .sponsor-card {
-    background-color: #34495e;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-  }
+#fire-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: #080d12;
+}
 
-  .sponsor-info p {
-    color: #bdc3c7;
-  }
+.fire-layer {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  filter: blur(80px);
+  animation: fireMove 20s infinite linear;
+}
 
-  .est-text {
-    color: #ccc;
-  }
+.fire-layer:nth-child(1) {
+  background: radial-gradient(circle at 50% 60%,
+      rgba(0,120,255,0.3),
+      rgba(10,20,40,0.8),
+      transparent 70%);
+}
+
+.fire-layer:nth-child(2) {
+  background: radial-gradient(circle at 40% 30%,
+      rgba(100,160,255,0.35),
+      rgba(0,0,50,0.85),
+      transparent 75%);
+  animation-duration: 26s;
+}
+
+.fire-layer:nth-child(3) {
+  background: radial-gradient(circle at 70% 80%,
+      rgba(255,255,255,0.2),
+      rgba(0,0,20,0.9),
+      transparent 80%);
+  animation-duration: 32s;
+}
+
+@keyframes fireMove {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.25); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* ---------------- TITLE FLICKER ---------------- */
+.section-title {
+  position: relative;
+  text-shadow: 0 0 10px rgba(255,255,255,0.7);
+  animation: flicker 3s infinite;
+}
+
+@keyframes flicker {
+  0%,100% { opacity:1; text-shadow:0 0 12px rgba(255,255,255,0.9); }
+  50% { opacity:.85; text-shadow:0 0 22px rgba(160,200,255,1); }
+}
+/* ========================================================= */
+/* ------------------- HERO TEXT UPGRADE ------------------- */
+/* ========================================================= */
+
+.hero-text.upgraded {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    z-index: 5;
+}
+
+.tiny-tag {
+    font-size: 22px;
+    letter-spacing: 4px;
+    opacity: 0.9;
+    text-shadow: 0 0 10px rgba(255,180,180,0.8);
+    animation: fadePulse 3s infinite;
+}
+
+.main-title {
+    font-size: 78px;
+    font-weight: 900;
+    margin: 10px 0;
+    color: white;
+    text-shadow: 
+        0 0 25px rgba(255,90,90,0.9),
+        0 0 55px rgba(255,120,80,0.8);
+    animation: titleGlow 6s infinite alternate;
+}
+
+.sub-title {
+    font-size: 48px;
+    margin-top: -10px;
+    text-shadow: 
+        0 0 18px rgba(255,140,110,1),
+        0 0 35px rgba(255,90,90,0.9);
+    animation: slideFade 2s ease-out;
+}
+
+.est-tag {
+    margin-top: 25px;
+    font-size: 22px;
+    letter-spacing: 6px;
+    opacity: 0.85;
+    text-shadow: 0 0 12px rgba(255,150,150,1);
+    animation: fadePulse 4s infinite;
+}
+
+/* ---------------- FLARE EFFECT ---------------- */
+.flare {
+    position: absolute;
+    left: -5%;
+    top: 50%;
+    width: 160%;
+    height: 12px;
+    background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,200,150,1) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    filter: blur(12px);
+    animation: flareSweep 4s infinite;
+}
+
+/* ---------------- FIRE BACK-GLOW ---------------- */
+.fire-glow {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    left: -80px;
+    top: -60px;
+    background: radial-gradient(
+        circle,
+        rgba(255,100,60,0.35),
+        rgba(255,60,30,0.15),
+        transparent 70%
+    );
+    filter: blur(40px);
+    opacity: 0.7;
+    animation: firePulse 5s infinite ease-in-out;
+}
+
+/* ---------------- ANIMATIONS ---------------- */
+@keyframes fadePulse {
+    0%,100% { opacity: 0.9; }
+    50% { opacity: 0.4; }
+}
+
+@keyframes titleGlow {
+    0% {
+        text-shadow:
+            0 0 15px rgba(255,60,60,0.9),
+            0 0 35px rgba(255,110,80,0.9);
+    }
+    100% {
+        text-shadow:
+            0 0 45px rgba(255,140,100,1),
+            0 0 85px rgba(255,80,60,1);
+    }
+}
+
+@keyframes slideFade {
+    0% { opacity: 0; transform: translateY(25px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes flareSweep {
+    0% { transform: translateX(-120%); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateX(120%); opacity: 0; }
+}
+
+@keyframes firePulse {
+    0% { transform: scale(1); opacity: 0.55; }
+    50% { transform: scale(1.25); opacity: 0.95; }
+    100% { transform: scale(1); opacity: 0.55; }
 }
