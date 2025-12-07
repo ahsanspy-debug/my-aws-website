@@ -1020,3 +1020,31 @@ nav a::after {
     align-items: center;
   }
 }
+.sponsor-card img {
+  width: 120px;
+  height: auto;
+  margin: 15px 0;
+  padding: 10px;
+  border-radius: 12px;
+  background: radial-gradient(circle, rgba(255,77,77,0.2), transparent);
+  border: 2px solid rgba(255, 77, 77, 0.4);
+  box-shadow: 0 0 15px rgba(255, 77, 77, 0.6), 0 0 25px rgba(255, 77, 77, 0.4);
+  transition: transform 0.4s ease;
+}
+.sponsor-card::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(255,77,77,0.3), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+
+.sponsor-card:hover::after {
+  transform: translate(-50%, -50%) scale(1.5);
+  opacity: 1;
+}
