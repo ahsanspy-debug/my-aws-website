@@ -830,3 +830,47 @@ nav a::after {
     transform: rotate(360deg);
   }
 }
+.cricket-ball-animate {
+  position: fixed;
+  top: 40%;
+  left: -200px;
+  width: 100px;
+  z-index: 999;
+  animation: flyAcross 6s linear infinite;
+  pointer-events: none;
+}
+
+.cricket-ball-animate img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(255, 80, 0, 0.8))
+          drop-shadow(0 0 50px rgba(255, 120, 40, 0.6));
+  animation: spinBall 1.5s linear infinite;
+}
+
+@keyframes flyAcross {
+  0% {
+    left: -200px;
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 110%;
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes spinBall {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
