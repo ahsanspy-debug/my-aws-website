@@ -41,6 +41,40 @@
 
     <p class="est-text">EST 2021</p>
   </section>
+<script>
+(function cleanSponsorCSS() {
+  const keywords = [
+    'sponsor-triangle',
+    'bottom-row',
+    'sponsor-tag',
+    'sponsor-info',
+    '.sponsor-card',
+    '.sponsors-section',
+    '.sponsor-container',
+    '.sponsor-tier',
+    '.est-text'
+  ];
 
+  // Remove <style> blocks containing outdated sponsor styles
+  document.querySelectorAll('style').forEach(styleTag => {
+    const content = styleTag.innerText || '';
+    const hasOldSponsorStyles = keywords.some(k => content.includes(k));
+
+    if (hasOldSponsorStyles) {
+      styleTag.remove();
+    }
+  });
+
+  // Remove <link> to external CSS files if they look outdated (use with caution!)
+  document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && href.includes('old') && href.includes('sponsor')) {
+      link.remove();
+    }
+  });
+
+  console.log('✅ Cleaned sponsor-related styles.');
+})();
+</script>
 </body>
 </html>
