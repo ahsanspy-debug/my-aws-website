@@ -780,3 +780,53 @@ nav a::after {
       rgba(255,100,80,1),
       rgba(255,160,120,1),
       rgba(25
+.cricket-ball-animate {
+  position: fixed;
+  top: 35%;
+  left: -300px; /* Start off-screen */
+  width: 120px;
+  height: auto;
+  z-index: 5;
+  animation: flyAcross 6s linear infinite;
+  pointer-events: none;
+}
+
+.cricket-ball-animate img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(255, 80, 0, 0.8))
+          drop-shadow(0 0 50px rgba(255, 120, 40, 0.6));
+  transform: rotate(0deg);
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes flyAcross {
+  0% {
+    left: -300px;
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 110%;
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
