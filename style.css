@@ -1048,3 +1048,12 @@ nav a::after {
   transform: translate(-50%, -50%) scale(1.5);
   opacity: 1;
 }
+.sponsor-card {
+  position: relative;
+  --x: 50%;
+  --y: 50%;
+}
+.sponsor-card::after {
+  left: var(--x);
+  top: var(--y);
+}
