@@ -530,3 +530,128 @@ footer {
     50% { transform: scale(1.25); opacity: 0.95; }
     100% { transform: scale(1); opacity: 0.55; }
 }
+
+/*---------------------Sponser---------------*/
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0d0d0d;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+/* Section Title */
+.sponsors-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ff4d4d;
+  text-align: center;
+  margin-bottom: 50px;
+  text-shadow: 0 0 10px rgba(255, 77, 77, 0.8);
+}
+
+/* Grid Container */
+.sponsor-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* Card Base */
+.sponsor-card {
+  background-color: #111;
+  border-radius: 12px;
+  padding: 30px 20px;
+  text-align: center;
+  width: 300px;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 10px rgba(255,255,255,0.05);
+}
+
+.sponsor-card:hover {
+  transform: translateY(-10px);
+}
+
+/* Tier Labels */
+.sponsor-tier {
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* Images */
+.sponsor-card img {
+  max-width: 100px;
+  margin-bottom: 20px;
+}
+
+/* Text */
+.sponsor-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.sponsor-card p {
+  font-size: 0.95rem;
+  color: #ccc;
+  line-height: 1.5;
+}
+
+/* Tier Specific Styles */
+.gold {
+  border: 2px solid #ffc107;
+  box-shadow: 0 0 20px #ffc10788;
+}
+
+.gold .sponsor-tier {
+  color: #ffc107;
+  text-shadow: 0 0 8px #ffc107;
+}
+
+.silver {
+  border: 2px solid #ccc;
+  box-shadow: 0 0 20px #ffffff55;
+}
+
+.silver .sponsor-tier {
+  color: #ccc;
+  text-shadow: 0 0 8px #ccc;
+}
+
+.bronze {
+  border: 2px solid #ff5722;
+  box-shadow: 0 0 20px #ff572288;
+}
+
+.bronze .sponsor-tier {
+  color: #ff5722;
+  text-shadow: 0 0 8px #ff5722;
+}
+
+/* EST Text */
+.est-text {
+  margin-top: 60px;
+  font-size: 1.2rem;
+  color: #ff4d4d;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(255, 77, 77, 0.8);
+}
