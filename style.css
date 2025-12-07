@@ -661,3 +661,122 @@ footer {
       0 0 50px #ff4d4d;
   }
 }
+/* ========================================================= */
+/* MOBILE RESPONSIVENESS — SCREEN WIDTH < 768px */
+/* ========================================================= */
+@media screen and (max-width: 768px) {
+
+  /* HEADER & NAVIGATION */
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 10px;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  nav a {
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+
+  /* HERO SECTION */
+  .hero {
+    height: 60vh;
+    background-position: center center;
+  }
+
+  .hero-text, .hero-text.upgraded {
+    top: 30%;
+    left: 5%;
+    right: 5%;
+    text-align: center;
+  }
+
+  .main-title {
+    font-size: 40px;
+  }
+
+  .sub-title {
+    font-size: 24px;
+  }
+
+  /* SPONSORS SECTION */
+  .sponsor-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sponsor-card {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .sponsors-title {
+    font-size: 2rem;
+  }
+
+  /* TEAM PLAYERS */
+  .players-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .player-card {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .stat-box {
+    width: 60px;
+    font-size: 0.85rem;
+  }
+
+  .stat-box span {
+    font-size: 1.1rem;
+  }
+
+  /* PAGE LAYOUT */
+  .page {
+    padding: 20px 15px;
+  }
+
+  .page h1 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  /* FOOTER */
+  footer {
+    font-size: 0.9rem;
+    padding: 15px 10px;
+  }
+
+  /* FIXED ELEMENTS */
+  #meteor-layer {
+    z-index: 5; /* move slightly down if needed */
+  }
+
+  /* FIXTURES TEXT CENTER */
+  .fixtures-coming {
+    font-size: 1.4rem;
+    padding: 40px 20px;
+    text-align: center;
+    color: #ff4d4d;
+    text-shadow: 0 0 12px rgba(255, 80, 80, 0.8);
+    animation: glow-pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      text-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff4d4d;
+    }
+    50% {
+      text-shadow: 0 0 20px #ff8080, 0 0 30px #ff4d4d;
+    }
+  }
+}
