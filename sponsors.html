@@ -39,5 +39,24 @@
     link.setAttribute('target', '_blank');
   });
 </script>
+<script>
+// Scroll animation
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+document.querySelectorAll('.sponsor-card').forEach(card => {
+  observer.observe(card);
+});
+
+// Set all nav links to open in new tab
+document.querySelectorAll('nav a').forEach(link => {
+  link.setAttribute('target', '_blank');
+});
+</script>
 </body>
 </html>
