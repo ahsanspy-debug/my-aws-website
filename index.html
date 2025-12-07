@@ -90,5 +90,17 @@ setInterval(createParticle, 60);
     link.setAttribute('target', '_blank');
   });
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Remove images with missing source OR alt="Cricket Ball Flame"
+    document.querySelectorAll('img').forEach(img => {
+      const altText = img.getAttribute('alt')?.toLowerCase();
+      if (!img.complete || img.naturalWidth === 0 || altText === 'cricket ball flame') {
+        img.remove();
+        console.log("🔥 Removed broken or unwanted image:", img);
+      }
+    });
+  });
+</script>
 </body>
 </html>
