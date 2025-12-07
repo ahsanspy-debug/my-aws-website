@@ -530,4 +530,100 @@ footer {
     50% { transform: scale(1.25); opacity: 0.95; }
     100% { transform: scale(1); opacity: 0.55; }
 }
+/* === SPONSORS SECTION === */
 
+.sponsors-section {
+  background-color: #0a0a0a;
+  color: #ffffff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.sponsors-title {
+  font-size: 3rem;
+  color: #ff4d4d;
+  margin-bottom: 60px;
+  text-shadow: 0 0 20px #ff4d4d;
+}
+
+.sponsor-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.sponsor-card {
+  position: relative;
+  background-color: #111;
+  padding: 30px 25px;
+  border-radius: 12px;
+  width: 280px;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sponsor-card:hover {
+  transform: translateY(-5px);
+}
+
+.sponsor-tier {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.sponsor-card img {
+  width: 80px;
+  height: auto;
+  margin: 10px 0 20px;
+}
+
+.sponsor-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.sponsor-card p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Glow Borders */
+.sponsor-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* GLOW STYLES */
+.sponsor-card.gold .sponsor-border {
+  box-shadow: 0 0 20px 4px #ffcc00;
+  border: 2px solid #ffcc00;
+}
+
+.sponsor-card.silver .sponsor-border {
+  box-shadow: 0 0 20px 4px #cccccc;
+  border: 2px solid #cccccc;
+}
+
+.sponsor-card.bronze .sponsor-border {
+  box-shadow: 0 0 20px 4px #ff6600;
+  border: 2px solid #ff6600;
+}
+
+.est-text {
+  margin-top: 60px;
+  font-size: 1.5rem;
+  color: #ff4d4d;
+  text-shadow: 0 0 10px #ff4d4d;
+}
