@@ -337,3 +337,56 @@ footer {
     width: 90%;
   }
 }
+.hero-text h1 {
+  animation: neonPulse 2.5s infinite alternate;
+}
+
+@keyframes neonPulse {
+  0% {
+    text-shadow:
+      0 0 10px #ff4d4d,
+      0 0 20px #ff4d4d,
+      0 0 30px #ff6b6b,
+      0 0 40px #ff8080;
+  }
+  100% {
+    text-shadow:
+      0 0 20px #ff4d4d,
+      0 0 40px #ff6b6b,
+      0 0 60px #ff8080,
+      0 0 80px #ffaaaa;
+  }
+}
+.player-card {
+  animation: glowCard 4s ease-in-out infinite alternate;
+}
+
+@keyframes glowCard {
+  0% {
+    box-shadow: 0 0 5px #ff4d4d40;
+  }
+  100% {
+    box-shadow: 0 0 20px #ff4d4d80;
+  }
+}
+.about-section {
+  text-align: center;
+  padding: 60px 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-section h2 {
+  text-align: center;
+  color: #ff4d4d;
+  font-size: 36px;
+  text-shadow: 0 0 10px #ff4d4d, 0 0 25px #ff4d4d66;
+}
+
+.about-section p {
+  font-size: 18px;
+  line-height: 1.8;
+  margin: 20px 0;
+  color: #ddd;
+  text-align: center;
+}
