@@ -119,7 +119,111 @@ nav a.active::after {
 
 .hero-text h1 { font-size: 60px; margin: 0; }
 .hero-text h3 { font-size: 42px; margin-top: -10px; }
+/* ---------------- MAIN PAGE ENHANCEMENTS (HERO SECTION) ---------------- */
 
+/* Glowing welcome line */
+.hero-text h3,
+.hero-text .est-text {
+  font-size: 18px;
+  letter-spacing: 3px;
+  color: #ccc;
+  opacity: 0.8;
+  text-shadow: 0 0 10px rgba(255, 160, 160, 0.3);
+  animation: fadeIn 1.5s ease forwards;
+}
+
+/* Glowing main title */
+.hero-text h1 {
+  font-size: 60px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #ff4d4d, #ffaa88);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+  text-shadow: 0 0 30px rgba(255, 80, 80, 0.4);
+}
+
+/* EST line */
+.hero-text .est-text {
+  font-style: italic;
+  margin-top: 20px;
+  font-size: 18px;
+  color: #999;
+}
+
+/* Optional flare sweep across title */
+.hero-text h1::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -100%;
+  width: 120%;
+  height: 6px;
+  background: linear-gradient(90deg, transparent, rgba(255,200,180,0.6), transparent);
+  transform: translateY(-50%);
+  animation: flareSweep 5s infinite linear;
+  pointer-events: none;
+}
+
+/* Overlay glow effect (optional) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,80,80,0.1), transparent 70%);
+  z-index: 1;
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+/* Entry animation for text */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Title glow animation */
+@keyframes titleGlow {
+  0% {
+    text-shadow:
+      0 0 10px rgba(255, 90, 90, 0.6),
+      0 0 25px rgba(255, 120, 80, 0.4);
+  }
+  100% {
+    text-shadow:
+      0 0 25px rgba(255, 140, 100, 0.8),
+      0 0 40px rgba(255, 80, 60, 0.5);
+  }
+}
+
+/* Flare sweeping animation */
+@keyframes flareSweep {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+/* Pulsing background glow */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .hero-text {
+    top: 30%;
+    left: 5%;
+  }
+
+  .hero-text h1 {
+    font-size: 42px;
+  }
+
+  .hero-text h3,
+  .hero-text .est-text {
+    font-size: 14px;
+  }
+}
 /* ---------------- FOOTER ---------------- */
 footer {
   text-align: center;
