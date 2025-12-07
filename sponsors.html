@@ -9,13 +9,14 @@
 <body>
 
   <section class="sponsors-section">
-    <h1 class="section-title">OUR SPONSORS</h1>
+    <h1 class="sponsors-title">OUR SPONSORS</h1>
 
-    <div class="sponsor-container">
+    <div class="sponsor-grid">
 
       <!-- Gold Sponsor -->
       <a href="https://www.capitalsupplier.com.au/" target="_blank" class="sponsor-card gold">
-        <span class="tier">Gold Sponsor</span>
+        <div class="sponsor-border"></div>
+        <span class="sponsor-tier">Gold Sponsor</span>
         <img src="images/Capital.png" alt="Capital Supplier Logo" />
         <h3>Capital Supplier</h3>
         <p>Leading supplier in construction and logistics solutions in Australia.</p>
@@ -23,7 +24,8 @@
 
       <!-- Silver Sponsor -->
       <div class="sponsor-card silver">
-        <span class="tier">Silver Sponsor</span>
+        <div class="sponsor-border"></div>
+        <span class="sponsor-tier">Silver Sponsor</span>
         <img src="images/Security.png" alt="SecureSys Logo" />
         <h3>SecureSys</h3>
         <p>Experts in integrated physical and cyber security systems.</p>
@@ -31,7 +33,8 @@
 
       <!-- Bronze Sponsor -->
       <a href="https://zaiqah.com.au/" target="_blank" class="sponsor-card bronze">
-        <span class="tier">Bronze Sponsor</span>
+        <div class="sponsor-border"></div>
+        <span class="sponsor-tier">Bronze Sponsor</span>
         <img src="images/Zaiqah.png" alt="Zaiqah Logo" />
         <h3>Zaiqah Foods</h3>
         <p>Authentic Halal cuisine delivering flavour and tradition.</p>
@@ -41,40 +44,26 @@
 
     <p class="est-text">EST 2021</p>
   </section>
-<script>
-(function cleanSponsorCSS() {
-  const keywords = [
-    'sponsor-triangle',
-    'bottom-row',
-    'sponsor-tag',
-    'sponsor-info',
-    '.sponsor-card',
-    '.sponsors-section',
-    '.sponsor-container',
-    '.sponsor-tier',
-    '.est-text'
-  ];
 
-  // Remove <style> blocks containing outdated sponsor styles
-  document.querySelectorAll('style').forEach(styleTag => {
-    const content = styleTag.innerText || '';
-    const hasOldSponsorStyles = keywords.some(k => content.includes(k));
+  <!-- Optional JavaScript Cleanup if you had older inline styles -->
+  <script>
+    (function cleanOldSponsorCSS() {
+      const keywords = [
+        'sponsor-triangle',
+        'bottom-row',
+        'sponsor-tag',
+        'sponsor-info'
+      ];
 
-    if (hasOldSponsorStyles) {
-      styleTag.remove();
-    }
-  });
+      document.querySelectorAll('style').forEach(styleTag => {
+        const content = styleTag.innerText || '';
+        const found = keywords.some(k => content.includes(k));
+        if (found) styleTag.remove();
+      });
 
-  // Remove <link> to external CSS files if they look outdated (use with caution!)
-  document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href && href.includes('old') && href.includes('sponsor')) {
-      link.remove();
-    }
-  });
+      console.log("✅ Old sponsor styles removed");
+    })();
+  </script>
 
-  console.log('✅ Cleaned sponsor-related styles.');
-})();
-</script>
 </body>
 </html>
