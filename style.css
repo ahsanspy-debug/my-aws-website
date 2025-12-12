@@ -963,3 +963,52 @@ nav a.active::before {
     justify-content: center;
     font-size: 30px;
     border: 3px solid #fff;
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const videoCards = document.querySelectorAll('.video-card');
+    const modal = document.getElementById('video-modal');
+    const closeButton = document.querySelector('.close-button');
+    const videoFrame = document.getElementById('video-frame');
+
+    // 1. Open the modal when a video card is clicked
+    videoCards.forEach(card => {
+        card.addEventListener('click', function() {
+            // Get the video URL from the data-video-url attribute on the card
+            const videoUrl = this.getAttribute('data-video-url');
+            
+            if (videoUrl) {
+                // If it's a YouTube URL, we must format it for embedding
+                let embedUrl = videoUrl;
+                if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+                    // This finds the video ID and formats it for the iframe src
+                    const videoId = videoUrl.split('/').pop().split('v=').pop().split('&')[0];
+                    embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                }
+                
+                // Set the iframe source and show the modal
+                videoFrame.src = embedUrl;
+                modal.style.display = 'block';
+            }
+        });
+    });
+
+    // 2. Close the modal when the X is clicked
+    closeButton.addEventListener('click', function() {
+        closeModal();
+    });
+
+    // 3. Close the modal if the user clicks anywhere outside the modal content
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Function to close the modal and stop the video playback
+    function closeModal() {
+        modal.style.display = 'none';
+        // Setting the src to empty stops the video from playing in the background
+        videoFrame.src = ""; 
+    }
+});
