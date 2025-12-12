@@ -274,8 +274,79 @@ footer {
   font-size: 36px;
   margin-bottom: 20px;
 }
+/* ========================================================= */
+/* === HEADER & NAVIGATION (Energy Pulse Refinement) === */
+/* ========================================================= */
+
+header {
+    /* MODIFIED: Reduce the padding top/bottom to make the header less bulky */
+    padding: 15px 20px; 
+    /* NEW: Remove border-bottom to let the dark page content flow right up */
+    border-bottom: none; 
+}
+
+/* Ensure the hero text is positioned correctly if the header is slightly smaller */
+.hero-text {
+    /* MODIFIED: Adjust vertical position slightly down */
+    top: 45%; 
+}
 
 /* ========================================================= */
+/* === PAGE STYLES (Dossier Background Integration) === */
+/* ========================================================= */
+
+.page {
+    /* MODIFIED: Remove default top margin and padding to seamlessly connect to header */
+    max-width: 900px;
+    margin: 0 auto; /* Remove top margin */
+    padding: 0; /* Remove side padding, use padding on the dossier container */
+    line-height: 1.6;
+}
+
+.page[data-dossier] {
+    /* MODIFIED: Use slightly more padding for inner content structure */
+    padding: 40px; 
+    /* NEW: Make the background subtly different for depth */
+    background-color: #0d1623; 
+    /* NEW: Add a soft, overall inner glow to the content area */
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); 
+}
+
+/* ========================================================= */
+/* === DOSSIER MODULE REFINEMENT (The Data Blocks) === */
+/* ========================================================= */
+
+/* Dossier Module Base */
+.dossier-module {
+    /* MODIFIED: Increase padding for airier text blocks */
+    padding: 30px 40px; 
+    /* NEW: Add a faint, high-tech background pattern effect */
+    background-image: linear-gradient(0deg, rgba(255,255,255,0.01) 1px, transparent 1px), 
+                      linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
+    background-size: 20px 20px; /* Small grid size */
+    background-color: #0b1221;
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Sharper, cleaner outline */
+}
+
+/* Module Text Color */
+.dossier-module p {
+    color: #e6e6e6; /* Slightly brighter text for readability */
+}
+
+/* Module Title Bar Positioning */
+.dossier-module::after {
+    /* MODIFIED: Push the label further outside the module border */
+    top: -20px; 
+    left: 30px; 
+    padding: 3px 12px;
+    background: #0d1623; /* Ensure background matches the main page area for seamless cut-out */
+}
+
+/* Clean up old styles that might interfere with the new look */
+.dossier-module h2, .dossier-module h1 {
+    /* Ensure old headings are hidden if any somehow got left in */
+    display: none;
+}/* ========================================================= */
 /* --- PLAYERS SECTION: COMMAND CONSOLE REDESIGN --- */
 /* (REPLACE ALL EXISTING .players-section AND .player-card STYLES) */
 /* ========================================================= */
