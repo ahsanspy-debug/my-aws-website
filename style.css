@@ -2082,3 +2082,16 @@ nav a::after {
 .sponsor-card.gold .sponsor-tier, .sponsor-card.gold h3 { color: #ffd700; text-shadow: 0 0 8px rgba(255, 215, 0, 0.8); }
 .sponsor-card.silver .sponsor-tier, .sponsor-card.silver h3 { color: #ffffff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); }
 .sponsor-card.bronze .sponsor-tier, .sponsor-card.bronze h3 { color: #ff6347; text-shadow: 0 0 8px rgba(255, 99, 71, 0.8); }
+
+/* ========================================================= */
+/* === CRITICAL FIX: ABOUT US HEADING CLIPPING === */
+/* ========================================================= */
+
+.page[data-dossier] {
+    /* NEW: Add top padding to force content down below the header, 
+       ensuring the floating module headings are always visible. */
+    padding-top: 80px !important; 
+    
+    /* MODIFIED (Re-confirm the margin fix) */
+    margin: 60px auto; 
+}
