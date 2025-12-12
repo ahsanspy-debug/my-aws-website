@@ -2095,3 +2095,51 @@ nav a::after {
     /* MODIFIED (Re-confirm the margin fix) */
     margin: 60px auto; 
 }
+/* ========================================================= */
+/* === FULL SCREEN LAYOUT FIX (100VH) === */
+/* ========================================================= */
+
+/* Note: Header Height is approx 90px, Footer Height is approx 60px.
+   We use calc(100vh - 150px) for general content pages. */
+
+/* 1. HOME PAGE HERO SECTION */
+.hero {
+    /* MODIFIED: Set height to 100% of the viewport height */
+    height: 100vh !important; 
+    /* NEW: We anchor the image to the bottom center, but ensure the overlay is perfect */
+    background-position: center 80%; 
+}
+
+/* 2. TEAM PLAYERS PAGE */
+.players-section {
+    /* MODIFIED: Calculate height to fill the screen minus header and footer space */
+    min-height: calc(100vh - 180px); 
+    padding: 60px 40px 100px; /* Increase bottom padding to ensure footer doesn't overlap cards */
+    display: flex; /* Helps ensure content takes full available vertical space */
+    flex-direction: column;
+}
+
+/* 3. FIXTURES PAGE */
+.fixtures-coming-soon {
+    /* MODIFIED: Calculate height to fill the screen minus header and footer space */
+    height: calc(100vh - 180px);
+}
+
+/* 4. ABOUT US PAGE (Mission Dossier) */
+.page[data-dossier] {
+    /* The dossier module is centered, so we just ensure the parent container is tall enough */
+    min-height: calc(100vh - 150px);
+    
+    /* MODIFIED: Reset the large auto margin to correctly space the module inside the tall container */
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+}
+
+/* 5. SPONSORS PAGE */
+.sponsors-section {
+    /* MODIFIED: Calculate height to fill the screen minus header and footer space */
+    min-height: calc(100vh - 150px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the sponsor cards vertically */
+}
