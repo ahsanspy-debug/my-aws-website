@@ -5,112 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avengers Cricket Club</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
+    
     <div id="avengers-bg"></div>
 
-<header>
-  <img src="images/logo.png" alt="Avengers Logo" class="logo">
+    <header>
+        <a href="index.html">
+            <img src="images/logo.png" alt="Avengers Logo" class="logo">
+        </a>
 
-  <nav>
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="team-players.html">Team Players</a>
-    <a href="fixtures.html">Fixtures</a>
-    <a href="https://www.facebook.com/share/1Du3YjDjTm/?mibextid=wwXIfr" target="_blank">Gallery</a>
-    <a href="sponsors.html">Sponsors</a>
-  </nav>
-</header>
-<div class="hero">
-  <div class="overlay"></div>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            &#9776; 
+        </button>
 
-  <div class="hero-text upgraded">
-      <h4 class="tiny-tag">WELCOME TO</h4>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="players.html">Team Players</a>
+            <a href="fixtures.html">Fixtures</a>
+            
+            <a href="gallery.html">Gallery</a>
+            
+            <a href="sponsors.html">Sponsors</a>
+        </div>
+    </header>
 
-      <h1 class="main-title">
-        CANBERRA AVENGERS
-      </h1>
+    <div class="hero">
+        <div class="overlay"></div>
 
-      <h3 class="sub-title">
-        CRICKET CLUB
-      </h3>
+        <div class="hero-text upgraded">
+            <h4 class="tiny-tag">WELCOME TO</h4>
 
-      <p class="est-tag">EST 2021</p>
+            <h1 class="main-title">
+                CANBERRA AVENGERS
+            </h1>
 
-      <div class="flare"></div>
-      <div class="fire-glow"></div>
-  </div>
-</div>
-</section>
+            <h3 class="sub-title">
+                CRICKET CLUB
+            </h3>
 
-<footer>
-    © 2025 Avengers Cricket Club | All Rights Reserved
-</footer>
-    
-<script>
-function createParticle() {
-  const bg = document.getElementById("avengers-bg");
-  const p = document.createElement("div");
-  p.classList.add("particle");
+            <p class="est-tag">EST 2021</p>
 
-  // random starting position anywhere
-  const startX = Math.random() * 100;
-  const startY = Math.random() * 100;
-
-  p.style.left = startX + "vw";
-  p.style.top = startY + "vh";
-
-  // random movement direction
-  const angle = Math.random() * Math.PI * 2;
-  const distance = 80 + Math.random() * 100;
-
-  p.style.setProperty("--dx", Math.cos(angle) * distance + "vh");
-  p.style.setProperty("--dy", Math.sin(angle) * distance + "vh");
-
-  // random speed
-  p.style.animationDuration = (3 + Math.random() * 2) + "s";
-
-  bg.appendChild(p);
-
-  setTimeout(() => p.remove(), 6000);
-}
-
-// spawn faster for "fire" effect
-setInterval(createParticle, 60);
-</script>
-
-</body>
-</html>
-<script>
-  document.querySelectorAll('nav a').forEach(link => {
-    link.setAttribute('target', '_blank');
-  });
-</script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Remove images with missing source OR alt="Cricket Ball Flame"
-    document.querySelectorAll('img').forEach(img => {
-      const altText = img.getAttribute('alt')?.toLowerCase();
-      if (!img.complete || img.naturalWidth === 0 || altText === 'cricket ball flame') {
-        img.remove();
-        console.log("🔥 Removed broken or unwanted image:", img);
-      }
-    });
-  });
-</script>
-</body>
-</html>
-<nav class="navbar">
-    <button class="nav-toggle" aria-label="Toggle navigation">
-        &#9776; </button>
-    
-    <div class="nav-links">
-        <a href="index.html" class="active">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="players.html">Team Players</a>
-        <a href="fixtures.html">Fixtures</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="sponsors.html">Sponsors</a>
+            <div class="flare"></div>
+            <div class="fire-glow"></div>
+        </div>
     </div>
-</nav>
+
+    <footer>
+        © 2025 Avengers Cricket Club | All Rights Reserved
+    </footer>
+    
+    <script>
+    function createParticle() {
+      const bg = document.getElementById("avengers-bg");
+      if (!bg) return; // Safety check
+      
+      const p = document.createElement("div");
+      p.classList.add("particle");
+
+      // Random starting position
+      const startX = Math.random() * 100;
+      const startY = Math.random() * 100;
+
+      p.style.left = startX + "vw";
+      p.style.top = startY + "vh";
+
+      // Random movement direction
+      const angle = Math.random() * Math.PI * 2;
+      const distance = 80 + Math.random() * 100;
+
+      p.style.setProperty("--dx", Math.cos(angle) * distance + "vh");
+      p.style.setProperty("--dy", Math.sin(angle) * distance + "vh");
+
+      // Random speed
+      p.style.animationDuration = (3 + Math.random() * 2) + "s";
+
+      bg.appendChild(p);
+
+      setTimeout(() => p.remove(), 6000);
+    }
+
+    // Spawn particles
+    setInterval(createParticle, 60);
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('open');
+            });
+        }
+    });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('img').forEach(img => {
+          const altText = img.getAttribute('alt')?.toLowerCase();
+          // Checks if image failed to load or has specific alt text to remove
+          if (!img.complete || img.naturalWidth === 0 || altText === 'cricket ball flame') {
+            // img.remove(); // Uncomment if you want to auto-remove broken images
+          }
+        });
+      });
+    </script>
+
+</body>
+</html>
