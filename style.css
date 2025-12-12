@@ -783,3 +783,18 @@ nav a.active::before {
         margin: 5% auto;
     }
 }
+/* CSS for the Facebook Embed Box */
+.facebook-embed-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #000;
+}
+
+/* Optional: Add a dark border/shadow to integrate it with the page */
+.facebook-embed-container .fb-page {
+    display: inline-block;
+    border: 1px solid #333;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
