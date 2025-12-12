@@ -6,12 +6,10 @@ body {
   font-family: Arial, sans-serif;
   background: #0b1221;
   color: white;
-  overflow-x: hidden; /* Prevents horizontal scrollbar issues */
+  overflow-x: hidden;
 }
 
-/* ---------------- PAGE CONTAINER ---------------- */
 .page {
-  /* FIX: Removes default margins to stop floating/layout shifts */
   width: 100%;
   max-width: 100%;
   margin: 0 auto; 
@@ -20,12 +18,11 @@ body {
   color: #fff;
 }
 
-/* Hide old headers to prevent duplicates on refined pages */
+/* Hide old headers to prevent duplicates */
 .page h1, .page h2.section-title {
     display: none; 
 }
 
-/* ---------------- FOOTER ---------------- */
 footer {
   text-align: center;
   padding: 20px;
@@ -36,7 +33,7 @@ footer {
 
 
 /* ========================================================= */
-/* === 2. HEADER & NAVIGATION (Energy Pulse) === */
+/* === 2. HEADER & NAVIGATION === */
 /* ========================================================= */
 header {
   display: flex;
@@ -45,7 +42,7 @@ header {
   padding: 15px 20px;
   background: #0b1221;
   position: relative;
-  z-index: 100; /* Ensure header stays on top */
+  z-index: 100;
 }
 
 header img {
@@ -69,7 +66,6 @@ nav {
   align-items: center;
 }
 
-/* Navigation Links */
 nav a {
   position: relative;
   color: #ffffff;
@@ -78,13 +74,11 @@ nav a {
   letter-spacing: 1px;
   padding: 6px 10px;
   transition: color 0.3s ease;
-  overflow: hidden; 
 }
 
-/* Remove old underline style */
 nav a::after { content: none; }
 
-/* New Energy Pulse Effect */
+/* Energy Pulse Effect */
 nav a::before {
     content: "";
     position: absolute;
@@ -117,22 +111,22 @@ nav a.active::before {
 
 
 /* ========================================================= */
-/* === 3. HOME PAGE HERO SECTION === */
+/* === 3. HOME PAGE HERO SECTION (FIXED) === */
 /* ========================================================= */
 .hero {
   position: relative;
-  height: 90vh; /* Taller height to fit the banner */
+  height: 90vh;
+  /* FIXED: Exact filename case-sensitive match */
   background: url('images/banner.JPG') no-repeat center center; 
   background-size: cover;
-  /* FIX: Anchor image to top-center (40%) to show the pitch and player perfectly */
-  background-position: center 40%; 
+  background-position: center 30%; /* Moved up slightly to catch the batsman */
   z-index: 5;
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,0.3); /* Reduced darkness so image pops more */
 }
 
 .hero-text.upgraded {
@@ -144,7 +138,6 @@ nav a.active::before {
     text-align: left;
 }
 
-/* Hero Text Typography */
 .hero-text h1 { font-size: 60px; margin: 0; }
 .hero-text h3 { font-size: 42px; margin-top: -10px; }
 
@@ -189,10 +182,7 @@ nav a.active::before {
 .page[data-dossier] {
     max-width: 1000px;
     margin: 60px auto; 
-    
-    /* CRITICAL FIX: Extra top padding ensures the floating headers aren't cut off */
-    padding: 80px 40px 40px 40px !important; 
-    
+    padding: 80px 40px 40px 40px !important; /* Top padding ensures titles aren't cut */
     background-color: #0b1221; 
     box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); 
     border-radius: 8px;
@@ -207,9 +197,9 @@ nav a.active::before {
     text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
     border-bottom: 2px solid rgba(255, 215, 0, 0.3);
     padding-bottom: 10px;
-    margin-bottom: 60px; /* Increased margin to separate title from first module */
+    margin-bottom: 60px;
     text-align: center;
-    display: block !important; /* Force display */
+    display: block !important;
 }
 
 .mission-intro, .mission-outro {
@@ -221,36 +211,29 @@ nav a.active::before {
     line-height: 1.8;
 }
 
-/* Dossier Module Box */
 .dossier-module {
     background: #0d1623;
     border-radius: 8px;
     padding: 35px 40px;
-    margin-bottom: 40px; /* Spacing between modules */
+    margin-bottom: 40px;
     position: relative;
-    overflow: visible; /* CRITICAL FIX: Allows the label to float outside the box */
+    overflow: visible; /* Allows labels to float outside */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
-    /* Grid Pattern Background */
     background-image: linear-gradient(0deg, rgba(255,255,255,0.01) 1px, transparent 1px), 
                       linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
     background-size: 20px 20px;
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.dossier-module:hover {
-    transform: translateY(-5px);
-}
+.dossier-module:hover { transform: translateY(-5px); }
 
-/* Module Content Text */
 .dossier-module p {
     color: #e6e6e6;
     margin: 0;
     line-height: 1.7;
 }
 
-/* Top Colored Line */
 .dossier-module::before {
     content: '';
     position: absolute;
@@ -258,27 +241,25 @@ nav a.active::before {
     left: 0;
     width: 100%;
     height: 4px;
-    transition: background 0.5s ease;
 }
 
-/* Floating Title Label */
 .dossier-module::after {
     content: attr(data-section);
     position: absolute;
-    top: -14px; /* Move up to sit on the border */
+    top: -14px;
     left: 30px; 
     padding: 4px 12px;
-    background: #0d1623; /* Matches module background */
+    background: #0d1623;
     font-size: 16px;
     font-weight: bold;
     letter-spacing: 1px;
     text-transform: uppercase;
     z-index: 5;
     border-radius: 4px;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
 }
 
-/* Role-Specific Colors */
+/* Colors */
 .dossier-module.impact::before { background-color: #ff4d4d; box-shadow: 0 0 10px #ff4d4d; }
 .dossier-module.impact::after { color: #ff4d4d; text-shadow: 0 0 8px rgba(255, 77, 77, 0.7); border-top: 2px solid #ff4d4d; }
 
@@ -340,7 +321,6 @@ nav a.active::before {
     z-index: 10;
 }
 
-/* Role Indicator Glows */
 .role-indicator {
     position: absolute;
     inset: 0;
@@ -355,7 +335,6 @@ nav a.active::before {
 .player-card[data-role-focus="precision"]:hover .role-indicator { box-shadow: 0 0 20px 5px #00bfff, 0 0 40px 10px rgba(0, 191, 255, 0.5); }
 .player-card[data-role-focus="versatility"]:hover .role-indicator { box-shadow: 0 0 20px 5px #ffd700, 0 0 40px 10px rgba(255, 215, 0, 0.5); }
 
-/* Player Content */
 .player-card img {
     width: 100%;
     height: 280px;
@@ -384,16 +363,12 @@ nav a.active::before {
 
 
 /* ========================================================= */
-/* === 6. SPONSORS SECTION (PLASMA BURST) === */
+/* === 6. SPONSORS SECTION (FIXED: Standard Grid) === */
 /* ========================================================= */
 .sponsors-section {
     background-color: #0d1623;
     padding: 60px 20px;
     text-align: center;
-    min-height: calc(100vh - 150px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .sponsors-title {
@@ -408,7 +383,8 @@ nav a.active::before {
     flex-wrap: wrap;
     gap: 40px;
     justify-content: center;
-    align-items: stretch;
+    /* FIXED: Ensures items align nicely without stretching */
+    align-items: flex-start; 
 }
 
 .sponsor-card {
@@ -416,17 +392,18 @@ nav a.active::before {
     background-color: #111;
     padding: 30px 25px;
     border-radius: 12px;
-    width: 280px;
-    overflow: hidden;
+    /* FIXED: Set fixed width and auto height to prevent stretching */
+    width: 300px;
+    height: auto; 
     border: none;
     transition: transform 0.3s ease;
+    /* Remove overflow:hidden so glow doesn't clip content if using plasma, 
+       but for standard cards, keeping it hidden is safer. */
+    overflow: hidden; 
 }
 .sponsor-card:hover { transform: translateY(-8px); }
 
-/* Remove old borders */
-.sponsor-border { display: none; }
-
-/* Plasma Burst */
+/* Plasma Burst Background (Kept but sized appropriately) */
 .sponsor-card::before {
     content: '';
     position: absolute;
@@ -443,12 +420,11 @@ nav a.active::before {
 }
 .sponsor-card:hover::before { width: 200%; height: 200%; opacity: 0.9; }
 
-/* Colors */
 .sponsor-card.gold::before { background: radial-gradient(circle, #ffd700, #ff8c00 60%, transparent); }
 .sponsor-card.silver::before { background: radial-gradient(circle, #ffffff, #add8e6 60%, transparent); }
 .sponsor-card.bronze::before { background: radial-gradient(circle, #ff6347, #b87333 60%, transparent); }
 
-/* Text Layer */
+/* Content styling */
 .sponsor-tier, .sponsor-card img, .sponsor-card h3, .sponsor-card p {
     position: relative;
     z-index: 5;
@@ -467,7 +443,7 @@ nav a.active::before {
 
 
 /* ========================================================= */
-/* === 7. FIXTURES PAGE === */
+/* === 7. FIXTURES & ANIMATIONS === */
 /* ========================================================= */
 .fixtures-coming-soon {
     height: calc(100vh - 180px);
@@ -488,10 +464,7 @@ nav a.active::before {
     50% { text-shadow: 0 0 20px #ff4d4d, 0 0 35px #ff6b6b; }
 }
 
-
-/* ========================================================= */
-/* === 8. BACKGROUND EFFECTS (FIRE & METEORS) === */
-/* ========================================================= */
+/* Background FX */
 #fire-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: #080d12; }
 .fire-layer { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; filter: blur(80px); animation: fireMove 20s infinite linear; }
 .fire-layer:nth-child(1) { background: radial-gradient(circle at 50% 60%, rgba(0,120,255,0.3), rgba(10,20,40,0.8), transparent 70%); }
@@ -499,7 +472,6 @@ nav a.active::before {
 .fire-layer:nth-child(3) { background: radial-gradient(circle at 70% 80%, rgba(255,255,255,0.2), rgba(0,0,20,0.9), transparent 80%); animation-duration: 32s; }
 @keyframes fireMove { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.25); } 100% { transform: rotate(360deg) scale(1); } }
 
-/* Meteors */
 #meteor-layer { position: fixed; inset: 0; z-index: 20; pointer-events: none; overflow: hidden; }
 .meteor {
     position: absolute; width: 220px; height: 3px;
@@ -516,13 +488,8 @@ nav a.active::before {
     background: radial-gradient(circle, white 0%, #d6e8ff 40%, rgba(255,255,255,0) 100%);
     filter: blur(1px);
 }
-@keyframes meteorMove { 
-    0% { opacity: 0; transform: translate(0,0) rotate(var(--angle)); } 
-    10% { opacity: 1; } 
-    100% { opacity: 0; transform: translate(var(--tx), var(--ty)) rotate(var(--angle)); } 
-}
+@keyframes meteorMove { 0% { opacity: 0; transform: translate(0,0) rotate(var(--angle)); } 10% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--tx), var(--ty)) rotate(var(--angle)); } }
 
-/* Flare and Fire Glow Elements (Home Page) */
 .flare {
     position: absolute; left: -5%; top: 50%; width: 160%; height: 12px;
     background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,200,150,1) 50%, rgba(255,255,255,0) 100%);
@@ -536,26 +503,27 @@ nav a.active::before {
 @keyframes flareSweep { 0% { transform: translateX(-120%); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateX(120%); opacity: 0; } }
 @keyframes firePulse { 0% { transform: scale(1); opacity: 0.55; } 50% { transform: scale(1.25); opacity: 0.95; } 100% { transform: scale(1); opacity: 0.55; } }
 
+@keyframes fadePulse { 0%,100% { opacity: 0.9; } 50% { opacity: 0.4; } }
+@keyframes titleGlow { 0% { text-shadow: 0 0 15px rgba(255,60,60,0.9), 0 0 35px rgba(255,110,80,0.9); } 100% { text-shadow: 0 0 45px rgba(255,140,100,1), 0 0 85px rgba(255,80,60,1); } }
+@keyframes slideFade { 0% { opacity: 0; transform: translateY(25px); } 100% { opacity: 1; transform: translateY(0); } }
+
 
 /* ========================================================= */
-/* === 9. RESPONSIVE MEDIA QUERIES === */
+/* === 8. RESPONSIVE === */
 /* ========================================================= */
 @media screen and (max-width: 768px) {
   header { flex-direction: column; align-items: center; padding: 15px 10px; }
   nav { flex-direction: column; align-items: center; gap: 12px; margin-top: 10px; }
   nav a { font-size: 1rem; padding: 8px 12px; }
   
-  /* Hero Adjustments */
   .hero { height: 60vh; background-position: center center; }
   .hero-text.upgraded { top: 30%; left: 5%; right: 5%; text-align: center; transform: none; }
   .main-title { font-size: 40px; }
   .sub-title { font-size: 24px; }
 
-  /* About Us Adjustments */
   .page[data-dossier] { margin: 30px auto; padding: 60px 20px 20px 20px !important; }
   .dossier-title { font-size: 28px; letter-spacing: 2px; }
   
-  /* Sponsor & Player Adjustments */
   .sponsor-grid, .players-grid { grid-template-columns: 1fr; }
   .sponsor-card, .player-card { width: 90%; margin: 0 auto; }
 }
