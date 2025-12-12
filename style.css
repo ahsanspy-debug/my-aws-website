@@ -1,32 +1,59 @@
-/* ---------------- GLOBAL ---------------- */
+/* ========================================================= */
+/* === 1. GLOBAL & BASE STYLES === */
+/* ========================================================= */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #0b1221;
   color: white;
+  overflow-x: hidden; /* Prevents horizontal scrollbar issues */
 }
 
-/* ---------------- HEADER ---------------- */
+/* ---------------- PAGE CONTAINER ---------------- */
+.page {
+  /* FIX: Removes default margins to stop floating/layout shifts */
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto; 
+  padding: 0;
+  line-height: 1.6;
+  color: #fff;
+}
+
+/* Hide old headers to prevent duplicates on refined pages */
+.page h1, .page h2.section-title {
+    display: none; 
+}
+
+/* ---------------- FOOTER ---------------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #0b1221;
+  margin-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+
+/* ========================================================= */
+/* === 2. HEADER & NAVIGATION (Energy Pulse) === */
+/* ========================================================= */
 header {
   display: flex;
   justify-content: space-between;
-  align-items: center;a
-  padding: 20px;
+  align-items: center;
+  padding: 15px 20px;
   background: #0b1221;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
   position: relative;
-  z-index: 10;
+  z-index: 100; /* Ensure header stays on top */
 }
+
 header img {
-    height: 70px;                  /* fixed height */
-    width: auto;                   /* logo stays natural */
-    
-    /* NEW → widen the background panel */
-    padding: 8px 60px;             /* 60px left/right = wider box */
-    
+    height: 70px;
+    width: auto;
+    padding: 8px 60px;
     background: #0d1623;
     border-radius: 12px;
-
     box-shadow: 0 0 25px rgba(255, 75, 75, 0.7);
     transition: transform 0.3s ease, filter 0.3s ease;
 }
@@ -36,16 +63,13 @@ header img:hover {
     filter: drop-shadow(0 0 25px #ff6b6b);
 }
 
-header img:hover {
-    transform: scale(1.08);
-    filter: drop-shadow(0 0 25px #ff6b6b);
-}
 nav {
   display: flex;
   gap: 35px;
   align-items: center;
 }
 
+/* Navigation Links */
 nav a {
   position: relative;
   color: #ffffff;
@@ -54,578 +78,75 @@ nav a {
   letter-spacing: 1px;
   padding: 6px 10px;
   transition: color 0.3s ease;
+  overflow: hidden; 
 }
 
-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0%;
-  height: 3px;
-  background: linear-gradient(
-      90deg,
-      rgba(255,90,70,0),
-      rgba(255,100,80,1),
-      rgba(255,160,120,1),
-      rgba(255,90,70,0)
-  );
-  box-shadow: 0 0 12px rgba(255,90,70,0.8);
-  transition: width 0.35s ease-out;
-  border-radius: 10px;
+/* Remove old underline style */
+nav a::after { content: none; }
+
+/* New Energy Pulse Effect */
+nav a::before {
+    content: "";
+    position: absolute;
+    left: -100%; 
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, rgba(255,100,80,0), rgba(255,100,80,1), rgba(255,160,120,1));
+    box-shadow: 0 0 10px rgba(255,90,70,0.8);
+    transition: transform 0.4s ease-out;
+    border-radius: 10px;
+    z-index: -1; 
 }
 
-/* Hover effect */
 nav a:hover {
   color: #ff6b6b;
   text-shadow: 0 0 10px #ff6b6b;
 }
 
-nav a:hover::after {
-  width: 100%;
-}
-
-/* Active page highlight */
 nav a.active {
   color: #ff6b6b;
   font-weight: bold;
   text-shadow: 0 0 12px #ff6b6b;
 }
 
-nav a.active::after {
-  width: 100%;
+nav a:hover::before,
+nav a.active::before {
+    transform: translateX(100%); 
 }
 
 
-/* ---------------- HERO SECTION ---------------- */
+/* ========================================================= */
+/* === 3. HOME PAGE HERO SECTION === */
+/* ========================================================= */
 .hero {
   position: relative;
-  height: 85vh;
-  background: url('images/banner.jpg') no-repeat center center/cover;
+  height: 90vh; /* Taller height to fit the banner */
+  background: url('images/banner.JPG') no-repeat center center; 
+  background-size: cover;
+  /* FIX: Anchor image to top-center (40%) to show the pitch and player perfectly */
+  background-position: center 40%; 
   z-index: 5;
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.45);
 }
-
-.hero-text {
-  position: absolute;
-  top: 40%;
-  left: 10%;
-}
-
-.hero-text h1 { font-size: 60px; margin: 0; }
-.hero-text h3 { font-size: 42px; margin-top: -10px; }
-
-/* ---------------- FOOTER ---------------- */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #0b1221;
-  margin-top: 40px;
-}
-
-/* ---------------- PAGE STYLE ---------------- */
-.page {
-  max-width: 900px;
-  margin: 80px auto;
-  padding: 20px;
-  line-height: 1.6;
-  color: #fff;
-}
-/* ========================================================= */
-/* === ABOUT US: MISSION DOSSIER STYLES (FIXED) === */
-/* ========================================================= */
-
-/* REQUIRED: Clean up old navigation line to match new aesthetic */
-nav a::after {
-    content: none;
-}
-
-/* 1. Page Container and Background */
-.page {
-    /* MODIFIED: Remove default margins and padding from the generic .page class */
-    margin: 0 auto; 
-    padding: 0; 
-    line-height: 1.6;
-}
-
-.page[data-dossier] {
-    /* NEW: Main Dossier Container styling - Use the darker color for the content box itself */
-    max-width: 1000px;
-    margin: 60px auto; /* Re-add top/bottom margin here for spacing */
-    padding: 40px; 
-    background-color: #0b1221; /* Darkest color for the internal page content */
-    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); /* Inner shadow for depth */
-    border-radius: 8px;
-}
-
-.dossier-title {
-    font-size: 40px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: #ffd700;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
-    padding-bottom: 10px;
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.mission-intro, .mission-outro {
-    font-size: 1.1rem;
-    padding: 0 20px;
-    text-align: center;
-    color: #ccc;
-    margin-bottom: 40px;
-    line-height: 1.8;
-}
-
-/* 2. DOSSIER MODULE BASE */
-.dossier-module {
-    background: #0d1623; /* Slightly lighter dark background for contrast against the page */
-    border-radius: 8px;
-    padding: 30px 40px; /* MODIFIED: Increased padding */
-    margin-bottom: 30px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    /* NEW: High-tech grid background */
-    background-image: linear-gradient(0deg, rgba(255,255,255,0.01) 1px, transparent 1px), 
-                      linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
-    background-size: 20px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.dossier-module:hover {
-    transform: translateY(-5px);
-}
-
-/* 3. TITLE BAR AND LABELS */
-.dossier-module::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    transition: background 0.5s ease;
-}
-
-.dossier-module::after {
-    /* The floating title text "Power Hitters: IMPACT" */
-    content: attr(data-section);
-    position: absolute;
-    top: -20px; /* MODIFIED: Push the label further outside */
-    left: 30px; 
-    padding: 3px 12px;
-    background: #0b1221; /* Ensure background matches the darkest page body */
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    z-index: 2;
-    transition: color 0.5s ease;
-}
-
-/* Ensure the old h1 and h2 tags are completely hidden as we use the ::after pseudo-element */
-.page h1, 
-.page h2.section-title {
-    display: none; 
-}
-
-/* 4. ROLE-SPECIFIC COLORS (Keep the color definitions) */
-
-.dossier-module.impact::before { background-color: #ff4d4d; box-shadow: 0 0 10px #ff4d4d; }
-.dossier-module.impact::after { color: #ff4d4d; text-shadow: 0 0 8px rgba(255, 77, 77, 0.7); }
-
-.dossier-module.precision::before { background-color: #00bfff; box-shadow: 0 0 10px #00bfff; }
-.dossier-module.precision::after { color: #00bfff; text-shadow: 0 0 8px rgba(0, 191, 255, 0.7); }
-
-.dossier-module.identity::before { background-color: #39FF14; box-shadow: 0 0 10px #39FF14; }
-.dossier-module.identity::after { color: #39FF14; text-shadow: 0 0 8px rgba(57, 255, 20, 0.7); }
-
-.dossier-module.ethos::before { background-color: #b0e0e6; box-shadow: 0 0 15px #b0e0e6; }
-.dossier-module.ethos::after { color: #b0e0e6; text-shadow: 0 0 8px rgba(176, 224, 230, 0.7); }
-/* ========================================================= */
-/* === HEADER & NAVIGATION (Energy Pulse Refinement) === */
-/* ========================================================= */
-
-header {
-    /* MODIFIED: Reduce the padding top/bottom to make the header less bulky */
-    padding: 15px 20px; 
-    /* NEW: Remove border-bottom to let the dark page content flow right up */
-    border-bottom: none; 
-}
-
-/* Ensure the hero text is positioned correctly if the header is slightly smaller */
-.hero-text {
-    /* MODIFIED: Adjust vertical position slightly down */
-    top: 45%; 
-}
-
-/* ========================================================= */
-/* === PAGE STYLES (Dossier Background Integration) === */
-/* ========================================================= */
-
-.page {
-    /* MODIFIED: Remove default top margin and padding to seamlessly connect to header */
-    max-width: 900px;
-    margin: 0 auto; /* Remove top margin */
-    padding: 0; /* Remove side padding, use padding on the dossier container */
-    line-height: 1.6;
-}
-
-.page[data-dossier] {
-    /* MODIFIED: Use slightly more padding for inner content structure */
-    padding: 40px; 
-    /* NEW: Make the background subtly different for depth */
-    background-color: #0d1623; 
-    /* NEW: Add a soft, overall inner glow to the content area */
-    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); 
-}
-
-/* ========================================================= */
-/* === DOSSIER MODULE REFINEMENT (The Data Blocks) === */
-/* ========================================================= */
-
-/* Dossier Module Base */
-.dossier-module {
-    /* MODIFIED: Increase padding for airier text blocks */
-    padding: 30px 40px; 
-    /* NEW: Add a faint, high-tech background pattern effect */
-    background-image: linear-gradient(0deg, rgba(255,255,255,0.01) 1px, transparent 1px), 
-                      linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
-    background-size: 20px 20px; /* Small grid size */
-    background-color: #0b1221;
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Sharper, cleaner outline */
-}
-
-/* Module Text Color */
-.dossier-module p {
-    color: #e6e6e6; /* Slightly brighter text for readability */
-}
-
-/* Module Title Bar Positioning */
-.dossier-module::after {
-    /* MODIFIED: Push the label further outside the module border */
-    top: -20px; 
-    left: 30px; 
-    padding: 3px 12px;
-    background: #0d1623; /* Ensure background matches the main page area for seamless cut-out */
-}
-
-/* Clean up old styles that might interfere with the new look */
-.dossier-module h2, .dossier-module h1 {
-    /* Ensure old headings are hidden if any somehow got left in */
-    display: none;
-}/* ========================================================= */
-/* --- PLAYERS SECTION: COMMAND CONSOLE REDESIGN --- */
-/* (REPLACE ALL EXISTING .players-section AND .player-card STYLES) */
-/* ========================================================= */
-
-.players-section {
-    text-align: center;
-    padding: 60px 40px;
-    background-color: #0d1623; /* Slightly lighter base for depth */
-    color: white;
-}
-
-/* 1. SECTION TITLE */
-.players-section h1 {
-    font-family: 'Arial Black', sans-serif;
-    font-size: 56px; /* Larger title */
-    margin-bottom: 50px;
-    color: #ff4d4d;
-    letter-spacing: 8px; /* Wider spacing */
-    text-transform: uppercase;
-    text-shadow: 
-        0 0 20px rgba(255, 77, 77, 0.7), 
-        0 0 40px rgba(255, 77, 77, 0.5); /* Stronger Title Glow */
-}
-
-/* 2. GRID LAYOUT */
-.players-grid {
-    display: grid;
-    /* Strict 4-column layout for desktop for a uniform console panel look */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px; /* Increased gap */
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-/* 3. PLAYER CARD (DATA MODULE) REDESIGN */
-.player-card {
-    position: relative;
-    background: #0b1221; /* Darker than the section for contrast */
-    border-radius: 8px; /* Slightly sharper corners */
-    padding: 0; /* Padding moved inside for cleaner module structure */
-    text-align: center;
-    overflow: hidden;
-    cursor: pointer;
-    transform-style: preserve-3d;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle structure border */
-}
-
-/* Card Hover: Lift and Glow */
-.player-card:hover {
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-    z-index: 10;
-}
-
-/* 4. ROLE INDICATOR (NEW: GLOWING BORDER/AURA) */
-.role-indicator {
-    position: absolute;
-    inset: 0;
-    border-radius: 8px;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0; /* Hidden by default */
-    transition: box-shadow 0.4s ease, opacity 0.4s ease;
-}
-
-/* Apply strong, role-specific glow on hover */
-.player-card:hover .role-indicator {
-    opacity: 1; /* Fully visible on hover */
-}
-
-/* IMPACT Focus: Batting (Red/Orange) */
-.player-card[data-role-focus="impact"]:hover { border-color: #ff6b6b; }
-.player-card[data-role-focus="impact"]:hover .role-indicator {
-    box-shadow: 0 0 20px 5px #ff6b6b, 0 0 40px 10px rgba(255, 107, 107, 0.5);
-}
-
-/* PRECISION Focus: Bowling (Electric Blue/Cyan) */
-.player-card[data-role-focus="precision"]:hover { border-color: #00bfff; }
-.player-card[data-role-focus="precision"]:hover .role-indicator {
-    box-shadow: 0 0 20px 5px #00bfff, 0 0 40px 10px rgba(0, 191, 255, 0.5);
-}
-
-/* VERSATILITY Focus: All-round (Gold/Yellow) */
-.player-card[data-role-focus="versatility"]:hover { border-color: #ffd700; }
-.player-card[data-role-focus="versatility"]:hover .role-indicator {
-    box-shadow: 0 0 20px 5px #ffd700, 0 0 40px 10px rgba(255, 215, 0, 0.5);
-}
-
-/* Reset hover glow to use the role-specific color */
-.player-card.interactive:hover {
-    transform: translateY(-8px) scale(1.05);
-    /* Remove the generic red shadow and let the role-indicator handle it */
-    box-shadow: none;
-}
-
-/* 5. CARD CONTENT LAYOUT */
-.player-card img {
-    width: 100%;
-    height: 280px; /* Slightly taller image area */
-    object-fit: cover;
-    margin-bottom: 0;
-    border-radius: 8px 8px 0 0; /* Sharp top corners, flat bottom */
-    transition: filter 0.3s;
-}
-.player-card:hover img {
-    filter: brightness(1.1) contrast(1.05); /* Subtle highlight on image */
-}
-
-.player-card h2 { 
-    font-size: 26px; 
-    margin: 15px 0 0; 
-    color: #ffffff; 
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-.tagline {
-    font-size: 13px;
-    margin: 4px 0 0;
-    color: #39FF14;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-.role { 
-    font-size: 13px; 
-    margin-bottom: 20px; 
-    color: #888; 
-}
-
-/* 6. STAT CHIPS (Recessed Data Blocks) */
-.stats {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    padding: 0 10px 20px; /* Padding for bottom of card */
-}
-
-.stat-box {
-    background: #0d1623;
-    /* Recessed look */
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.05);
-    padding: 10px 5px;
-    border-radius: 4px; /* Sharper corners */
-    color: #ccc;
-    font-size: 10px;
-    width: 90px;
-    transition: background 0.3s;
-}
-
-.stat-box span {
-    display: block;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.stat-box.impact {
-    color: #ff6b6b;
-    border-left: none; /* Removed original border */
-    box-shadow: 
-        inset 0 0 10px rgba(255, 107, 107, 0.5), /* Inner glow */
-        0 0 5px rgba(255, 107, 107, 0.3); /* Outer highlight */
-}
-
-.stat-box.precision {
-    color: #39FF14;
-    border-left: none;
-    box-shadow: 
-        inset 0 0 10px rgba(57, 255, 20, 0.5), 
-        0 0 5px rgba(57, 255, 20, 0.3);
-}
-/* ---------------- METEOR SHOOTING STARS ------------------- */
-/* ========================================================= */
-
-#meteor-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 20;     /* ABOVE background, BELOW header */
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.meteor {
-  position: absolute;
-  width: 220px;  /* trail length */
-  height: 3px;
-  background: linear-gradient(
-      to left,
-      rgba(255,255,255,0),
-      rgba(255,255,255,0.9),
-      rgba(255,255,255,1)
-  );
-  border-radius: 999px;
-  box-shadow:
-      0 0 12px rgba(255,255,255,0.9),
-      0 0 25px rgba(180,220,255,0.8);
-  transform-origin: 100% 50%;
-  transform: rotate(var(--angle, -30deg));
-  animation: meteorMove linear forwards;
-}
-
-.meteor::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 50%;
-  width: 14px;
-  height: 14px;
-  transform: translate(50%, -50%);
-  background: radial-gradient(circle,
-      white 0%,
-      #d6e8ff 40%,
-      rgba(255,255,255,0) 100%);
-  filter: blur(1px);
-}
-
-@keyframes meteorMove {
-  0% {
-    opacity: 0;
-    transform: translate(0,0) rotate(var(--angle));
-  }
-  10% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(var(--tx), var(--ty)) rotate(var(--angle));
-  }
-}
-
-/* ========================================================= */
-/* ---------------- ABOUT PAGE FIRE BG ---------------------- */
-/* ========================================================= */
-
-#fire-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  background: #080d12;
-}
-
-.fire-layer {
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  filter: blur(80px);
-  animation: fireMove 20s infinite linear;
-}
-
-.fire-layer:nth-child(1) {
-  background: radial-gradient(circle at 50% 60%,
-      rgba(0,120,255,0.3),
-      rgba(10,20,40,0.8),
-      transparent 70%);
-}
-
-.fire-layer:nth-child(2) {
-  background: radial-gradient(circle at 40% 30%,
-      rgba(100,160,255,0.35),
-      rgba(0,0,50,0.85),
-      transparent 75%);
-  animation-duration: 26s;
-}
-
-.fire-layer:nth-child(3) {
-  background: radial-gradient(circle at 70% 80%,
-      rgba(255,255,255,0.2),
-      rgba(0,0,20,0.9),
-      transparent 80%);
-  animation-duration: 32s;
-}
-
-@keyframes fireMove {
-  0% { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(180deg) scale(1.25); }
-  100% { transform: rotate(360deg) scale(1); }
-}
-
-/* ---------------- TITLE FLICKER ---------------- */
-.section-title {
-  position: relative;
-  text-shadow: 0 0 10px rgba(255,255,255,0.7);
-  animation: flicker 3s infinite;
-}
-
-@keyframes flicker {
-  0%,100% { opacity:1; text-shadow:0 0 12px rgba(255,255,255,0.9); }
-  50% { opacity:.85; text-shadow:0 0 22px rgba(160,200,255,1); }
-}
-/* ========================================================= */
-/* ------------------- HERO TEXT UPGRADE ------------------- */
-/* ========================================================= */
 
 .hero-text.upgraded {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 10%;
-    z-index: 5;
+    transform: translateY(-50%); 
+    z-index: 7;
+    text-align: left;
 }
+
+/* Hero Text Typography */
+.hero-text h1 { font-size: 60px; margin: 0; }
+.hero-text h3 { font-size: 42px; margin-top: -10px; }
 
 .tiny-tag {
     font-size: 22px;
@@ -640,18 +161,14 @@ header {
     font-weight: 900;
     margin: 10px 0;
     color: white;
-    text-shadow: 
-        0 0 25px rgba(255,90,90,0.9),
-        0 0 55px rgba(255,120,80,0.8);
+    text-shadow: 0 0 25px rgba(255,90,90,0.9), 0 0 55px rgba(255,120,80,0.8);
     animation: titleGlow 6s infinite alternate;
 }
 
 .sub-title {
     font-size: 48px;
     margin-top: -10px;
-    text-shadow: 
-        0 0 18px rgba(255,140,110,1),
-        0 0 35px rgba(255,90,90,0.9);
+    text-shadow: 0 0 18px rgba(255,140,110,1), 0 0 35px rgba(255,90,90,0.9);
     animation: slideFade 2s ease-out;
 }
 
@@ -664,1541 +181,386 @@ header {
     animation: fadePulse 4s infinite;
 }
 
-/* ---------------- FLARE EFFECT ---------------- */
-.flare {
-    position: absolute;
-    left: -5%;
-    top: 50%;
-    width: 160%;
-    height: 12px;
-    background: linear-gradient(
-        90deg,
-        rgba(255,255,255,0) 0%,
-        rgba(255,200,150,1) 50%,
-        rgba(255,255,255,0) 100%
-    );
-    filter: blur(12px);
-    animation: flareSweep 4s infinite;
-}
-
-/* ---------------- FIRE BACK-GLOW ---------------- */
-.fire-glow {
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    left: -80px;
-    top: -60px;
-    background: radial-gradient(
-        circle,
-        rgba(255,100,60,0.35),
-        rgba(255,60,30,0.15),
-        transparent 70%
-    );
-    filter: blur(40px);
-    opacity: 0.7;
-    animation: firePulse 5s infinite ease-in-out;
-}
-
-/* ---------------- ANIMATIONS ---------------- */
-@keyframes fadePulse {
-    0%,100% { opacity: 0.9; }
-    50% { opacity: 0.4; }
-}
-
-@keyframes titleGlow {
-    0% {
-        text-shadow:
-            0 0 15px rgba(255,60,60,0.9),
-            0 0 35px rgba(255,110,80,0.9);
-    }
-    100% {
-        text-shadow:
-            0 0 45px rgba(255,140,100,1),
-            0 0 85px rgba(255,80,60,1);
-    }
-}
-
-@keyframes slideFade {
-    0% { opacity: 0; transform: translateY(25px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes flareSweep {
-    0% { transform: translateX(-120%); opacity: 0; }
-    20% { opacity: 1; }
-    100% { transform: translateX(120%); opacity: 0; }
-}
-
-@keyframes firePulse {
-    0% { transform: scale(1); opacity: 0.55; }
-    50% { transform: scale(1.25); opacity: 0.95; }
-    100% { transform: scale(1); opacity: 0.55; }
-}
-/* === SPONSORS SECTION === */
-
-.sponsors-section {
-  background-color: #0a0a0a;
-  color: #ffffff;
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.sponsors-title {
-  font-size: 3rem;
-  color: #ff4d4d;
-  margin-bottom: 60px;
-  text-shadow: 0 0 20px #ff4d4d;
-}
-
-.sponsor-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;
-  align-items: stretch;
-}
-
-.sponsor-card {
-  position: relative;
-  background-color: #111;
-  padding: 30px 25px;
-  border-radius: 12px;
-  width: 280px;
-  text-align: center;
-  color: #fff;
-  text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.sponsor-card:hover {
-  transform: translateY(-5px);
-}
-
-.sponsor-tier {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 15px;
-  font-size: 1.1rem;
-}
-
-.sponsor-card img {
-  width: 80px;
-  height: auto;
-  margin: 10px 0 20px;
-}
-
-.sponsor-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 10px;
-}
-
-.sponsor-card p {
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-
-/* Glow Borders */
-.sponsor-border {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* GLOW STYLES */
-.sponsor-card.gold .sponsor-border {
-  box-shadow: 0 0 20px 4px #ffcc00;
-  border: 2px solid #ffcc00;
-}
-
-.sponsor-card.silver .sponsor-border {
-  box-shadow: 0 0 20px 4px #cccccc;
-  border: 2px solid #cccccc;
-}
-
-.sponsor-card.bronze .sponsor-border {
-  box-shadow: 0 0 20px 4px #ff6600;
-  border: 2px solid #ff6600;
-}
-
-.est-text {
-  margin-top: 60px;
-  font-size: 1.5rem;
-  color: #ff4d4d;
-  text-shadow: 0 0 10px #ff4d4d;
-}
-.fixtures-coming-soon {
-  height: 70vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: #0b1221;
-}
-
-.fixtures-coming-soon h1 {
-  font-size: 3rem;
-  color: #ff4d4d;
-  text-shadow:
-    0 0 10px #ff4d4d,
-    0 0 20px #ff6b6b,
-    0 0 30px #ff4d4d;
-  animation: glowPulse 2.5s ease-in-out infinite;
-}
-
-/* Glowing animation */
-@keyframes glowPulse {
-  0%, 100% {
-    text-shadow:
-      0 0 10px #ff4d4d,
-      0 0 20px #ff6b6b,
-      0 0 30px #ff4d4d;
-  }
-  50% {
-    text-shadow:
-      0 0 20px #ff4d4d,
-      0 0 35px #ff6b6b,
-      0 0 50px #ff4d4d;
-  }
-}
-.sponsors-section {
-  background-color: #0a0a0a;
-  color: #ffffff;
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.sponsors-title {
-  font-size: 3rem;
-  color: #ff4d4d;
-  margin-bottom: 60px;
-  text-shadow: 0 0 20px #ff4d4d;
-}
-
-.sponsor-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;
-  align-items: stretch;
-}
-
-.sponsor-card {
-  position: relative;
-  background-color: #111;
-  padding: 30px 25px;
-  border-radius: 12px;
-  width: 280px;
-  text-align: center;
-  color: #fff;
-  text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.sponsor-card:hover {
-  transform: translateY(-5px);
-}
-
-.sponsor-tier {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 15px;
-  font-size: 1.1rem;
-}
-
-.sponsor-card img {
-  width: 80px;
-  height: auto;
-  margin: 10px 0 20px;
-}
-
-.sponsor-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 10px;
-}
-
-.sponsor-card p {
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-
-.sponsor-border {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.sponsor-card.gold .sponsor-border {
-  box-shadow: 0 0 20px 4px #ffcc00;
-  border: 2px solid #ffcc00;
-}
-
-.sponsor-card.silver .sponsor-border {
-  box-shadow: 0 0 20px 4px #cccccc;
-  border: 2px solid #cccccc;
-}
-
-.sponsor-card.bronze .sponsor-border {
-  box-shadow: 0 0 20px 4px #ff6600;
-  border: 2px solid #ff6600;
-}
-
-.est-text {
-  margin-top: 60px;
-  font-size: 1.5rem;
-  color: #ff4d4d;
-  text-shadow: 0 0 10px #ff4d4d;
-}
-/* ========================================================= */
-/* MOBILE RESPONSIVENESS — SCREEN WIDTH < 768px */
-/* ========================================================= */
-@media screen and (max-width: 768px) {
-
-  /* HEADER & NAVIGATION */
-  header {
-    flex-direction: column;
-    align-items: center;
-    padding: 15px 10px;
-  }
-
-  nav {
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    margin-top: 10px;
-  }
-
-  nav a {
-    font-size: 1rem;
-    padding: 8px 12px;
-  }
-
-  /* HERO SECTION */
-  .hero {
-    height: 60vh;
-    background-position: center center;
-  }
-
-  .hero-text, .hero-text.upgraded {
-    top: 30%;
-    left: 5%;
-    right: 5%;
-    text-align: center;
-  }
-
-  .main-title {
-    font-size: 40px;
-  }
-
-  .sub-title {
-    font-size: 24px;
-  }
-
-  /* SPONSORS SECTION */
-  .sponsor-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .sponsor-card {
-    width: 90%;
-    padding: 20px;
-  }
-
-  .sponsors-title {
-    font-size: 2rem;
-  }
-
-  /* TEAM PLAYERS */
-  .players-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .player-card {
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  .stat-box {
-    width: 60px;
-    font-size: 0.85rem;
-  }
-
-  .stat-box span {
-    font-size: 1.1rem;
-  }
-
-  /* PAGE LAYOUT */
-  .page {
-    padding: 20px 15px;
-  }
-
-  .page h1 {
-    font-size: 28px;
-    text-align: center;
-  }
-
-  /* FOOTER */
-  footer {
-    font-size: 0.9rem;
-    padding: 15px 10px;
-  }
-
-  /* FIXED ELEMENTS */
-  #meteor-layer {
-    z-index: 5; /* move slightly down if needed */
-  }
-
-  /* FIXTURES TEXT CENTER */
-  .fixtures-coming {
-    font-size: 1.4rem;
-    padding: 40px 20px;
-    text-align: center;
-    color: #ff4d4d;
-    text-shadow: 0 0 12px rgba(255, 80, 80, 0.8);
-    animation: glow-pulse 2.5s ease-in-out infinite;
-  }
-
-  @keyframes glow-pulse {
-    0%, 100% {
-      text-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff4d4d;
-    }
-    50% {
-      text-shadow: 0 0 20px #ff8080, 0 0 30px #ff4d4d;
-    }
-  }
-}
-@media (max-width: 600px) {
-  .sponsor-card {
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  .sponsors-title {
-    font-size: 2.2rem;
-  }
-
-  .sponsor-card img {
-    width: 60px;
-  }
-}
-/* ========================================================= */
-/* === SPONSORS SECTION: PLASMA BURST REDESIGN (OPTION 3) === */
-/* ========================================================= */
-
-.sponsors-section {
-    /* MODIFIED: Ensure section uses the same dark background as content for consistency */
-    background-color: #0d1623; 
-}
-
-/* MODIFIED: Remove/Override old glow styles */
-.sponsor-card {
-    overflow: hidden; /* Necessary for the radial glow */
-    border: none; /* Clean up old border */
-    transition: transform 0.3s ease;
-}
-.sponsor-card:hover {
-    transform: translateY(-8px); /* Higher lift on hover */
-}
-
-/* DEACTIVATED: Old border/shadow elements are no longer used */
-.sponsor-border {
-    display: none; 
-}
-.sponsor-card.gold .sponsor-border, 
-.sponsor-card.silver .sponsor-border, 
-.sponsor-card.bronze .sponsor-border {
-    display: none; 
-}
-
-
-/* NEW: Radial Glow container (::before) */
-.sponsor-card::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    filter: blur(40px);
-    transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
-    opacity: 0;
-    z-index: 1;
-}
-
-/* NEW: Plasma burst effect on hover */
-.sponsor-card:hover::before {
-    width: 200%;
-    height: 200%;
-    opacity: 0.9;
-}
-
-/* NEW: Tier-Specific Plasma Colors */
-
-/* Gold Tier: Intense Yellow-Orange Plasma */
-.sponsor-card.gold::before {
-    background: radial-gradient(circle, #ffd700, #ff8c00 60%, transparent);
-}
-
-/* Silver Tier: Cool White/Blue Spark */
-.sponsor-card.silver::before {
-    background: radial-gradient(circle, #ffffff, #add8e6 60%, transparent);
-}
-
-/* Bronze Tier: Warm Red/Copper Burst */
-.sponsor-card.bronze::before {
-    background: radial-gradient(circle, #ff6347, #b87333 60%, transparent);
-}
-
-/* NEW: Ensure text/logo stays on top of the glow and uses the color */
-.sponsor-tier,
-.sponsor-card img,
-.sponsor-card h3,
-.sponsor-card p {
-    position: relative;
-    z-index: 5;
-    /* Clean up the logo filter so it doesn't look flat */
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); 
-}
-
-/* NEW: Text Color Accents matching the glow for high contrast */
-.sponsor-card.gold .sponsor-tier, .sponsor-card.gold h3 { color: #ffd700; text-shadow: 0 0 8px rgba(255, 215, 0, 0.8); }
-.sponsor-card.silver .sponsor-tier, .sponsor-card.silver h3 { color: #ffffff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); }
-.sponsor-card.bronze .sponsor-tier, .sponsor-card.bronze h3 { color: #ff6347; text-shadow: 0 0 8px rgba(255, 99, 71, 0.8); }
-
-/* Ensure the links open in a new tab for consistency */
-.sponsor-card[target="_blank"] {
-    cursor: pointer;
-}
-
 
 /* ========================================================= */
-/* === ABOUT US: MISSION DOSSIER REFINEMENTS === */
+/* === 4. ABOUT US: MISSION DOSSIER (FIXED) === */
 /* ========================================================= */
 
-/* MODIFIED: Header Integration & General Layout Fixes */
-header {
-    padding: 15px 20px; /* MODIFIED: Reduce top/bottom padding for sleeker look */
-    border-bottom: none; /* MODIFIED: Remove separator line for seamless dark flow */
-}
-
-.hero-text {
-    top: 45%; /* MODIFIED: Adjust hero text position slightly down after header change */
-}
-
-/* MODIFIED: Seamless Page Body Flow */
-.page {
-    margin: 0 auto; /* MODIFIED: Remove default top margin to connect to header */
-    padding: 0; /* MODIFIED: Remove side padding */
-}
-
-.page[data-dossier] {
-    /* NEW: Main Dossier Container styling */
-    padding: 40px; 
-    background-color: #0d1623; 
-    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); /* Inner shadow for depth */
-}
-
-/* MODIFIED: Dossier Module Polish */
-.dossier-module {
-    padding: 30px 40px; /* MODIFIED: Increased padding */
-    background-image: linear-gradient(0deg, rgba(255,255,255,0.01) 1px, transparent 1px), 
-                      linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
-    background-size: 20px 20px;
-    background-color: #0b1221;
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Sharper, cleaner outline */
-}
-
-.dossier-module p {
-    color: #e6e6e6; /* MODIFIED: Slightly brighter text */
-}
-
-/* MODIFIED: Module Title Bar Positioning */
-.dossier-module::after {
-    top: -20px; /* MODIFIED: Push the label further outside the module border */
-    left: 30px; 
-    padding: 3px 12px;
-    background: #0d1623; /* MODIFIED: Ensure background matches the main page area */
-}
-
-
-/* ========================================================= */
-/* === IMAGE OPTIMIZATION (for Home Page Hero) === */
-/* ========================================================= */
-/* This is a global override for the Home Page hero image handling */
-
-.hero {
-  /* MODIFIED: Anchor the image to the bottom-center for action shots */
-  background-position: center 80%; 
-}
-/* ========================================================= */
-/* === GLOBAL LAYOUT & HERO FIXES (NEW APPENDED RULES) === */
-/* ========================================================= */
-
-/* REQUIRED: Clean up old navigation line to match new aesthetic */
-nav a::after {
-    content: none;
-}
-
-/* ---------------- HERO SECTION (Perfect Fit and Centering) ---------------- */
-/* NOTE: This assumes your new wide image is named 'cricket-hero-perfect.jpg' */
-.hero {
-  /* MODIFIED: Use a slightly shorter height for a modern banner look */
-  height: 75vh; 
-  /* MODIFIED: Anchor the image to the bottom-center (85%) for action shots */
-  background-position: center 85%; 
-}
-
-/* Ensure the hero text is positioned correctly */
-.hero-text.upgraded {
-    top: 50%;
-    left: 10%;
-    transform: translateY(-50%); 
-    z-index: 7;
-    text-align: left;
-}
-
-/* ---------------- PAGE STYLE (FIXED FOR ABOUT US) ---------------- */
-
-/* FIX: Removes default top margin/padding from the generic .page class */
-.page {
-  margin: 0 auto; 
-  padding: 0; 
-  line-height: 1.6;
-}
-
-/* FIX: Ensures the dossier container is spaced correctly and integrated */
 .page[data-dossier] {
     max-width: 1000px;
-    margin: 60px auto; /* FIXED: Adds proper top/bottom margin back for spacing */
-    padding: 40px; 
-    background-color: #0b1221; /* Darkest color for the internal content box */
-    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); 
-    border-radius: 8px;
-}
-
-/* ========================================================= */
-/* === ABOUT US: MISSION DOSSIER STYLES (Module Fixes) === */
-/* ========================================================= */
-
-.dossier-title {
-    font-size: 40px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: #ffd700;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
-    padding-bottom: 10px;
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.mission-intro, .mission-outro {
-    font-size: 1.1rem;
-    padding: 0 20px;
-    text-align: center;
-    color: #ccc;
-    margin-bottom: 40px;
-    line-height: 1.8;
-}
-
-/* MODULE BASE */
-.dossier-module {
-    background: #0d1623;
-    border-radius: 8px;
-    padding: 30px 40px;
-    margin-bottom: 30px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
-    /* High-tech grid background */
-    background-image: linear-gradient(0deg, rgba(255,255,255,0.01) 1px, transparent 1px), 
-                      linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
-    background-size: 20px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.dossier-module:hover {
-    transform: translateY(-5px);
-}
-
-/* HIDE OLD HEADERS */
-.page h1, 
-.page h2.section-title {
-    display: none; 
-}
-
-/* TITLE BAR AND LABELS */
-.dossier-module::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    transition: background 0.5s ease;
-}
-
-.dossier-module::after {
-    /* The floating title text */
-    content: attr(data-section);
-    position: absolute;
-    top: -20px;
-    left: 30px; 
-    padding: 3px 12px;
-    background: #0b1221; /* Matches the content box background */
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    z-index: 2;
-    transition: color 0.5s ease;
-}
-
-.dossier-module p {
-    color: #e6e6e6;
-    margin: 15px 0;
-    line-height: 1.7;
-}
-
-/* ROLE-SPECIFIC COLORS (IMPACT, PRECISION, etc.) */
-
-.dossier-module.impact::before { background-color: #ff4d4d; box-shadow: 0 0 10px #ff4d4d; }
-.dossier-module.impact::after { color: #ff4d4d; text-shadow: 0 0 8px rgba(255, 77, 77, 0.7); }
-
-.dossier-module.precision::before { background-color: #00bfff; box-shadow: 0 0 10px #00bfff; }
-.dossier-module.precision::after { color: #00bfff; text-shadow: 0 0 8px rgba(0, 191, 255, 0.7); }
-
-.dossier-module.identity::before { background-color: #39FF14; box-shadow: 0 0 10px #39FF14; }
-.dossier-module.identity::after { color: #39FF14; text-shadow: 0 0 8px rgba(57, 255, 20, 0.7); }
-
-.dossier-module.ethos::before { background-color: #b0e0e6; box-shadow: 0 0 15px #b0e0e6; }
-.dossier-module.ethos::after { color: #b0e0e6; text-shadow: 0 0 8px rgba(176, 224, 230, 0.7); }
-
-
-/* ========================================================= */
-/* === SPONSORS SECTION: PLASMA BURST (For sponsors.html) === */
-/* ========================================================= */
-
-.sponsors-section {
-    background-color: #0d1623; 
-}
-.sponsor-card {
-    overflow: hidden; 
-    border: none; 
-    transition: transform 0.3s ease;
-}
-.sponsor-card:hover {
-    transform: translateY(-8px); 
-}
-.sponsor-border {
-    display: none; 
-}
-.sponsor-card.gold .sponsor-border, 
-.sponsor-card.silver .sponsor-border, 
-.sponsor-card.bronze .sponsor-border {
-    display: none; 
-}
-
-/* NEW: Radial Glow container (::before) */
-.sponsor-card::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    filter: blur(40px);
-    transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
-    opacity: 0;
-    z-index: 1;
-}
-
-/* Plasma burst effect on hover */
-.sponsor-card:hover::before {
-    width: 200%;
-    height: 200%;
-    opacity: 0.9;
-}
-
-/* Tier-Specific Plasma Colors */
-.sponsor-card.gold::before {
-    background: radial-gradient(circle, #ffd700, #ff8c00 60%, transparent);
-}
-.sponsor-card.silver::before {
-    background: radial-gradient(circle, #ffffff, #add8e6 60%, transparent);
-}
-.sponsor-card.bronze::before {
-    background: radial-gradient(circle, #ff6347, #b87333 60%, transparent);
-}
-
-/* Ensure text/logo stays on top of the glow and uses the color */
-.sponsor-tier,
-.sponsor-card img,
-.sponsor-card h3,
-.sponsor-card p {
-    position: relative;
-    z-index: 5;
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); 
-}
-
-/* Text Color Accents matching the glow for high contrast */
-.sponsor-card.gold .sponsor-tier, .sponsor-card.gold h3 { color: #ffd700; text-shadow: 0 0 8px rgba(255, 215, 0, 0.8); }
-.sponsor-card.silver .sponsor-tier, .sponsor-card.silver h3 { color: #ffffff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); }
-.sponsor-card.bronze .sponsor-tier, .sponsor-card.bronze h3 { color: #ff6347; text-shadow: 0 0 8px rgba(255, 99, 71, 0.8); }
-
-
-/* ========================================================= */
-/* === GLOBAL LAYOUT, HERO, AND PAGE FIXES (NEW APPENDED RULES) === */
-/* ========================================================= */
-
-/* REQUIRED: Clean up old navigation line to match new aesthetic */
-nav a::after {
-    content: none;
-}
-
-/* ---------------- HERO SECTION (Final Fit and Centering) ---------------- */
-/* NOTE: This assumes your unique image is named 'banner.JPG' in the images folder. */
-.hero {
-  /* MODIFIED: Increase height slightly to accommodate the tall image content */
-  height: 90vh; 
-  /* MODIFIED: Use 'cover' to ensure the entire banner is filled */
-  background-size: cover;
-  /* NEW: Anchor the image to the top-center (40%) to ensure the floating pitch is visible
-     and the bottom logo area is pushed off the screen when needed. */
-  background-position: center 40%; 
-}
-
-/* Ensure the hero text is positioned correctly */
-.hero-text.upgraded {
-    top: 50%;
-    left: 10%;
-    transform: translateY(-50%); 
-    z-index: 7;
-    text-align: left;
-}
-
-/* ---------------- PAGE STYLE (FIXED FOR ABOUT US & GENERAL) ---------------- */
-
-/* FIX: Removes default top margin/padding from the generic .page class */
-.page {
-  margin: 0 auto; 
-  padding: 0; 
-  line-height: 1.6;
-}
-
-/* FIX: Ensures the dossier container is spaced correctly and integrated */
-.page[data-dossier] {
-    max-width: 1000px;
-    margin: 60px auto; /* FIXED: Adds proper top/bottom margin back for spacing */
-    padding: 40px; 
-    background-color: #0b1221; /* Darkest color for the internal content box */
-    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); /* Inner shadow for depth */
-    border-radius: 8px;
-}
-
-/* ---------------- ABOUT US: MISSION DOSSIER MODULES (FIXED) ---------------- */
-
-.dossier-title {
-    font-size: 40px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: #ffd700;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
-    padding-bottom: 10px;
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.mission-intro, .mission-outro {
-    font-size: 1.1rem;
-    padding: 0 20px;
-    text-align: center;
-    color: #ccc;
-    margin-bottom: 40px;
-    line-height: 1.8;
-}
-
-/* MODULE BASE */
-.dossier-module {
-    background: #0d1623;
-    border-radius: 8px;
-    padding: 30px 40px;
-    margin-bottom: 30px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
-    /* High-tech grid background */
-    background-image: linear-gradient(0deg, rgba(255,255,255,0.01) 1px, transparent 1px), 
-                      linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
-    background-size: 20px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.dossier-module:hover {
-    transform: translateY(-5px);
-}
-
-/* HIDE OLD HEADERS */
-.page h1, 
-.page h2.section-title {
-    display: none; 
-}
-
-/* TITLE BAR AND LABELS */
-.dossier-module::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    transition: background 0.5s ease;
-}
-
-.dossier-module::after {
-    /* The floating title text */
-    content: attr(data-section);
-    position: absolute;
-    top: -20px;
-    left: 30px; 
-    padding: 3px 12px;
-    background: #0b1221; /* Matches the content box background */
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    z-index: 2;
-    transition: color 0.5s ease;
-}
-
-.dossier-module p {
-    color: #e6e6e6;
-    margin: 15px 0;
-    line-height: 1.7;
-}
-
-/* ROLE-SPECIFIC COLORS */
-.dossier-module.impact::before { background-color: #ff4d4d; box-shadow: 0 0 10px #ff4d4d; }
-.dossier-module.impact::after { color: #ff4d4d; text-shadow: 0 0 8px rgba(255, 77, 77, 0.7); }
-.dossier-module.precision::before { background-color: #00bfff; box-shadow: 0 0 10px #00bfff; }
-.dossier-module.precision::after { color: #00bfff; text-shadow: 0 0 8px rgba(0, 191, 255, 0.7); }
-.dossier-module.identity::before { background-color: #39FF14; box-shadow: 0 0 10px #39FF14; }
-.dossier-module.identity::after { color: #39FF14; text-shadow: 0 0 8px rgba(57, 255, 20, 0.7); }
-.dossier-module.ethos::before { background-color: #b0e0e6; box-shadow: 0 0 15px #b0e0e6; }
-.dossier-module.ethos::after { color: #b0e0e6; text-shadow: 0 0 8px rgba(176, 224, 230, 0.7); }
-
-
-/* ========================================================= */
-/* === SPONSORS SECTION: PLASMA BURST (For sponsors.html) === */
-/* ========================================================= */
-
-.sponsors-section {
-    background-color: #0d1623; 
-}
-.sponsor-card {
-    overflow: hidden; 
-    border: none; 
-    transition: transform 0.3s ease;
-}
-.sponsor-card:hover {
-    transform: translateY(-8px); 
-}
-.sponsor-border {
-    display: none; 
-}
-.sponsor-card.gold .sponsor-border, 
-.sponsor-card.silver .sponsor-border, 
-.sponsor-card.bronze .sponsor-border {
-    display: none; 
-}
-
-/* NEW: Radial Glow container (::before) */
-.sponsor-card::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    filter: blur(40px);
-    transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
-    opacity: 0;
-    z-index: 1;
-}
-
-/* Plasma burst effect on hover */
-.sponsor-card:hover::before {
-    width: 200%;
-    height: 200%;
-    opacity: 0.9;
-}
-
-/* Tier-Specific Plasma Colors */
-.sponsor-card.gold::before {
-    background: radial-gradient(circle, #ffd700, #ff8c00 60%, transparent);
-}
-.sponsor-card.silver::before {
-    background: radial-gradient(circle, #ffffff, #add8e6 60%, transparent);
-}
-.sponsor-card.bronze::before {
-    background: radial-gradient(circle, #ff6347, #b87333 60%, transparent);
-}
-
-/* Ensure text/logo stays on top of the glow and uses the color */
-.sponsor-tier,
-.sponsor-card img,
-.sponsor-card h3,
-.sponsor-card p {
-    position: relative;
-    z-index: 5;
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); 
-}
-
-/* Text Color Accents matching the glow for high contrast */
-.sponsor-card.gold .sponsor-tier, .sponsor-card.gold h3 { color: #ffd700; text-shadow: 0 0 8px rgba(255, 215, 0, 0.8); }
-.sponsor-card.silver .sponsor-tier, .sponsor-card.silver h3 { color: #ffffff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); }
-.sponsor-card.bronze .sponsor-tier, .sponsor-card.bronze h3 { color: #ff6347; text-shadow: 0 0 8px rgba(255, 99, 71, 0.8); }
-/* ========================================================= */
-/* === GLOBAL LAYOUT & HERO FIXES (NEW APPENDED RULES) === */
-/* ========================================================= */
-
-/* REQUIRED: Clean up old navigation line to match new aesthetic */
-nav a::after {
-    content: none;
-}
-
-/* ---------------- HERO SECTION (Final Image Fit) ---------------- */
-/* NOTE: This assumes your unique image is named 'banner.JPG' in the images folder. */
-.hero {
-  /* MODIFIED: Increase height slightly to accommodate the tall image content */
-  height: 90vh; 
-  /* MODIFIED: Use 'cover' to ensure the entire banner is filled */
-  background-size: cover;
-  /* NEW: Anchor the image to the top-center (40%) to ensure the floating pitch is visible
-     and the bottom logo area is pushed off the screen when needed. */
-  background-position: center 40%; 
-}
-
-/* Ensure the hero text is positioned correctly */
-.hero-text.upgraded {
-    top: 50%;
-    left: 10%;
-    transform: translateY(-50%); 
-    z-index: 7;
-    text-align: left;
-}
-
-/* ---------------- ABOUT US: PAGE LAYOUT FIXES (CRITICAL) ---------------- */
-
-/* FIX 1: Remove the default top margin from the global .page class to stop floating */
-.page {
-  /* This is the key fix for the floating content */
-  margin: 0 auto; 
-  padding: 0; 
-  line-height: 1.6;
-}
-
-/* FIX 2: Re-establish the required spacing and container for the Dossier */
-.page[data-dossier] {
-    max-width: 1000px;
-    /* FIXED: This margin correctly spaces the content below the header */
     margin: 60px auto; 
-    padding: 40px; 
+    
+    /* CRITICAL FIX: Extra top padding ensures the floating headers aren't cut off */
+    padding: 80px 40px 40px 40px !important; 
+    
     background-color: #0b1221; 
     box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); 
     border-radius: 8px;
-}
-
-/* FIX 3: Ensure the Dossier Title styles are applied and visible */
-.dossier-title {
-    font-size: 40px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: #ffd700;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
-    padding-bottom: 10px;
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-/* ---------------- ABOUT US: MODULE STYLES (Required for visual pop) ---------------- */
-
-/* MODULE BASE */
-.dossier-module {
-    background: #0d1623;
-    border-radius: 8px;
-    padding: 30px 40px;
-    margin-bottom: 30px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
-    /* High-tech grid background */
-    background-image: linear-gradient(0deg, rgba(255,255,255,0.01) 1px, transparent 1px), 
-                      linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
-    background-size: 20px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* HIDE OLD HEADERS */
-.page h1, 
-.page h2.section-title {
-    display: none; 
-}
-
-/* TITLE BAR AND LABELS */
-.dossier-module::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    transition: background 0.5s ease;
-}
-
-.dossier-module::after {
-    /* The floating title text */
-    content: attr(data-section);
-    position: absolute;
-    top: -20px;
-    left: 30px; 
-    padding: 3px 12px;
-    background: #0b1221; /* Matches the content box background */
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    z-index: 2;
-    transition: color 0.5s ease;
-}
-
-.dossier-module p {
-    color: #e6e6e6;
-    margin: 15px 0;
-    line-height: 1.7;
-}
-
-/* ROLE-SPECIFIC COLORS */
-.dossier-module.impact::before { background-color: #ff4d4d; box-shadow: 0 0 10px #ff4d4d; }
-.dossier-module.impact::after { color: #ff4d4d; text-shadow: 0 0 8px rgba(255, 77, 77, 0.7); }
-.dossier-module.precision::before { background-color: #00bfff; box-shadow: 0 0 10px #00bfff; }
-.dossier-module.precision::after { color: #00bfff; text-shadow: 0 0 8px rgba(0, 191, 255, 0.7); }
-.dossier-module.identity::before { background-color: #39FF14; box-shadow: 0 0 10px #39FF14; }
-.dossier-module.identity::after { color: #39FF14; text-shadow: 0 0 8px rgba(57, 255, 20, 0.7); }
-.dossier-module.ethos::before { background-color: #b0e0e6; box-shadow: 0 0 15px #b0e0e6; }
-.dossier-module.ethos::after { color: #b0e0e6; text-shadow: 0 0 8px rgba(176, 224, 230, 0.7); }
-
-
-/* ---------------- SPONSORS SECTION: PLASMA BURST ---------------- */
-
-.sponsors-section {
-    background-color: #0d1623; 
-}
-.sponsor-card {
-    overflow: hidden; 
-    border: none; 
-    transition: transform 0.3s ease;
-}
-.sponsor-card:hover {
-    transform: translateY(-8px); 
-}
-.sponsor-border {
-    display: none; 
-}
-.sponsor-card.gold .sponsor-border, 
-.sponsor-card.silver .sponsor-border, 
-.sponsor-card.bronze .sponsor-border {
-    display: none; 
-}
-
-/* NEW: Radial Glow container (::before) */
-.sponsor-card::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    filter: blur(40px);
-    transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
-    opacity: 0;
-    z-index: 1;
-}
-
-/* Plasma burst effect on hover */
-.sponsor-card:hover::before {
-    width: 200%;
-    height: 200%;
-    opacity: 0.9;
-}
-
-/* Tier-Specific Plasma Colors */
-.sponsor-card.gold::before {
-    background: radial-gradient(circle, #ffd700, #ff8c00 60%, transparent);
-}
-.sponsor-card.silver::before {
-    background: radial-gradient(circle, #ffffff, #add8e6 60%, transparent);
-}
-.sponsor-card.bronze::before {
-    background: radial-gradient(circle, #ff6347, #b87333 60%, transparent);
-}
-
-/* Ensure text/logo stays on top of the glow and uses the color */
-.sponsor-tier,
-.sponsor-card img,
-.sponsor-card h3,
-.sponsor-card p {
-    position: relative;
-    z-index: 5;
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); 
-}
-/* ========================================================= */
-/* === GLOBAL LAYOUT & HERO FIXES (NEW APPENDED RULES) === */
-/* ========================================================= */
-
-/* REQUIRED: Clean up old navigation line to match new aesthetic */
-nav a::after {
-    content: none;
-}
-
-/* ---------------- HERO SECTION (Final Image Fit) ---------------- */
-/* NOTE: This assumes your unique image is named 'banner.JPG' in the images folder. */
-.hero {
-  /* MODIFIED: Increase height slightly to accommodate the tall image content */
-  height: 90vh; 
-  /* MODIFIED: Use 'cover' to ensure the entire banner is filled */
-  background-size: cover;
-  /* NEW: Anchor the image to the top-center (40%) to ensure the floating pitch is visible
-     and the bottom logo area is pushed off the screen when needed. */
-  background-position: center 40%; 
-}
-
-/* Ensure the hero text is positioned correctly */
-.hero-text.upgraded {
-    top: 50%;
-    left: 10%;
-    transform: translateY(-50%); 
-    z-index: 7;
-    text-align: left;
-}
-
-/* ---------------- ABOUT US: PAGE LAYOUT FIXES (CRITICAL) ---------------- */
-
-/* FIX 1: Remove the default top margin from the global .page class to stop floating */
-.page {
-  /* This is the key fix for the floating content */
-  margin: 0 auto; 
-  padding: 0; 
-  line-height: 1.6;
-}
-
-/* FIX 2: Re-establish the required spacing and container for the Dossier */
-.page[data-dossier] {
-    max-width: 1000px;
-    /* FIXED: This margin correctly spaces the content below the header */
-    margin: 60px auto; 
-    padding: 40px; 
-    background-color: #0b1221; 
-    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); 
-    border-radius: 8px;
-}
-
-/* FIX 3: Ensure the Dossier Title styles are applied and visible */
-.dossier-title {
-    font-size: 40px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: #ffd700;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
-    padding-bottom: 10px;
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-/* ---------------- ABOUT US: MODULE STYLES (Required for visual pop) ---------------- */
-
-/* MODULE BASE */
-.dossier-module {
-    background: #0d1623;
-    border-radius: 8px;
-    padding: 30px 40px;
-    margin-bottom: 30px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
-    /* High-tech grid background */
-    background-image: linear-gradient(0deg, rgba(255,255,255,0.01) 1px, transparent 1px), 
-                      linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
-    background-size: 20px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* HIDE OLD HEADERS */
-.page h1, 
-.page h2.section-title {
-    display: none; 
-}
-
-/* TITLE BAR AND LABELS */
-.dossier-module::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    transition: background 0.5s ease;
-}
-
-.dossier-module::after {
-    /* The floating title text */
-    content: attr(data-section);
-    position: absolute;
-    top: -20px;
-    left: 30px; 
-    padding: 3px 12px;
-    background: #0b1221; /* Matches the content box background */
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    z-index: 2;
-    transition: color 0.5s ease;
-}
-
-.dossier-module p {
-    color: #e6e6e6;
-    margin: 15px 0;
-    line-height: 1.7;
-}
-
-/* ROLE-SPECIFIC COLORS */
-.dossier-module.impact::before { background-color: #ff4d4d; box-shadow: 0 0 10px #ff4d4d; }
-.dossier-module.impact::after { color: #ff4d4d; text-shadow: 0 0 8px rgba(255, 77, 77, 0.7); }
-.dossier-module.precision::before { background-color: #00bfff; box-shadow: 0 0 10px #00bfff; }
-.dossier-module.precision::after { color: #00bfff; text-shadow: 0 0 8px rgba(0, 191, 255, 0.7); }
-.dossier-module.identity::before { background-color: #39FF14; box-shadow: 0 0 10px #39FF14; }
-.dossier-module.identity::after { color: #39FF14; text-shadow: 0 0 8px rgba(57, 255, 20, 0.7); }
-.dossier-module.ethos::before { background-color: #b0e0e6; box-shadow: 0 0 15px #b0e0e6; }
-.dossier-module.ethos::after { color: #b0e0e6; text-shadow: 0 0 8px rgba(176, 224, 230, 0.7); }
-
-
-/* ---------------- SPONSORS SECTION: PLASMA BURST ---------------- */
-
-.sponsors-section {
-    background-color: #0d1623; 
-}
-.sponsor-card {
-    overflow: hidden; 
-    border: none; 
-    transition: transform 0.3s ease;
-}
-.sponsor-card:hover {
-    transform: translateY(-8px); 
-}
-.sponsor-border {
-    display: none; 
-}
-.sponsor-card.gold .sponsor-border, 
-.sponsor-card.silver .sponsor-border, 
-.sponsor-card.bronze .sponsor-border {
-    display: none; 
-}
-
-/* NEW: Radial Glow container (::before) */
-.sponsor-card::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    filter: blur(40px);
-    transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
-    opacity: 0;
-    z-index: 1;
-}
-
-/* Plasma burst effect on hover */
-.sponsor-card:hover::before {
-    width: 200%;
-    height: 200%;
-    opacity: 0.9;
-}
-
-/* Tier-Specific Plasma Colors */
-.sponsor-card.gold::before {
-    background: radial-gradient(circle, #ffd700, #ff8c00 60%, transparent);
-}
-.sponsor-card.silver::before {
-    background: radial-gradient(circle, #ffffff, #add8e6 60%, transparent);
-}
-.sponsor-card.bronze::before {
-    background: radial-gradient(circle, #ff6347, #b87333 60%, transparent);
-}
-
-/* Ensure text/logo stays on top of the glow and uses the color */
-.sponsor-tier,
-.sponsor-card img,
-.sponsor-card h3,
-.sponsor-card p {
-    position: relative;
-    z-index: 5;
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); 
-}
-
-/* Text Color Accents matching the glow for high contrast */
-.sponsor-card.gold .sponsor-tier, .sponsor-card.gold h3 { color: #ffd700; text-shadow: 0 0 8px rgba(255, 215, 0, 0.8); }
-.sponsor-card.silver .sponsor-tier, .sponsor-card.silver h3 { color: #ffffff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); }
-.sponsor-card.bronze .sponsor-tier, .sponsor-card.bronze h3 { color: #ff6347; text-shadow: 0 0 8px rgba(255, 99, 71, 0.8); }
-
-/* ========================================================= */
-/* === CRITICAL FIX: ABOUT US HEADING CLIPPING === */
-/* ========================================================= */
-
-.page[data-dossier] {
-    /* NEW: Add top padding to force content down below the header, 
-       ensuring the floating module headings are always visible. */
-    padding-top: 80px !important; 
-    
-    /* MODIFIED (Re-confirm the margin fix) */
-    margin: 60px auto; 
-}
-/* ========================================================= */
-/* === FULL SCREEN LAYOUT FIX (100VH) === */
-/* ========================================================= */
-
-/* Note: Header Height is approx 90px, Footer Height is approx 60px.
-   We use calc(100vh - 150px) for general content pages. */
-
-/* 1. HOME PAGE HERO SECTION */
-.hero {
-    /* MODIFIED: Set height to 100% of the viewport height */
-    height: 100vh !important; 
-    /* NEW: We anchor the image to the bottom center, but ensure the overlay is perfect */
-    background-position: center 80%; 
-}
-
-/* 2. TEAM PLAYERS PAGE */
-.players-section {
-    /* MODIFIED: Calculate height to fill the screen minus header and footer space */
-    min-height: calc(100vh - 180px); 
-    padding: 60px 40px 100px; /* Increase bottom padding to ensure footer doesn't overlap cards */
-    display: flex; /* Helps ensure content takes full available vertical space */
-    flex-direction: column;
-}
-
-/* 3. FIXTURES PAGE */
-.fixtures-coming-soon {
-    /* MODIFIED: Calculate height to fill the screen minus header and footer space */
-    height: calc(100vh - 180px);
-}
-
-/* 4. ABOUT US PAGE (Mission Dossier) */
-.page[data-dossier] {
-    /* The dossier module is centered, so we just ensure the parent container is tall enough */
     min-height: calc(100vh - 150px);
-    
-    /* MODIFIED: Reset the large auto margin to correctly space the module inside the tall container */
-    margin-top: 50px !important;
-    margin-bottom: 50px !important;
 }
 
-/* 5. SPONSORS PAGE */
+.dossier-title {
+    font-size: 40px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #ffd700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+    padding-bottom: 10px;
+    margin-bottom: 60px; /* Increased margin to separate title from first module */
+    text-align: center;
+    display: block !important; /* Force display */
+}
+
+.mission-intro, .mission-outro {
+    font-size: 1.1rem;
+    padding: 0 20px;
+    text-align: center;
+    color: #ccc;
+    margin-bottom: 50px;
+    line-height: 1.8;
+}
+
+/* Dossier Module Box */
+.dossier-module {
+    background: #0d1623;
+    border-radius: 8px;
+    padding: 35px 40px;
+    margin-bottom: 40px; /* Spacing between modules */
+    position: relative;
+    overflow: visible; /* CRITICAL FIX: Allows the label to float outside the box */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* Grid Pattern Background */
+    background-image: linear-gradient(0deg, rgba(255,255,255,0.01) 1px, transparent 1px), 
+                      linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
+    background-size: 20px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dossier-module:hover {
+    transform: translateY(-5px);
+}
+
+/* Module Content Text */
+.dossier-module p {
+    color: #e6e6e6;
+    margin: 0;
+    line-height: 1.7;
+}
+
+/* Top Colored Line */
+.dossier-module::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    transition: background 0.5s ease;
+}
+
+/* Floating Title Label */
+.dossier-module::after {
+    content: attr(data-section);
+    position: absolute;
+    top: -14px; /* Move up to sit on the border */
+    left: 30px; 
+    padding: 4px 12px;
+    background: #0d1623; /* Matches module background */
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    z-index: 5;
+    border-radius: 4px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+}
+
+/* Role-Specific Colors */
+.dossier-module.impact::before { background-color: #ff4d4d; box-shadow: 0 0 10px #ff4d4d; }
+.dossier-module.impact::after { color: #ff4d4d; text-shadow: 0 0 8px rgba(255, 77, 77, 0.7); border-top: 2px solid #ff4d4d; }
+
+.dossier-module.precision::before { background-color: #00bfff; box-shadow: 0 0 10px #00bfff; }
+.dossier-module.precision::after { color: #00bfff; text-shadow: 0 0 8px rgba(0, 191, 255, 0.7); border-top: 2px solid #00bfff; }
+
+.dossier-module.identity::before { background-color: #39FF14; box-shadow: 0 0 10px #39FF14; }
+.dossier-module.identity::after { color: #39FF14; text-shadow: 0 0 8px rgba(57, 255, 20, 0.7); border-top: 2px solid #39FF14; }
+
+.dossier-module.ethos::before { background-color: #b0e0e6; box-shadow: 0 0 15px #b0e0e6; }
+.dossier-module.ethos::after { color: #b0e0e6; text-shadow: 0 0 8px rgba(176, 224, 230, 0.7); border-top: 2px solid #b0e0e6; }
+
+
+/* ========================================================= */
+/* === 5. TEAM PLAYERS (ROSTER CONSOLE) === */
+/* ========================================================= */
+.players-section {
+    text-align: center;
+    padding: 60px 40px 100px;
+    background-color: #0d1623;
+    color: white;
+    min-height: calc(100vh - 180px);
+}
+
+.players-section h1 {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 56px;
+    margin-bottom: 50px;
+    color: #ff4d4d;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(255, 77, 77, 0.7), 0 0 40px rgba(255, 77, 77, 0.5);
+}
+
+.players-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.player-card {
+    position: relative;
+    background: #0b1221;
+    border-radius: 8px;
+    padding: 0;
+    text-align: center;
+    overflow: hidden;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.player-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+/* Role Indicator Glows */
+.role-indicator {
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: box-shadow 0.4s ease, opacity 0.4s ease;
+}
+.player-card:hover .role-indicator { opacity: 1; }
+.player-card[data-role-focus="impact"]:hover .role-indicator { box-shadow: 0 0 20px 5px #ff6b6b, 0 0 40px 10px rgba(255, 107, 107, 0.5); }
+.player-card[data-role-focus="precision"]:hover .role-indicator { box-shadow: 0 0 20px 5px #00bfff, 0 0 40px 10px rgba(0, 191, 255, 0.5); }
+.player-card[data-role-focus="versatility"]:hover .role-indicator { box-shadow: 0 0 20px 5px #ffd700, 0 0 40px 10px rgba(255, 215, 0, 0.5); }
+
+/* Player Content */
+.player-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    margin-bottom: 0;
+    border-radius: 8px 8px 0 0;
+    transition: filter 0.3s;
+}
+.player-card h2 { font-size: 26px; margin: 15px 0 0; color: #ffffff; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+.tagline { font-size: 13px; margin: 4px 0 0; color: #39FF14; text-transform: uppercase; letter-spacing: 2px; }
+.role { font-size: 13px; margin-bottom: 20px; color: #888; }
+
+.stats { display: flex; justify-content: center; gap: 8px; padding: 0 10px 20px; }
+.stat-box {
+    background: #0d1623;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.05);
+    padding: 10px 5px;
+    border-radius: 4px;
+    color: #ccc;
+    font-size: 10px;
+    width: 90px;
+}
+.stat-box span { display: block; font-size: 18px; font-weight: bold; }
+.stat-box.impact { color: #ff6b6b; box-shadow: inset 0 0 10px rgba(255, 107, 107, 0.5), 0 0 5px rgba(255, 107, 107, 0.3); }
+.stat-box.precision { color: #39FF14; box-shadow: inset 0 0 10px rgba(57, 255, 20, 0.5), 0 0 5px rgba(57, 255, 20, 0.3); }
+
+
+/* ========================================================= */
+/* === 6. SPONSORS SECTION (PLASMA BURST) === */
+/* ========================================================= */
 .sponsors-section {
-    /* MODIFIED: Calculate height to fill the screen minus header and footer space */
+    background-color: #0d1623;
+    padding: 60px 20px;
+    text-align: center;
     min-height: calc(100vh - 150px);
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center the sponsor cards vertically */
-}
-/* JAVASCRIPT TOOL: Run this once in your browser console to clean up your style.css content.
-   NOTE: You must manually replace the content of your style.css file with the result. */
-
-function cleanCss(cssContent) {
-    // 1. Remove large unnecessary commented-out sections (like the placeholder blocks we used)
-    cssContent = cssContent.replace(/\/\* =+ [^=]* =+ \*\/\s*[\s\S]*?\/\* =+ [^=]* =+ \*\/\s*/g, '');
-
-    // 2. Remove duplicate/unnecessary media queries (a common source of bloat)
-    cssContent = cssContent.replace(/@media screen and \(max-width: 768px\) \{[\s\S]*?\}\s*@media \(max-width: 600px\) \{[\s\S]*?\}/g, (match) => {
-        // Find all media queries and combine them for brevity
-        const media768 = match.match(/@media screen and \(max-width: 768px\) \{[\s\S]*?\}/g) || [];
-        const media600 = match.match(/@media \(max-width: 600px\) \{[\s\S]*?\}/g) || [];
-        return media768.join('\n') + '\n' + media600.join('\n');
-    });
-
-    // 3. Remove known problematic/duplicate blocks based on our conversation
-    cssContent = cssContent.replace(/\.player-card:hover \{[\s\S]*?filter: drop-shadow\(0 0 25px #ff6b6b\);[\s\S]*?\}/g, '');
-    cssContent = cssContent.replace(/\/\* Active page highlight \*\/[\s\S]*?width: 100%;\s*\}/g, '');
-    cssContent = cssContent.replace(/\/\* Glow Borders \*\/[\s\S]*?pointer-events: none;\s*\}/g, '');
-    
-    return cssContent.trim();
+    justify-content: center;
 }
 
-// INSTRUCTIONS:
-// 1. Copy the full content of your style.css file.
-// 2. Paste it below, replacing 'PASTE YOUR FULL CSS CONTENT HERE'.
-// 3. Run this script in your browser console.
-// 4. The result (the cleaned CSS) will be printed.
+.sponsors-title {
+    font-size: 3rem;
+    color: #ff4d4d;
+    margin-bottom: 60px;
+    text-shadow: 0 0 20px #ff4d4d;
+}
 
-const rawCss = `
-PASTE YOUR FULL CSS CONTENT HERE
-`; // <<<--- REPLACE THIS LINE WITH YOUR style.css CONTENT
+.sponsor-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    align-items: stretch;
+}
 
-const cleanedCss = cleanCss(rawCss);
-console.log(cleanedCss);
-// The resulting string is your new, cleaner style.css content.
+.sponsor-card {
+    position: relative;
+    background-color: #111;
+    padding: 30px 25px;
+    border-radius: 12px;
+    width: 280px;
+    overflow: hidden;
+    border: none;
+    transition: transform 0.3s ease;
+}
+.sponsor-card:hover { transform: translateY(-8px); }
+
+/* Remove old borders */
+.sponsor-border { display: none; }
+
+/* Plasma Burst */
+.sponsor-card::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    filter: blur(40px);
+    transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+    z-index: 1;
+}
+.sponsor-card:hover::before { width: 200%; height: 200%; opacity: 0.9; }
+
+/* Colors */
+.sponsor-card.gold::before { background: radial-gradient(circle, #ffd700, #ff8c00 60%, transparent); }
+.sponsor-card.silver::before { background: radial-gradient(circle, #ffffff, #add8e6 60%, transparent); }
+.sponsor-card.bronze::before { background: radial-gradient(circle, #ff6347, #b87333 60%, transparent); }
+
+/* Text Layer */
+.sponsor-tier, .sponsor-card img, .sponsor-card h3, .sponsor-card p {
+    position: relative;
+    z-index: 5;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+}
+.sponsor-card.gold .sponsor-tier, .sponsor-card.gold h3 { color: #ffd700; text-shadow: 0 0 8px rgba(255, 215, 0, 0.8); }
+.sponsor-card.silver .sponsor-tier, .sponsor-card.silver h3 { color: #ffffff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); }
+.sponsor-card.bronze .sponsor-tier, .sponsor-card.bronze h3 { color: #ff6347; text-shadow: 0 0 8px rgba(255, 99, 71, 0.8); }
+
+.est-text {
+    margin-top: 60px;
+    font-size: 1.5rem;
+    color: #ff4d4d;
+    text-shadow: 0 0 10px #ff4d4d;
+}
+
+
 /* ========================================================= */
-/* === CRITICAL FIXES FOR ABOUT US & LAYOUT === */
+/* === 7. FIXTURES PAGE === */
 /* ========================================================= */
-
-/* FIX 1: Remove the default 80px margin from the global .page class to stop content floating */
-.page {
-  margin: 0 auto; /* The original margin: 80px auto; was the source of the float issue */
-  padding: 0; 
-  max-width: 100%; /* Ensure it spans full width before margin application */
-  line-height: 1.6;
+.fixtures-coming-soon {
+    height: calc(100vh - 180px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #0b1221;
+}
+.fixtures-coming-soon h1 {
+    font-size: 3rem;
+    color: #ff4d4d;
+    text-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff6b6b;
+    animation: glowPulse 2.5s ease-in-out infinite;
+}
+@keyframes glowPulse {
+    0%, 100% { text-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff6b6b; }
+    50% { text-shadow: 0 0 20px #ff4d4d, 0 0 35px #ff6b6b; }
 }
 
-/* FIX 2: Re-apply margin and padding correctly to the Dossier container */
-.page[data-dossier] {
-    max-width: 1000px;
-    margin: 60px auto !important; /* FIXED: Use !important to override any remaining top margins */
-    padding: 40px !important; 
-    background-color: #0b1221;
-    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); 
-    border-radius: 8px;
-    /* CRITICAL FIX for headings: ensures padding is big enough */
-    padding-top: 80px !important; 
+
+/* ========================================================= */
+/* === 8. BACKGROUND EFFECTS (FIRE & METEORS) === */
+/* ========================================================= */
+#fire-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: #080d12; }
+.fire-layer { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; filter: blur(80px); animation: fireMove 20s infinite linear; }
+.fire-layer:nth-child(1) { background: radial-gradient(circle at 50% 60%, rgba(0,120,255,0.3), rgba(10,20,40,0.8), transparent 70%); }
+.fire-layer:nth-child(2) { background: radial-gradient(circle at 40% 30%, rgba(100,160,255,0.35), rgba(0,0,50,0.85), transparent 75%); animation-duration: 26s; }
+.fire-layer:nth-child(3) { background: radial-gradient(circle at 70% 80%, rgba(255,255,255,0.2), rgba(0,0,20,0.9), transparent 80%); animation-duration: 32s; }
+@keyframes fireMove { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.25); } 100% { transform: rotate(360deg) scale(1); } }
+
+/* Meteors */
+#meteor-layer { position: fixed; inset: 0; z-index: 20; pointer-events: none; overflow: hidden; }
+.meteor {
+    position: absolute; width: 220px; height: 3px;
+    background: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255,0.9), rgba(255,255,255,1));
+    border-radius: 999px;
+    box-shadow: 0 0 12px rgba(255,255,255,0.9);
+    transform-origin: 100% 50%;
+    transform: rotate(var(--angle, -30deg));
+    animation: meteorMove linear forwards;
+}
+.meteor::after {
+    content: ""; position: absolute; right: 0; top: 50%; width: 14px; height: 14px;
+    transform: translate(50%, -50%);
+    background: radial-gradient(circle, white 0%, #d6e8ff 40%, rgba(255,255,255,0) 100%);
+    filter: blur(1px);
+}
+@keyframes meteorMove { 
+    0% { opacity: 0; transform: translate(0,0) rotate(var(--angle)); } 
+    10% { opacity: 1; } 
+    100% { opacity: 0; transform: translate(var(--tx), var(--ty)) rotate(var(--angle)); } 
+}
+
+/* Flare and Fire Glow Elements (Home Page) */
+.flare {
+    position: absolute; left: -5%; top: 50%; width: 160%; height: 12px;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,200,150,1) 50%, rgba(255,255,255,0) 100%);
+    filter: blur(12px); animation: flareSweep 4s infinite;
+}
+.fire-glow {
+    position: absolute; width: 350px; height: 350px; left: -80px; top: -60px;
+    background: radial-gradient(circle, rgba(255,100,60,0.35), rgba(255,60,30,0.15), transparent 70%);
+    filter: blur(40px); opacity: 0.7; animation: firePulse 5s infinite ease-in-out;
+}
+@keyframes flareSweep { 0% { transform: translateX(-120%); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateX(120%); opacity: 0; } }
+@keyframes firePulse { 0% { transform: scale(1); opacity: 0.55; } 50% { transform: scale(1.25); opacity: 0.95; } 100% { transform: scale(1); opacity: 0.55; } }
+
+
+/* ========================================================= */
+/* === 9. RESPONSIVE MEDIA QUERIES === */
+/* ========================================================= */
+@media screen and (max-width: 768px) {
+  header { flex-direction: column; align-items: center; padding: 15px 10px; }
+  nav { flex-direction: column; align-items: center; gap: 12px; margin-top: 10px; }
+  nav a { font-size: 1rem; padding: 8px 12px; }
+  
+  /* Hero Adjustments */
+  .hero { height: 60vh; background-position: center center; }
+  .hero-text.upgraded { top: 30%; left: 5%; right: 5%; text-align: center; transform: none; }
+  .main-title { font-size: 40px; }
+  .sub-title { font-size: 24px; }
+
+  /* About Us Adjustments */
+  .page[data-dossier] { margin: 30px auto; padding: 60px 20px 20px 20px !important; }
+  .dossier-title { font-size: 28px; letter-spacing: 2px; }
+  
+  /* Sponsor & Player Adjustments */
+  .sponsor-grid, .players-grid { grid-template-columns: 1fr; }
+  .sponsor-card, .player-card { width: 90%; margin: 0 auto; }
+}
+
+@media (max-width: 600px) {
+  .sponsors-title { font-size: 2.2rem; }
+  .sponsor-card img { width: 60px; }
 }
