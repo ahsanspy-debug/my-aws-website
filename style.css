@@ -442,47 +442,148 @@ header img:hover {
 
 
 /* ========================================================= */
-/* === 8. SPONSORS SECTION === */
+/* === 8. SPONSORS SECTION (UPGRADED) === */
 /* ========================================================= */
 .sponsors-section {
-    padding: 80px 20px;
+    padding: 100px 20px;
     text-align: center;
+    background: radial-gradient(circle at center, #1a253a 0%, #0b1221 70%); /* Subtle spotlight background */
+    position: relative;
 }
 
 .sponsors-title {
-    font-size: 3rem;
-    color: #ff4d4d;
-    margin-bottom: 50px;
+    font-size: 3.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 60px;
+    position: relative;
+    display: inline-block;
+    
+    /* The Fire/Neon Glow Effect */
+    text-shadow: 
+        0 0 10px #ff4d4d, 
+        0 0 20px #ff4d4d, 
+        0 0 40px #ff0000;
+}
+
+/* Decorative line under title */
+.sponsors-title::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #ff4d4d, transparent);
+    margin: 10px auto 0;
+    border-radius: 2px;
 }
 
 .sponsor-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 50px; /* More space between premium cards */
     justify-content: center;
+    perspective: 1000px; /* Adds 3D depth */
 }
 
 .sponsor-card {
-    width: 300px;
-    height: 450px; /* Fixed size boxes */
-    background: #111;
-    border-radius: 15px;
-    overflow: hidden;
+    width: 320px;
+    height: 480px;
+    background: linear-gradient(145deg, #111, #1a1a1a); /* Subtle gradient surface */
+    border-radius: 20px; /* Smoother corners */
     position: relative;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    transition: transform 0.3s ease;
+    overflow: hidden;
+    transition: all 0.4s ease-out;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle default border */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Deep shadow */
 }
 
+/* --- THE HOVER EFFECTS --- */
 .sponsor-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-15px) scale(1.03); /* Lifts up */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
 }
 
+/* The "Shine" sweeping across the card */
+.sponsor-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+    transform: skewX(-25deg);
+    transition: 0.5s;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.sponsor-card:hover::before {
+    left: 125%; /* Moves the shine across */
+}
+
+/* Image Handling */
 .sponsor-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0.85; /* Slightly dimmed by default to make text pop */
+    transition: opacity 0.3s;
 }
 
+.sponsor-card:hover img {
+    opacity: 1; /* Brightens on hover */
+}
+
+/* --- TIER SPECIFIC GLOWS (Gold, Silver, Bronze) --- */
+/* You must add class="sponsor-card gold" to your HTML for this to work */
+
+/* GOLD TIER */
+.sponsor-card.gold { border-bottom: 4px solid #ffd700; }
+.sponsor-card.gold:hover {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+    border-color: #ffd700;
+}
+
+/* SILVER TIER */
+.sponsor-card.silver { border-bottom: 4px solid #c0c0c0; }
+.sponsor-card.silver:hover {
+    box-shadow: 0 0 30px rgba(192, 192, 192, 0.4);
+    border-color: #c0c0c0;
+}
+
+/* BRONZE TIER */
+.sponsor-card.bronze { border-bottom: 4px solid #cd7f32; }
+.sponsor-card.bronze:hover {
+    box-shadow: 0 0 30px rgba(205, 127, 50, 0.4);
+    border-color: #cd7f32;
+}
+
+/* --- THE BADGES (Text Overlay) --- */
+/* This assumes you have a <div class="sponsor-badge">Gold Sponsor</div> inside the card */
+.sponsor-badge {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 10;
+    backdrop-filter: blur(5px); /* Blurs background behind text */
+    border: 1px solid rgba(255,255,255,0.2);
+    width: 80%;
+}
+
+.gold .sponsor-badge { color: #ffd700; border-color: #ffd700; }
+.silver .sponsor-badge { color: #c0c0c0; border-color: #c0c0c0; }
+.bronze .sponsor-badge { color: #cd7f32; border-color: #cd7f32; }
 
 /* ========================================================= */
 /* === 9. FOOTER === */
