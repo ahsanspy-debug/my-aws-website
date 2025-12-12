@@ -1,19 +1,53 @@
-<header>
-    <img src="images/logo.png" alt="Avengers Logo" class="logo">
+<div class="gallery-header">
+    <h1>MATCH DAY GALLERY</h1>
+    <p>Highlights, Action Shots & Replays from Our Season</p>
+    <a href="https://www.facebook.com/profile.php?id=61560774645408" target="_blank" class="facebook-link-box">
+        <i class="fab fa-facebook-f"></i>
+        <span>Visit Our Official Facebook Page for More!</span>
+    </a>
+</div>
 
-    <nav>
-<a href="index.html">Home</a>
-<a href="about.html" class="active">About Us</a>
-<a href="team-players.html">Team Players</a>
-<a href="fixtures.html">Fixtures</a>
-<a href="gallery.html">Gallery</a>
-<a href="sponsors.html">Sponsors</a>
-    </nav>
-</header>
-<script>
-  document.querySelectorAll('nav a').forEach(link => {
-    link.setAttribute('target', '_blank');
-  });
-</script>
-</body>
-</html>
+<div class="masonry-gallery">
+    
+    <div class="gallery-item">
+        <img src="image/team_photo_current.jpg" alt="Official Team Roster">
+        <div class="gallery-caption">
+            <div class="caption-title">OFFICIAL TEAM PHOTO 2026</div>
+            <div class="caption-details">The full squad for the upcoming season. Strength in unity.</div>
+        </div>
+    </div>
+
+    <div class="gallery-item">
+        <img src="image/match_photo_vertical.jpg" alt="Player celebration">
+        <div class="gallery-caption">
+            <div class="caption-title">GOAL VS. ROVERS FC</div>
+            <div class="caption-details">John Smith's amazing match-winner in the 88th minute. Final Score: 2-1 Win.</div>
+        </div>
+    </div>
+
+    <div class="gallery-item video-card" data-video-url="VIDEO_YOUTUBE_URL_OR_FILE_PATH">
+        <img src="image/inning_video_thumb.jpg" alt="Inning 3 Highlights Thumbnail">
+        <div class="play-button">▶</div>
+        <div class="gallery-caption">
+            <div class="caption-title">INNING 3 HIGHLIGHTS</div>
+            <div class="caption-details">Short clip featuring 3 critical outs and the home run by Doe. Date: 12/12/2025.</div>
+        </div>
+    </div>
+    
+    <div class="gallery-item">
+        <img src="image/match_photo_wide.jpg" alt="Team high five after score">
+        <div class="gallery-caption">
+            <div class="caption-title">BIG WIN VS. EAGLES</div>
+            <div class="caption-details">High-five moment after securing the 5-0 victory. Great defensive game.</div>
+        </div>
+    </div>
+    
+    </div>
+
+
+<div id="video-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <iframe id="video-frame" width="100%" height="450" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+</div>
