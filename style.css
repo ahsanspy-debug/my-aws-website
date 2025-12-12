@@ -117,7 +117,7 @@ nav a.active::before {
   position: relative;
   height: 90vh;
   /* FIXED: Exact filename case-sensitive match */
-  background: url('images/banner.JPG') no-repeat center center; 
+  background: url('images/banner.jpg') no-repeat center center; 
   background-size: cover;
   background-position: center 30%; /* Moved up slightly to catch the batsman */
   z-index: 5;
@@ -531,4 +531,43 @@ nav a.active::before {
 @media (max-width: 600px) {
   .sponsors-title { font-size: 2.2rem; }
   .sponsor-card img { width: 60px; }
+}
+/* --- PASTE AT THE END OF YOUR CSS FILE --- */
+
+/* 1. Fix for the Banner Image */
+.banner {
+    /* If your css file is in a 'css' folder, use '../image/banner.jpg' */
+    /* If your css file is in the same folder as html, use 'image/banner.jpg' */
+    background-image: url('../image/banner.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    /* Ensure the banner has height so the image is visible */
+    min-height: 500px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 2. Fix for Sponsor Boxes (Making them equal size) */
+/* Replace '.sponsor-card' with the actual class name of your boxes if different */
+.sponsor-card {
+    width: 300px;       /* Fixed width matches standard player cards */
+    height: 450px;      /* Fixed height matches standard player cards */
+    overflow: hidden;   /* Hides any image parts that stick out */
+    border-radius: 15px;
+    position: relative;
+    background-color: #000; /* Fallback color */
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto; /* Centers the card if in a grid */
+}
+
+/* 3. Force the images inside the sponsors to fit perfectly */
+.sponsor-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This crops the image to fill the box without stretching */
+    display: block;
 }
