@@ -798,3 +798,168 @@ nav a.active::before {
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     overflow: hidden;
 }
+/* --- GALLERY PAGE STYLES --- */
+
+/* Header Styling */
+.gallery-header {
+    text-align: center;
+    padding: 50px 20px 30px;
+    background-color: #111;
+    color: #fff;
+}
+
+.gallery-header h1 {
+    font-size: 3rem;
+    color: #e10600; /* Red accent color */
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.gallery-header p {
+    color: #ccc;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+/* FACEBOOK LINK BOX STYLING */
+.facebook-link-box {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #3b5998; /* Facebook Blue */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.facebook-link-box:hover {
+    background-color: #2d4373;
+}
+
+.facebook-link-box i {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+/* CSS for the Facebook Embed Box */
+.facebook-embed-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #000;
+}
+
+/* Optional: Add a dark border/shadow to integrate it with the page */
+.facebook-embed-container .fb-page {
+    display: inline-block;
+    border: 1px solid #333;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+
+/* --------------------------------- */
+/* MASONRY PUZZLE LAYOUT */
+/* --------------------------------- */
+.masonry-gallery {
+    column-count: 3; /* 3 Columns for Desktop */
+    column-gap: 15px;
+    padding: 20px;
+    max-width: 1400px; 
+    margin: 0 auto;
+    background-color: #000;
+}
+
+.gallery-item {
+    break-inside: avoid; /* Prevents items from being split across columns */
+    margin-bottom: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #1a1a1a;
+    border: 1px solid #333; 
+}
+
+.gallery-item:hover {
+    transform: scale(1.02); /* Slight zoom effect on hover */
+    box-shadow: 0 8px 15px rgba(225, 6, 0, 0.4); /* Red glow on hover */
+    z-index: 2;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto; /* Maintains aspect ratio for Masonry effect */
+    display: block;
+}
+
+/* HOVER CAPTION STYLES */
+.gallery-caption {
+    position: absolute;
+    bottom: 0; 
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.85); /* Darker overlay for text clarity */
+    color: white;
+    padding: 15px;
+    
+    transform: translateY(100%); /* Hidden by default */
+    transition: transform 0.4s ease-out;
+}
+
+.gallery-item:hover .gallery-caption {
+    transform: translateY(0); /* Revealed on hover */
+}
+
+.caption-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ff3333; /* Bright red accent for the title */
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.caption-details {
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.4;
+}
+
+/* VIDEO SPECIFIC STYLES (Play Button) */
+.video-card {
+    cursor: pointer;
+}
+
+.video-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4); 
+    transition: background 0.3s;
+    z-index: 1;
+}
+
+.video-card:hover::before {
+    background: rgba(0, 0, 0, 0.2); 
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(225, 6, 0, 0.9); /* Opaque Red */
+    color: white;
+    width: 60px; /* Larger button */
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    border: 3px solid #fff;
