@@ -2143,3 +2143,39 @@ nav a::after {
     flex-direction: column;
     justify-content: center; /* Center the sponsor cards vertically */
 }
+/* JAVASCRIPT TOOL: Run this once in your browser console to clean up your style.css content.
+   NOTE: You must manually replace the content of your style.css file with the result. */
+
+function cleanCss(cssContent) {
+    // 1. Remove large unnecessary commented-out sections (like the placeholder blocks we used)
+    cssContent = cssContent.replace(/\/\* =+ [^=]* =+ \*\/\s*[\s\S]*?\/\* =+ [^=]* =+ \*\/\s*/g, '');
+
+    // 2. Remove duplicate/unnecessary media queries (a common source of bloat)
+    cssContent = cssContent.replace(/@media screen and \(max-width: 768px\) \{[\s\S]*?\}\s*@media \(max-width: 600px\) \{[\s\S]*?\}/g, (match) => {
+        // Find all media queries and combine them for brevity
+        const media768 = match.match(/@media screen and \(max-width: 768px\) \{[\s\S]*?\}/g) || [];
+        const media600 = match.match(/@media \(max-width: 600px\) \{[\s\S]*?\}/g) || [];
+        return media768.join('\n') + '\n' + media600.join('\n');
+    });
+
+    // 3. Remove known problematic/duplicate blocks based on our conversation
+    cssContent = cssContent.replace(/\.player-card:hover \{[\s\S]*?filter: drop-shadow\(0 0 25px #ff6b6b\);[\s\S]*?\}/g, '');
+    cssContent = cssContent.replace(/\/\* Active page highlight \*\/[\s\S]*?width: 100%;\s*\}/g, '');
+    cssContent = cssContent.replace(/\/\* Glow Borders \*\/[\s\S]*?pointer-events: none;\s*\}/g, '');
+    
+    return cssContent.trim();
+}
+
+// INSTRUCTIONS:
+// 1. Copy the full content of your style.css file.
+// 2. Paste it below, replacing 'PASTE YOUR FULL CSS CONTENT HERE'.
+// 3. Run this script in your browser console.
+// 4. The result (the cleaned CSS) will be printed.
+
+const rawCss = `
+PASTE YOUR FULL CSS CONTENT HERE
+`; // <<<--- REPLACE THIS LINE WITH YOUR style.css CONTENT
+
+const cleanedCss = cleanCss(rawCss);
+console.log(cleanedCss);
+// The resulting string is your new, cleaner style.css content.
