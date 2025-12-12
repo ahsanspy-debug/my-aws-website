@@ -571,3 +571,215 @@ nav a.active::before {
     object-fit: cover; /* This crops the image to fill the box without stretching */
     display: block;
 }
+/* --- GALLERY PAGE STYLES --- */
+
+/* Header Styling */
+.gallery-header {
+    text-align: center;
+    padding: 50px 20px 30px;
+    background-color: #111; /* Dark background matching your theme */
+    color: #fff;
+}
+
+.gallery-header h1 {
+    font-size: 3rem;
+    color: #e10600; /* Red accent color */
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.gallery-header p {
+    color: #ccc;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+/* FACEBOOK LINK BOX STYLING */
+.facebook-link-box {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #3b5998; /* Facebook Blue */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.facebook-link-box:hover {
+    background-color: #2d4373;
+}
+
+.facebook-link-box i {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+
+/* --------------------------------- */
+/* MASONRY PUZZLE LAYOUT */
+/* --------------------------------- */
+.masonry-gallery {
+    column-count: 3; /* 3 Columns for Desktop */
+    column-gap: 15px;
+    padding: 20px;
+    max-width: 1400px; /* Wider view for many items */
+    margin: 0 auto;
+    background-color: #000;
+}
+
+.gallery-item {
+    break-inside: avoid; /* Prevents items from being split across columns */
+    margin-bottom: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Stronger shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #1a1a1a;
+    border: 1px solid #333; /* Subtle border for definition */
+}
+
+.gallery-item:hover {
+    transform: scale(1.02); /* Slight zoom effect on hover */
+    box-shadow: 0 8px 15px rgba(225, 6, 0, 0.4); /* Red glow on hover */
+    z-index: 2;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto; /* Maintains aspect ratio for Masonry effect */
+    display: block;
+}
+
+/* HOVER CAPTION STYLES */
+.gallery-caption {
+    position: absolute;
+    bottom: 0; 
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.85); /* Darker overlay for text clarity */
+    color: white;
+    padding: 15px;
+    
+    transform: translateY(100%); /* Hidden by default */
+    transition: transform 0.4s ease-out;
+}
+
+.gallery-item:hover .gallery-caption {
+    transform: translateY(0); /* Revealed on hover */
+}
+
+.caption-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ff3333; /* Bright red accent for the title */
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.caption-details {
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.4;
+}
+
+/* VIDEO SPECIFIC STYLES (Play Button) */
+.video-card {
+    cursor: pointer;
+}
+
+.video-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4); 
+    transition: background 0.3s;
+    z-index: 1; /* Above image, below play button */
+}
+
+.video-card:hover::before {
+    background: rgba(0, 0, 0, 0.2); 
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(225, 6, 0, 0.9); /* Opaque Red */
+    color: white;
+    width: 60px; /* Larger button */
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    border: 3px solid #fff;
+    z-index: 2; /* Above the overlay */
+}
+
+/* --------------------------------- */
+/* VIDEO MODAL STYLES (The Popup) */
+/* --------------------------------- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 1000; /* High z-index to be on top of everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.9); /* Black semi-transparent background */
+}
+
+.modal-content {
+    background-color: #000;
+    margin: 10% auto; /* 10% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 900px; /* Maximum size for the video */
+    position: relative;
+    border-radius: 10px;
+}
+
+.close-button {
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #e10600; /* Red on hover */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Responsive adjustments for Masonry Columns */
+@media screen and (max-width: 1024px) {
+    .masonry-gallery {
+        column-count: 2; 
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .masonry-gallery {
+        column-count: 1; 
+        padding: 10px;
+    }
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+}
