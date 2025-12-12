@@ -1012,3 +1012,81 @@ document.addEventListener('DOMContentLoaded', function() {
         videoFrame.src = ""; 
     }
 });
+/* --- UNIVERSAL RESPONSIVENESS RULES --- */
+
+/* Prevents horizontal scrolling on the body */
+body {
+    overflow-x: hidden; 
+}
+
+/* Ensure images, videos, and large content blocks never exceed the screen width */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Helps with alignment */
+}
+
+/* Forces all content to respect the parent container's width */
+* {
+    box-sizing: border-box; 
+}
+/* Style for the hamburger button */
+.nav-toggle {
+    display: none; /* Hide by default on desktop */
+    background: none;
+    border: none;
+    color: #e10600;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* MOBILE-SPECIFIC STYLES (Applies to screens smaller than 800px) */
+@media (max-width: 800px) {
+    
+    /* Show the hamburger icon */
+    .nav-toggle {
+        display: block;
+        position: absolute; /* Position icon for easy reach */
+        right: 20px;
+        top: 15px;
+    }
+
+    /* Stack links vertically on mobile */
+    .navbar {
+        justify-content: flex-start; /* Move logo/home to the left */
+        padding: 10px 0;
+        position: relative;
+        align-items: center;
+    }
+
+    /* Hide the links by default */
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px; /* Position below the navbar */
+        left: 0;
+        width: 100%;
+        background-color: #0d0d0d;
+        z-index: 100;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    }
+    
+    /* Show the links when the 'active' class is added by JavaScript */
+    .nav-links.open {
+        display: flex;
+        flex-direction: column; /* Stack vertically */
+    }
+
+    .nav-links a {
+        padding: 15px 20px;
+        margin: 0;
+        text-align: left;
+        border-bottom: 1px solid #1a1a1a;
+    }
+
+    /* Ensure the red flare/underline is hidden on mobile stacked menu */
+    .nav-links a::after {
+        display: none; 
+    }
+}
