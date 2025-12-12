@@ -3,52 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Avengers Cricket Club</title>
+    <title>Mission Dossier - Avengers Cricket Club</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<div id="meteor-layer"></div>
 
-<script>
-function createMeteor() {
-  const layer = document.getElementById("meteor-layer");
-  if (!layer) return;
-
-  const meteor = document.createElement("div");
-  meteor.classList.add("meteor");
-
-  const startX = Math.random() * 100;
-  const startY = -10 - Math.random() * 10;
-
-  const travelX = 40 + Math.random() * 40;
-  const travelY = 40 + Math.random() * 30;
-
-  const angle = -20 - Math.random() * 15;
-
-  meteor.style.left = startX + "vw";
-  meteor.style.top = startY + "vh";
-  meteor.style.setProperty("--tx", travelX + "vw");
-  meteor.style.setProperty("--ty", travelY + "vh");
-  meteor.style.setProperty("--angle", angle + "deg");
-
-  const duration = 1.8 + Math.random() * 1;
-  meteor.style.animationDuration = duration + "s";
-
-  layer.appendChild(meteor);
-
-  setTimeout(() => meteor.remove(), (duration + 0.5) * 1000);
-}
-
-setInterval(createMeteor, 450);
-</script>
 <body>
-    <!-- GLOWING FIRE / SPACE BACKGROUND -->
     <div id="fire-bg">
         <div class="fire-layer"></div>
         <div class="fire-layer"></div>
         <div class="fire-layer"></div>
     </div>
 
-    <!-- METEOR FLARES (WHITE TRAILS) -->
     <div id="meteor-layer"></div>
 
     <header>
@@ -56,42 +21,43 @@ setInterval(createMeteor, 450);
 
         <nav>
             <a href="index.html">Home</a>
-            <a href="about.html" class="active">About Us</a>
+            <a href="about.html" class="active">Mission Dossier</a>
             <a href="team-players.html">Team Players</a>
             <a href="fixtures.html">Fixtures</a>
             <a href="https://www.facebook.com/share/1Du3YjDjTm/?mibextid=wwXIfr" target="_blank">
-    Gallery
-</a>
+            Gallery</a>
             <a href="sponsors.html">Sponsors</a>
         </nav>
     </header>
 
-    <section class="page">
-        <h1>About Us</h1>
-        <p>The Avengers Cricket Club isn’t your average Canberra team — we play fast, fearless, and explosive cricket. When we walk onto the ground, the whole rhythm of a T20 changes. One good over is all we need to flip a match on its head.</p>
+    <section class="page" data-dossier>
+        <h1 class="dossier-title">AVENGERS INITIATIVE: MISSION DOSSIER</h1>
+        <p class="mission-intro">The Avengers Cricket Club isn’t your average Canberra team — we play fast, fearless, and explosive cricket. When we walk onto the ground, the whole rhythm of a T20 changes. One good over is all we need to flip a match on its head.</p>
 
-        <h2 class="section-title">Power Hitters</h2>
-        <p>We’re known for our hitters who can lift the strike rate past 200 without blinking. One moment the field is calm, and the next it’s balls flying over covers, mid-wicket, long-on — bowlers left staring into the sky wondering where the ball disappeared.</p>
+        <div class="dossier-module impact" data-section="Power Hitters: IMPACT">
+            <p>We’re known for our hitters who can lift the strike rate past 200 without blinking. One moment the field is calm, and the next it’s balls flying over covers, mid-wicket, long-on — bowlers left staring into the sky wondering where the ball disappeared.</p>
+        </div>
 
-        <h2 class="section-title">Bowling Attack</h2>
-        <p>Our fast bowlers don’t just bowl — they hunt. Toe-crushing yorkers, sharp bouncers, and that one ball every batter fears but never sees coming. You’ll often see batters stepping out of the crease just to stay in one piece.</p>
+        <div class="dossier-module precision" data-section="Bowling Attack: PRECISION">
+            <p>Our fast bowlers don’t just bowl — they hunt. Toe-crushing yorkers, sharp bouncers, and that one ball every batter fears but never sees coming. You’ll often see batters stepping out of the crease just to stay in one piece.</p>
+            <p>And when the spinners come in? The ball starts on one side of the pitch and ends on the other. Huge turn, crazy drift, mind-games everywhere. Batters swing at shadows, lose their shape, and make mistakes for fun.</p>
+        </div>
 
-        <p>And when the spinners come in? The ball starts on one side of the pitch and ends on the other. Huge turn, crazy drift, mind-games everywhere. Batters swing at shadows, lose their shape, and make mistakes for fun.</p>
+        <div class="dossier-module identity" data-section="Our Identity: MANTRA">
+            <p>Avengers is a well-oiled cricket engine — when it switches on fully, it crushes. The intensity rises, the pressure builds, and the opposition feels every second of it. That’s our peak mode.</p>
+        </div>
 
-        <h2 class="section-title">Our Identity</h2>
-        <p>Avengers is a well-oiled cricket engine — when it switches on fully, it crushes. The intensity rises, the pressure builds, and the opposition feels every second of it. That’s our peak mode.</p>
+        <div class="dossier-module ethos" data-section="Ethos: The Truth">
+            <p>Even with all the firepower, we stay humble. We respect the game, respect every opponent, and want everyone to enjoy cricket. We don’t go full throttle in every match — the goal is to compete hard, have fun, and keep the spirit of cricket alive.</p>
+        </div>
 
-        <h2 class="section-title">But Here’s the Truth</h2>
-        <p>Even with all the firepower, we stay humble. We respect the game, respect every opponent, and want everyone to enjoy cricket. We don’t go full throttle in every match — the goal is to compete hard, have fun, and keep the spirit of cricket alive.</p>
-
-        <p>Welcome to Avengers Cricket Club — fast, fearless, entertaining, and always ready for the next battle.</p>
+        <p class="mission-outro">Welcome to Avengers Cricket Club — fast, fearless, entertaining, and always ready for the next battle.</p>
     </section>
 
     <footer>
         © 2025 Avengers Cricket Club | All Rights Reserved
     </footer>
 
-    <!-- METEOR SCRIPT -->
     <script>
       function createMeteor() {
         const layer = document.getElementById("meteor-layer");
@@ -100,16 +66,13 @@ setInterval(createMeteor, 450);
         const meteor = document.createElement("div");
         meteor.classList.add("meteor");
 
-        // random starting position slightly above top edge
-        const startX = Math.random() * 100;       // vw
-        const startY = -10 - Math.random() * 10;  // vh above the screen
+        const startX = Math.random() * 100;
+        const startY = -10 - Math.random() * 10; 
 
-        // travel direction & distance (diagonal down-right)
-        const travelX = 40 + Math.random() * 40;  // vw
-        const travelY = 40 + Math.random() * 30;  // vh
+        const travelX = 40 + Math.random() * 40;
+        const travelY = 40 + Math.random() * 30; 
 
-        // slight random angle for variety
-        const angle = -20 - Math.random() * 15;   // degrees
+        const angle = -20 - Math.random() * 15;   
 
         meteor.style.left = startX + "vw";
         meteor.style.top  = startY + "vh";
@@ -117,25 +80,16 @@ setInterval(createMeteor, 450);
         meteor.style.setProperty("--ty", travelY + "vh");
         meteor.style.setProperty("--angle", angle + "deg");
 
-        // random speed
-        const duration = 1.8 + Math.random() * 0.9; // 1.8–2.7s
+        const duration = 1.8 + Math.random() * 0.9;
         meteor.style.animationDuration = duration + "s";
 
         layer.appendChild(meteor);
 
-        // clean up after animation
         setTimeout(() => meteor.remove(), (duration + 0.5) * 1000);
       }
 
-      // spawn meteors regularly
-      setInterval(createMeteor, 450);  // lower number = more meteors
+      setInterval(createMeteor, 450);
     </script>
 </body>
 </html>
-<script>
-  document.querySelectorAll('nav a').forEach(link => {
-    link.setAttribute('target', '_blank');
-  });
-</script>
-</body>
-</html>
+```
