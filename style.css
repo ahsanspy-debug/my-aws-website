@@ -1,297 +1,275 @@
 /* ========================================================= */
-/* === 1. GLOBAL & BASE STYLES === */
+/* === 1. BASICS (Colors, Fonts, Background) === */
 /* ========================================================= */
+* {
+    box-sizing: border-box; /* Keeps padding from breaking the layout */
+}
+
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0b1221;
-  color: white;
-  overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #0b1221; /* Dark Navy Background */
+    color: white;
+    overflow-x: hidden; /* Stops the page from scrolling sideways */
 }
 
+/* Fix for Images and Videos to always fit the screen */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* General Page Settings */
 .page {
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto; 
-  padding: 0;
-  line-height: 1.6;
-  color: #fff;
-}
-
-/* Hide old headers to prevent duplicates */
-.page h1, .page h2.section-title {
-    display: none; 
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #0b1221;
-  margin-top: 40px;
-  border-top: 1px solid rgba(255,255,255,0.05);
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    line-height: 1.6;
 }
 
 
 /* ========================================================= */
-/* === 2. HEADER & NAVIGATION === */
+/* === 2. TOP NAVIGATION BAR (Desktop) === */
 /* ========================================================= */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background: #0b1221;
-  position: relative;
-  z-index: 100;
+    display: flex;
+    justify-content: space-between; /* Spreads Logo and Links apart */
+    align-items: center;
+    padding: 15px 40px;
+    background: #0d1623; /* Header color */
+    position: relative;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
+/* Logo Image Styling */
 header img {
-    height: 70px;
+    height: 60px; /* Adjust this size if your logo is too big/small */
     width: auto;
-    padding: 8px 60px;
-    background: #0d1623;
-    border-radius: 12px;
-    box-shadow: 0 0 25px rgba(255, 75, 75, 0.7);
-    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 header img:hover {
-    transform: scale(1.08);
-    filter: drop-shadow(0 0 25px #ff6b6b);
+    transform: scale(1.05); /* Slight zoom on logo hover */
 }
 
-nav {
-  display: flex;
-  gap: 35px;
-  align-items: center;
+/* The Container for the Links */
+.nav-links {
+    display: flex;
+    gap: 30px; /* Space between links */
+    align-items: center;
 }
 
-nav a {
-  position: relative;
-  color: #ffffff;
-  font-size: 20px;
-  text-decoration: none;
-  letter-spacing: 1px;
-  padding: 6px 10px;
-  transition: color 0.3s ease;
+/* Individual Link Styling */
+.nav-links a {
+    position: relative;
+    color: #ffffff;
+    font-size: 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 15px;
+    transition: color 0.3s ease;
+    font-weight: bold;
 }
 
-nav a::after { content: none; }
-
-/* Energy Pulse Effect */
-nav a::before {
-    content: "";
+/* The "Red Flare" Underline Effect */
+.nav-links a::after {
+    content: '';
     position: absolute;
-    left: -100%; 
-    bottom: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, rgba(255,100,80,0), rgba(255,100,80,1), rgba(255,160,120,1));
-    box-shadow: 0 0 10px rgba(255,90,70,0.8);
-    transition: transform 0.4s ease-out;
-    border-radius: 10px;
-    z-index: -1; 
+    bottom: 5px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: #e10600; /* Bright Red */
+    box-shadow: 0 0 10px rgba(255, 6, 0, 0.8); /* Glow effect */
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
 }
 
-nav a:hover {
-  color: #ff6b6b;
-  text-shadow: 0 0 10px #ff6b6b;
+/* Hover Effects */
+.nav-links a:hover,
+.nav-links a.active {
+    color: #e10600;
 }
 
-nav a.active {
-  color: #ff6b6b;
-  font-weight: bold;
-  text-shadow: 0 0 12px #ff6b6b;
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 80%; /* Shows the red line */
 }
 
-nav a:hover::before,
-nav a.active::before {
-    transform: translateX(100%); 
+/* Hamburger Menu Button (Hidden on Desktop) */
+.nav-toggle {
+    display: none; 
+    background: none;
+    border: none;
+    color: #e10600;
+    font-size: 2rem;
+    cursor: pointer;
 }
 
 
 /* ========================================================= */
-/* === 3. HOME PAGE HERO SECTION (FIXED) === */
+/* === 3. MOBILE MENU (Phone & Tablet Settings) === */
+/* ========================================================= */
+@media screen and (max-width: 850px) {
+    header {
+        padding: 15px 20px;
+    }
+
+    /* Show the hamburger button */
+    .nav-toggle {
+        display: block; 
+    }
+
+    /* Hide the normal links row */
+    .nav-links {
+        display: none; /* Hidden by default */
+        position: absolute;
+        top: 100%; /* Push it below the header */
+        left: 0;
+        width: 100%;
+        background-color: #0d1623;
+        flex-direction: column; /* Stack links vertically */
+        align-items: center;
+        padding: 20px 0;
+        border-top: 1px solid #333;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+
+    /* When JavaScript adds the 'open' class, show the menu */
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 15px;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Remove the red underline on mobile (it looks messy) */
+    .nav-links a::after {
+        display: none;
+    }
+}
+
+
+/* ========================================================= */
+/* === 4. HERO SECTION (Main Banner) === */
 /* ========================================================= */
 .hero {
-  position: relative;
-  height: 90vh;
-  /* FIXED: Exact filename case-sensitive match */
-  background: url('images/banner.jpg') no-repeat center center; 
-  background-size: cover;
-  background-position: center 30%; /* Moved up slightly to catch the batsman */
-  z-index: 5;
+    position: relative;
+    height: 90vh; /* 90% of screen height */
+    width: 100%;
+    background: url('images/banner.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: 1;
 }
 
+/* Dark overlay to make text readable */
 .overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.3); /* Reduced darkness so image pops more */
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4); 
+    z-index: 2;
 }
 
-.hero-text.upgraded {
+.hero-text {
     position: absolute;
     top: 50%;
     left: 10%;
-    transform: translateY(-50%); 
-    z-index: 7;
+    transform: translateY(-50%);
+    z-index: 3;
     text-align: left;
 }
 
-.hero-text h1 { font-size: 60px; margin: 0; }
-.hero-text h3 { font-size: 42px; margin-top: -10px; }
-
-.tiny-tag {
-    font-size: 22px;
-    letter-spacing: 4px;
-    opacity: 0.9;
-    text-shadow: 0 0 10px rgba(255,180,180,0.8);
-    animation: fadePulse 3s infinite;
-}
-
-.main-title {
-    font-size: 78px;
+.hero-text h1 {
+    font-size: 4rem;
     font-weight: 900;
-    margin: 10px 0;
-    color: white;
-    text-shadow: 0 0 25px rgba(255,90,90,0.9), 0 0 55px rgba(255,120,80,0.8);
-    animation: titleGlow 6s infinite alternate;
+    margin: 0;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255,0,0,0.6);
 }
 
-.sub-title {
-    font-size: 48px;
-    margin-top: -10px;
-    text-shadow: 0 0 18px rgba(255,140,110,1), 0 0 35px rgba(255,90,90,0.9);
-    animation: slideFade 2s ease-out;
-}
-
-.est-tag {
-    margin-top: 25px;
-    font-size: 22px;
-    letter-spacing: 6px;
-    opacity: 0.85;
-    text-shadow: 0 0 12px rgba(255,150,150,1);
-    animation: fadePulse 4s infinite;
+.hero-text h3 {
+    font-size: 2rem;
+    color: #ccc;
+    margin-top: 10px;
 }
 
 
 /* ========================================================= */
-/* === 4. ABOUT US: MISSION DOSSIER (FIXED) === */
+/* === 5. ABOUT US (Mission Dossier) === */
 /* ========================================================= */
-
 .page[data-dossier] {
     max-width: 1000px;
-    margin: 60px auto; 
-    padding: 80px 40px 40px 40px !important; /* Top padding ensures titles aren't cut */
-    background-color: #0b1221; 
-    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); 
+    margin: 60px auto;
+    padding: 60px 40px;
+    background-color: #0d1623;
     border-radius: 8px;
-    min-height: calc(100vh - 150px);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 
 .dossier-title {
-    font-size: 40px;
-    letter-spacing: 5px;
+    font-size: 2.5rem;
+    color: #ffd700; /* Gold Color */
+    text-align: center;
+    margin-bottom: 40px;
     text-transform: uppercase;
-    color: #ffd700;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
     border-bottom: 2px solid rgba(255, 215, 0, 0.3);
-    padding-bottom: 10px;
-    margin-bottom: 60px;
-    text-align: center;
-    display: block !important;
-}
-
-.mission-intro, .mission-outro {
-    font-size: 1.1rem;
-    padding: 0 20px;
-    text-align: center;
-    color: #ccc;
-    margin-bottom: 50px;
-    line-height: 1.8;
+    padding-bottom: 15px;
 }
 
 .dossier-module {
-    background: #0d1623;
+    background: #151f2e;
     border-radius: 8px;
-    padding: 35px 40px;
-    margin-bottom: 40px;
-    position: relative;
-    overflow: visible; /* Allows labels to float outside */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-image: linear-gradient(0deg, rgba(255,255,255,0.01) 1px, transparent 1px), 
-                      linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
-    background-size: 20px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-left: 4px solid #444; 
+    transition: transform 0.3s ease;
 }
 
-.dossier-module:hover { transform: translateY(-5px); }
+.dossier-module:hover {
+    transform: translateY(-5px);
+}
+
+/* Specific Colors for Dossier items */
+.dossier-module.impact { border-color: #ff4d4d; }
+.dossier-module.precision { border-color: #00bfff; }
+.dossier-module.identity { border-color: #39FF14; }
+
+.dossier-module h4 {
+    margin-top: 0;
+    color: #fff;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
 
 .dossier-module p {
-    color: #e6e6e6;
-    margin: 0;
-    line-height: 1.7;
+    color: #ccc;
+    line-height: 1.6;
 }
-
-.dossier-module::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-}
-
-.dossier-module::after {
-    content: attr(data-section);
-    position: absolute;
-    top: -14px;
-    left: 30px; 
-    padding: 4px 12px;
-    background: #0d1623;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    z-index: 5;
-    border-radius: 4px;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
-}
-
-/* Colors */
-.dossier-module.impact::before { background-color: #ff4d4d; box-shadow: 0 0 10px #ff4d4d; }
-.dossier-module.impact::after { color: #ff4d4d; text-shadow: 0 0 8px rgba(255, 77, 77, 0.7); border-top: 2px solid #ff4d4d; }
-
-.dossier-module.precision::before { background-color: #00bfff; box-shadow: 0 0 10px #00bfff; }
-.dossier-module.precision::after { color: #00bfff; text-shadow: 0 0 8px rgba(0, 191, 255, 0.7); border-top: 2px solid #00bfff; }
-
-.dossier-module.identity::before { background-color: #39FF14; box-shadow: 0 0 10px #39FF14; }
-.dossier-module.identity::after { color: #39FF14; text-shadow: 0 0 8px rgba(57, 255, 20, 0.7); border-top: 2px solid #39FF14; }
-
-.dossier-module.ethos::before { background-color: #b0e0e6; box-shadow: 0 0 15px #b0e0e6; }
-.dossier-module.ethos::after { color: #b0e0e6; text-shadow: 0 0 8px rgba(176, 224, 230, 0.7); border-top: 2px solid #b0e0e6; }
 
 
 /* ========================================================= */
-/* === 5. TEAM PLAYERS (ROSTER CONSOLE) === */
+/* === 6. TEAM PLAYERS (Roster Cards) === */
 /* ========================================================= */
 .players-section {
+    padding: 80px 20px;
     text-align: center;
-    padding: 60px 40px 100px;
-    background-color: #0d1623;
-    color: white;
-    min-height: calc(100vh - 180px);
 }
 
 .players-section h1 {
-    font-family: 'Arial Black', sans-serif;
-    font-size: 56px;
-    margin-bottom: 50px;
+    font-size: 3.5rem;
     color: #ff4d4d;
-    letter-spacing: 8px;
     text-transform: uppercase;
-    text-shadow: 0 0 20px rgba(255, 77, 77, 0.7), 0 0 40px rgba(255, 77, 77, 0.5);
+    margin-bottom: 60px;
 }
 
 .players-grid {
@@ -303,79 +281,178 @@ nav a.active::before {
 }
 
 .player-card {
-    position: relative;
-    background: #0b1221;
-    border-radius: 8px;
-    padding: 0;
-    text-align: center;
+    background: #0d1623;
+    border-radius: 10px;
     overflow: hidden;
-    cursor: pointer;
-    transform-style: preserve-3d;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
 .player-card:hover {
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-    z-index: 10;
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(225, 6, 0, 0.3);
 }
-
-.role-indicator {
-    position: absolute;
-    inset: 0;
-    border-radius: 8px;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0;
-    transition: box-shadow 0.4s ease, opacity 0.4s ease;
-}
-.player-card:hover .role-indicator { opacity: 1; }
-.player-card[data-role-focus="impact"]:hover .role-indicator { box-shadow: 0 0 20px 5px #ff6b6b, 0 0 40px 10px rgba(255, 107, 107, 0.5); }
-.player-card[data-role-focus="precision"]:hover .role-indicator { box-shadow: 0 0 20px 5px #00bfff, 0 0 40px 10px rgba(0, 191, 255, 0.5); }
-.player-card[data-role-focus="versatility"]:hover .role-indicator { box-shadow: 0 0 20px 5px #ffd700, 0 0 40px 10px rgba(255, 215, 0, 0.5); }
 
 .player-card img {
     width: 100%;
-    height: 280px;
+    height: 300px;
     object-fit: cover;
-    margin-bottom: 0;
-    border-radius: 8px 8px 0 0;
-    transition: filter 0.3s;
 }
-.player-card h2 { font-size: 26px; margin: 15px 0 0; color: #ffffff; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
-.tagline { font-size: 13px; margin: 4px 0 0; color: #39FF14; text-transform: uppercase; letter-spacing: 2px; }
-.role { font-size: 13px; margin-bottom: 20px; color: #888; }
 
-.stats { display: flex; justify-content: center; gap: 8px; padding: 0 10px 20px; }
-.stat-box {
-    background: #0d1623;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.05);
-    padding: 10px 5px;
-    border-radius: 4px;
-    color: #ccc;
-    font-size: 10px;
-    width: 90px;
+.player-card h2 {
+    color: #fff;
+    margin: 15px 0 5px;
 }
-.stat-box span { display: block; font-size: 18px; font-weight: bold; }
-.stat-box.impact { color: #ff6b6b; box-shadow: inset 0 0 10px rgba(255, 107, 107, 0.5), 0 0 5px rgba(255, 107, 107, 0.3); }
-.stat-box.precision { color: #39FF14; box-shadow: inset 0 0 10px rgba(57, 255, 20, 0.5), 0 0 5px rgba(57, 255, 20, 0.3); }
+
+.player-card .role {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
 
 
 /* ========================================================= */
-/* === 6. SPONSORS SECTION (FIXED: Standard Grid) === */
+/* === 7. GALLERY PAGE (Masonry & Video) === */
+/* ========================================================= */
+.gallery-header {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.gallery-header h1 {
+    font-size: 3rem;
+    color: #e10600;
+    margin-bottom: 10px;
+}
+
+/* Facebook Box Styling */
+.facebook-embed-container {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+.facebook-embed-container .fb-page {
+    border: 1px solid #333;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    overflow: hidden;
+    background: white;
+}
+
+/* The Puzzle Layout (Masonry) */
+.masonry-gallery {
+    column-count: 3; /* 3 Columns */
+    column-gap: 20px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    break-inside: avoid;
+    margin-bottom: 20px;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.02);
+    z-index: 10;
+}
+
+/* Text Captions that slide up */
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 15px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-caption {
+    transform: translateY(0);
+}
+
+.caption-title {
+    color: #ff4d4d;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.caption-details {
+    font-size: 0.85rem;
+    color: #ccc;
+}
+
+/* Video Play Button */
+.video-card { cursor: pointer; }
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(225,6,0,0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    border: 2px solid white;
+    pointer-events: none;
+}
+
+/* Video Popup Window (Modal) */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; top: 0; 
+    width: 100%; height: 100%; 
+    background-color: rgba(0,0,0,0.95); 
+}
+
+.modal-content {
+    margin: 5% auto;
+    width: 80%;
+    max-width: 900px;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+
+/* ========================================================= */
+/* === 8. SPONSORS SECTION === */
 /* ========================================================= */
 .sponsors-section {
-    background-color: #0d1623;
-    padding: 60px 20px;
+    padding: 80px 20px;
     text-align: center;
 }
 
 .sponsors-title {
     font-size: 3rem;
     color: #ff4d4d;
-    margin-bottom: 60px;
-    text-shadow: 0 0 20px #ff4d4d;
+    margin-bottom: 50px;
 }
 
 .sponsor-grid {
@@ -383,710 +460,58 @@ nav a.active::before {
     flex-wrap: wrap;
     gap: 40px;
     justify-content: center;
-    /* FIXED: Ensures items align nicely without stretching */
-    align-items: flex-start; 
 }
 
 .sponsor-card {
-    position: relative;
-    background-color: #111;
-    padding: 30px 25px;
-    border-radius: 12px;
-    /* FIXED: Set fixed width and auto height to prevent stretching */
     width: 300px;
-    height: auto; 
-    border: none;
-    transition: transform 0.3s ease;
-    /* Remove overflow:hidden so glow doesn't clip content if using plasma, 
-       but for standard cards, keeping it hidden is safer. */
-    overflow: hidden; 
-}
-.sponsor-card:hover { transform: translateY(-8px); }
-
-/* Plasma Burst Background (Kept but sized appropriately) */
-.sponsor-card::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    filter: blur(40px);
-    transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
-    opacity: 0;
-    z-index: 1;
-}
-.sponsor-card:hover::before { width: 200%; height: 200%; opacity: 0.9; }
-
-.sponsor-card.gold::before { background: radial-gradient(circle, #ffd700, #ff8c00 60%, transparent); }
-.sponsor-card.silver::before { background: radial-gradient(circle, #ffffff, #add8e6 60%, transparent); }
-.sponsor-card.bronze::before { background: radial-gradient(circle, #ff6347, #b87333 60%, transparent); }
-
-/* Content styling */
-.sponsor-tier, .sponsor-card img, .sponsor-card h3, .sponsor-card p {
-    position: relative;
-    z-index: 5;
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
-}
-.sponsor-card.gold .sponsor-tier, .sponsor-card.gold h3 { color: #ffd700; text-shadow: 0 0 8px rgba(255, 215, 0, 0.8); }
-.sponsor-card.silver .sponsor-tier, .sponsor-card.silver h3 { color: #ffffff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); }
-.sponsor-card.bronze .sponsor-tier, .sponsor-card.bronze h3 { color: #ff6347; text-shadow: 0 0 8px rgba(255, 99, 71, 0.8); }
-
-.est-text {
-    margin-top: 60px;
-    font-size: 1.5rem;
-    color: #ff4d4d;
-    text-shadow: 0 0 10px #ff4d4d;
-}
-
-
-/* ========================================================= */
-/* === 7. FIXTURES & ANIMATIONS === */
-/* ========================================================= */
-.fixtures-coming-soon {
-    height: calc(100vh - 180px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: #0b1221;
-}
-.fixtures-coming-soon h1 {
-    font-size: 3rem;
-    color: #ff4d4d;
-    text-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff6b6b;
-    animation: glowPulse 2.5s ease-in-out infinite;
-}
-@keyframes glowPulse {
-    0%, 100% { text-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff6b6b; }
-    50% { text-shadow: 0 0 20px #ff4d4d, 0 0 35px #ff6b6b; }
-}
-
-/* Background FX */
-#fire-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: #080d12; }
-.fire-layer { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; filter: blur(80px); animation: fireMove 20s infinite linear; }
-.fire-layer:nth-child(1) { background: radial-gradient(circle at 50% 60%, rgba(0,120,255,0.3), rgba(10,20,40,0.8), transparent 70%); }
-.fire-layer:nth-child(2) { background: radial-gradient(circle at 40% 30%, rgba(100,160,255,0.35), rgba(0,0,50,0.85), transparent 75%); animation-duration: 26s; }
-.fire-layer:nth-child(3) { background: radial-gradient(circle at 70% 80%, rgba(255,255,255,0.2), rgba(0,0,20,0.9), transparent 80%); animation-duration: 32s; }
-@keyframes fireMove { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.25); } 100% { transform: rotate(360deg) scale(1); } }
-
-#meteor-layer { position: fixed; inset: 0; z-index: 20; pointer-events: none; overflow: hidden; }
-.meteor {
-    position: absolute; width: 220px; height: 3px;
-    background: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255,0.9), rgba(255,255,255,1));
-    border-radius: 999px;
-    box-shadow: 0 0 12px rgba(255,255,255,0.9);
-    transform-origin: 100% 50%;
-    transform: rotate(var(--angle, -30deg));
-    animation: meteorMove linear forwards;
-}
-.meteor::after {
-    content: ""; position: absolute; right: 0; top: 50%; width: 14px; height: 14px;
-    transform: translate(50%, -50%);
-    background: radial-gradient(circle, white 0%, #d6e8ff 40%, rgba(255,255,255,0) 100%);
-    filter: blur(1px);
-}
-@keyframes meteorMove { 0% { opacity: 0; transform: translate(0,0) rotate(var(--angle)); } 10% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--tx), var(--ty)) rotate(var(--angle)); } }
-
-.flare {
-    position: absolute; left: -5%; top: 50%; width: 160%; height: 12px;
-    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,200,150,1) 50%, rgba(255,255,255,0) 100%);
-    filter: blur(12px); animation: flareSweep 4s infinite;
-}
-.fire-glow {
-    position: absolute; width: 350px; height: 350px; left: -80px; top: -60px;
-    background: radial-gradient(circle, rgba(255,100,60,0.35), rgba(255,60,30,0.15), transparent 70%);
-    filter: blur(40px); opacity: 0.7; animation: firePulse 5s infinite ease-in-out;
-}
-@keyframes flareSweep { 0% { transform: translateX(-120%); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateX(120%); opacity: 0; } }
-@keyframes firePulse { 0% { transform: scale(1); opacity: 0.55; } 50% { transform: scale(1.25); opacity: 0.95; } 100% { transform: scale(1); opacity: 0.55; } }
-
-@keyframes fadePulse { 0%,100% { opacity: 0.9; } 50% { opacity: 0.4; } }
-@keyframes titleGlow { 0% { text-shadow: 0 0 15px rgba(255,60,60,0.9), 0 0 35px rgba(255,110,80,0.9); } 100% { text-shadow: 0 0 45px rgba(255,140,100,1), 0 0 85px rgba(255,80,60,1); } }
-@keyframes slideFade { 0% { opacity: 0; transform: translateY(25px); } 100% { opacity: 1; transform: translateY(0); } }
-
-
-/* ========================================================= */
-/* === 8. RESPONSIVE === */
-/* ========================================================= */
-@media screen and (max-width: 768px) {
-  header { flex-direction: column; align-items: center; padding: 15px 10px; }
-  nav { flex-direction: column; align-items: center; gap: 12px; margin-top: 10px; }
-  nav a { font-size: 1rem; padding: 8px 12px; }
-  
-  .hero { height: 60vh; background-position: center center; }
-  .hero-text.upgraded { top: 30%; left: 5%; right: 5%; text-align: center; transform: none; }
-  .main-title { font-size: 40px; }
-  .sub-title { font-size: 24px; }
-
-  .page[data-dossier] { margin: 30px auto; padding: 60px 20px 20px 20px !important; }
-  .dossier-title { font-size: 28px; letter-spacing: 2px; }
-  
-  .sponsor-grid, .players-grid { grid-template-columns: 1fr; }
-  .sponsor-card, .player-card { width: 90%; margin: 0 auto; }
-}
-
-@media (max-width: 600px) {
-  .sponsors-title { font-size: 2.2rem; }
-  .sponsor-card img { width: 60px; }
-}
-/* --- PASTE AT THE END OF YOUR CSS FILE --- */
-
-/* 1. Fix for the Banner Image */
-.banner {
-    /* If your css file is in a 'css' folder, use '../image/banner.jpg' */
-    /* If your css file is in the same folder as html, use 'image/banner.jpg' */
-    background-image: url('../image/banner.jpg'); 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    /* Ensure the banner has height so the image is visible */
-    min-height: 500px; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* 2. Fix for Sponsor Boxes (Making them equal size) */
-/* Replace '.sponsor-card' with the actual class name of your boxes if different */
-.sponsor-card {
-    width: 300px;       /* Fixed width matches standard player cards */
-    height: 450px;      /* Fixed height matches standard player cards */
-    overflow: hidden;   /* Hides any image parts that stick out */
+    height: 450px; /* Fixed size boxes */
+    background: #111;
     border-radius: 15px;
+    overflow: hidden;
     position: relative;
-    background-color: #000; /* Fallback color */
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto; /* Centers the card if in a grid */
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease;
 }
 
-/* 3. Force the images inside the sponsors to fit perfectly */
+.sponsor-card:hover {
+    transform: translateY(-10px);
+}
+
 .sponsor-card img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* This crops the image to fill the box without stretching */
-    display: block;
+    object-fit: cover;
 }
-/* --- GALLERY PAGE STYLES --- */
 
-/* Header Styling */
-.gallery-header {
+
+/* ========================================================= */
+/* === 9. FOOTER === */
+/* ========================================================= */
+footer {
     text-align: center;
-    padding: 50px 20px 30px;
-    background-color: #111; /* Dark background matching your theme */
-    color: #fff;
+    padding: 40px 20px;
+    background: #080d12;
+    margin-top: 60px;
+    border-top: 1px solid #222;
+    color: #666;
 }
 
-.gallery-header h1 {
-    font-size: 3rem;
-    color: #e10600; /* Red accent color */
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.gallery-header p {
-    color: #ccc;
-    font-size: 1.2rem;
-    margin-bottom: 25px;
-}
-
-/* FACEBOOK LINK BOX STYLING */
-.facebook-link-box {
-    display: inline-flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #3b5998; /* Facebook Blue */
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-}
-
-.facebook-link-box:hover {
-    background-color: #2d4373;
-}
-
-.facebook-link-box i {
-    font-size: 1.2rem;
-    margin-right: 10px;
-}
-
-
-/* --------------------------------- */
-/* MASONRY PUZZLE LAYOUT */
-/* --------------------------------- */
-.masonry-gallery {
-    column-count: 3; /* 3 Columns for Desktop */
-    column-gap: 15px;
-    padding: 20px;
-    max-width: 1400px; /* Wider view for many items */
-    margin: 0 auto;
-    background-color: #000;
-}
-
-.gallery-item {
-    break-inside: avoid; /* Prevents items from being split across columns */
-    margin-bottom: 15px;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative; 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Stronger shadow for depth */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #1a1a1a;
-    border: 1px solid #333; /* Subtle border for definition */
-}
-
-.gallery-item:hover {
-    transform: scale(1.02); /* Slight zoom effect on hover */
-    box-shadow: 0 8px 15px rgba(225, 6, 0, 0.4); /* Red glow on hover */
-    z-index: 2;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: auto; /* Maintains aspect ratio for Masonry effect */
-    display: block;
-}
-
-/* HOVER CAPTION STYLES */
-.gallery-caption {
-    position: absolute;
-    bottom: 0; 
-    left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.85); /* Darker overlay for text clarity */
-    color: white;
-    padding: 15px;
-    
-    transform: translateY(100%); /* Hidden by default */
-    transition: transform 0.4s ease-out;
-}
-
-.gallery-item:hover .gallery-caption {
-    transform: translateY(0); /* Revealed on hover */
-}
-
-.caption-title {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #ff3333; /* Bright red accent for the title */
-    margin-bottom: 5px;
-    text-transform: uppercase;
-}
-
-.caption-details {
+footer p {
+    margin: 0;
     font-size: 0.9rem;
-    color: #ccc;
-    line-height: 1.4;
-}
-
-/* VIDEO SPECIFIC STYLES (Play Button) */
-.video-card {
-    cursor: pointer;
-}
-
-.video-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.4); 
-    transition: background 0.3s;
-    z-index: 1; /* Above image, below play button */
-}
-
-.video-card:hover::before {
-    background: rgba(0, 0, 0, 0.2); 
-}
-
-.play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(225, 6, 0, 0.9); /* Opaque Red */
-    color: white;
-    width: 60px; /* Larger button */
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    border: 3px solid #fff;
-    z-index: 2; /* Above the overlay */
-}
-
-/* --------------------------------- */
-/* VIDEO MODAL STYLES (The Popup) */
-/* --------------------------------- */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; 
-    z-index: 1000; /* High z-index to be on top of everything */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.9); /* Black semi-transparent background */
-}
-
-.modal-content {
-    background-color: #000;
-    margin: 10% auto; /* 10% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 900px; /* Maximum size for the video */
-    position: relative;
-    border-radius: 10px;
-}
-
-.close-button {
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    position: absolute;
-    top: -10px;
-    right: 10px;
-    cursor: pointer;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: #e10600; /* Red on hover */
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Responsive adjustments for Masonry Columns */
-@media screen and (max-width: 1024px) {
-    .masonry-gallery {
-        column-count: 2; 
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .masonry-gallery {
-        column-count: 1; 
-        padding: 10px;
-    }
-    .modal-content {
-        width: 95%;
-        margin: 5% auto;
-    }
-}
-/* CSS for the Facebook Embed Box */
-.facebook-embed-container {
-    text-align: center;
-    padding: 20px;
-    background-color: #000;
-}
-
-/* Optional: Add a dark border/shadow to integrate it with the page */
-.facebook-embed-container .fb-page {
-    display: inline-block;
-    border: 1px solid #333;
-    border-radius: 5px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    overflow: hidden;
-}
-/* --- GALLERY PAGE STYLES --- */
-
-/* Header Styling */
-.gallery-header {
-    text-align: center;
-    padding: 50px 20px 30px;
-    background-color: #111;
-    color: #fff;
-}
-
-.gallery-header h1 {
-    font-size: 3rem;
-    color: #e10600; /* Red accent color */
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.gallery-header p {
-    color: #ccc;
-    font-size: 1.2rem;
-    margin-bottom: 25px;
-}
-
-/* FACEBOOK LINK BOX STYLING */
-.facebook-link-box {
-    display: inline-flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #3b5998; /* Facebook Blue */
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-}
-
-.facebook-link-box:hover {
-    background-color: #2d4373;
-}
-
-.facebook-link-box i {
-    font-size: 1.2rem;
-    margin-right: 10px;
-}
-
-/* CSS for the Facebook Embed Box */
-.facebook-embed-container {
-    text-align: center;
-    padding: 20px;
-    background-color: #000;
-}
-
-/* Optional: Add a dark border/shadow to integrate it with the page */
-.facebook-embed-container .fb-page {
-    display: inline-block;
-    border: 1px solid #333;
-    border-radius: 5px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    overflow: hidden;
 }
 
 
-/* --------------------------------- */
-/* MASONRY PUZZLE LAYOUT */
-/* --------------------------------- */
-.masonry-gallery {
-    column-count: 3; /* 3 Columns for Desktop */
-    column-gap: 15px;
-    padding: 20px;
-    max-width: 1400px; 
-    margin: 0 auto;
-    background-color: #000;
-}
-
-.gallery-item {
-    break-inside: avoid; /* Prevents items from being split across columns */
-    margin-bottom: 15px;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative; 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #1a1a1a;
-    border: 1px solid #333; 
-}
-
-.gallery-item:hover {
-    transform: scale(1.02); /* Slight zoom effect on hover */
-    box-shadow: 0 8px 15px rgba(225, 6, 0, 0.4); /* Red glow on hover */
-    z-index: 2;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: auto; /* Maintains aspect ratio for Masonry effect */
-    display: block;
-}
-
-/* HOVER CAPTION STYLES */
-.gallery-caption {
-    position: absolute;
-    bottom: 0; 
-    left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.85); /* Darker overlay for text clarity */
-    color: white;
-    padding: 15px;
+/* ========================================================= */
+/* === 10. MOBILE FIXES (Final Adjustments) === */
+/* ========================================================= */
+@media screen and (max-width: 768px) {
+    .hero-text h1 { font-size: 2.5rem; }
+    .players-section h1 { font-size: 2.5rem; }
     
-    transform: translateY(100%); /* Hidden by default */
-    transition: transform 0.4s ease-out;
-}
-
-.gallery-item:hover .gallery-caption {
-    transform: translateY(0); /* Revealed on hover */
-}
-
-.caption-title {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #ff3333; /* Bright red accent for the title */
-    margin-bottom: 5px;
-    text-transform: uppercase;
-}
-
-.caption-details {
-    font-size: 0.9rem;
-    color: #ccc;
-    line-height: 1.4;
-}
-
-/* VIDEO SPECIFIC STYLES (Play Button) */
-.video-card {
-    cursor: pointer;
-}
-
-.video-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.4); 
-    transition: background 0.3s;
-    z-index: 1;
-}
-
-.video-card:hover::before {
-    background: rgba(0, 0, 0, 0.2); 
-}
-
-.play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(225, 6, 0, 0.9); /* Opaque Red */
-    color: white;
-    width: 60px; /* Larger button */
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    border: 3px solid #fff;
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const videoCards = document.querySelectorAll('.video-card');
-    const modal = document.getElementById('video-modal');
-    const closeButton = document.querySelector('.close-button');
-    const videoFrame = document.getElementById('video-frame');
-
-    // 1. Open the modal when a video card is clicked
-    videoCards.forEach(card => {
-        card.addEventListener('click', function() {
-            // Get the video URL from the data-video-url attribute on the card
-            const videoUrl = this.getAttribute('data-video-url');
-            
-            if (videoUrl) {
-                // If it's a YouTube URL, we must format it for embedding
-                let embedUrl = videoUrl;
-                if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
-                    // This finds the video ID and formats it for the iframe src
-                    const videoId = videoUrl.split('/').pop().split('v=').pop().split('&')[0];
-                    embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-                }
-                
-                // Set the iframe source and show the modal
-                videoFrame.src = embedUrl;
-                modal.style.display = 'block';
-            }
-        });
-    });
-
-    // 2. Close the modal when the X is clicked
-    closeButton.addEventListener('click', function() {
-        closeModal();
-    });
-
-    // 3. Close the modal if the user clicks anywhere outside the modal content
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            closeModal();
-        }
-    });
-
-    // Function to close the modal and stop the video playback
-    function closeModal() {
-        modal.style.display = 'none';
-        // Setting the src to empty stops the video from playing in the background
-        videoFrame.src = ""; 
-    }
-});
-/* --- UNIVERSAL RESPONSIVENESS RULES --- */
-
-/* Prevents horizontal scrolling on the body */
-body {
-    overflow-x: hidden; 
-}
-
-/* Ensure images, videos, and large content blocks never exceed the screen width */
-img, video, iframe {
-    max-width: 100%;
-    height: auto;
-    display: block; /* Helps with alignment */
-}
-
-/* Forces all content to respect the parent container's width */
-* {
-    box-sizing: border-box; 
-}
-/* Style for the hamburger button */
-.nav-toggle {
-    display: none; /* Hide by default on desktop */
-    background: none;
-    border: none;
-    color: #e10600;
-    font-size: 2rem;
-    cursor: pointer;
-    padding: 10px;
-}
-
-/* MOBILE-SPECIFIC STYLES (Applies to screens smaller than 800px) */
-@media (max-width: 800px) {
+    /* Masonry Gallery becomes 1 column on phone */
+    .masonry-gallery { column-count: 1; }
     
-    /* Show the hamburger icon */
-    .nav-toggle {
-        display: block;
-        position: absolute; /* Position icon for easy reach */
-        right: 20px;
-        top: 15px;
-    }
-
-    /* Stack links vertically on mobile */
-    .navbar {
-        justify-content: flex-start; /* Move logo/home to the left */
-        padding: 10px 0;
-        position: relative;
-        align-items: center;
-    }
-
-    /* Hide the links by default */
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 60px; /* Position below the navbar */
-        left: 0;
-        width: 100%;
-        background-color: #0d0d0d;
-        z-index: 100;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-    }
-    
-    /* Show the links when the 'active' class is added by JavaScript */
-    .nav-links.open {
-        display: flex;
-        flex-direction: column; /* Stack vertically */
-    }
-
-    .nav-links a {
-        padding: 15px 20px;
-        margin: 0;
-        text-align: left;
-        border-bottom: 1px solid #1a1a1a;
-    }
-
-    /* Ensure the red flare/underline is hidden on mobile stacked menu */
-    .nav-links a::after {
-        display: none; 
-    }
+    .page[data-dossier] { padding: 30px 20px; }
 }
+```
