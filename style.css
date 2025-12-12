@@ -136,8 +136,141 @@ footer {
   line-height: 1.6;
   color: #fff;
 }
+/* ========================================================= */
+/* === ABOUT US: MISSION DOSSIER STYLES === */
+/* ========================================================= */
 
-.page h1 {
+.page[data-dossier] {
+    /* MODIFIED: Sets container width for a sleek, central data view */
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 40px;
+}
+
+.dossier-title {
+    /* NEW: Styles the main title of the About page */
+    font-size: 40px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #ffd700; /* Gold color for the main title */
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.mission-intro, .mission-outro {
+    /* NEW: Styles for the intro and outro paragraphs */
+    font-size: 1.1rem;
+    padding: 0 20px;
+    text-align: center;
+    color: #ccc;
+    margin-bottom: 40px;
+    line-height: 1.8;
+}
+
+/* 1. DOSSIER MODULE BASE */
+.dossier-module {
+    /* NEW: Base styling for the content blocks */
+    background: #0d1623; /* Dark background */
+    border-radius: 8px;
+    padding: 25px 30px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dossier-module:hover {
+    transform: translateY(-5px);
+}
+
+/* 2. HEADER BAR (Uses ::before to draw the line at the top) */
+.dossier-module::before {
+    /* NEW: Top accent line */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    transition: background 0.5s ease;
+}
+
+/* 3. TITLE (Uses ::after to display the data-section title text) */
+.dossier-module::after {
+    /* NEW: The floating title text "Power Hitters: IMPACT" */
+    content: attr(data-section);
+    position: absolute;
+    top: -16px;
+    left: 20px;
+    padding: 2px 10px;
+    background: #0d1623;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    z-index: 2;
+    transition: color 0.5s ease;
+}
+
+.dossier-module p {
+    margin: 15px 0;
+    line-height: 1.7;
+    color: #e0e0e0;
+}
+
+/* 4. ROLE-SPECIFIC COLORS (High-Energy Glows) */
+
+/* IMPACT (Power Hitters) - Neon Red */
+.dossier-module.impact::before {
+    background-color: #ff4d4d;
+    box-shadow: 0 0 10px #ff4d4d;
+}
+.dossier-module.impact::after {
+    color: #ff4d4d;
+    text-shadow: 0 0 8px rgba(255, 77, 77, 0.7);
+}
+
+/* PRECISION (Bowling Attack) - Electric Blue */
+.dossier-module.precision::before {
+    background-color: #00bfff;
+    box-shadow: 0 0 10px #00bfff;
+}
+.dossier-module.precision::after {
+    color: #00bfff;
+    text-shadow: 0 0 8px rgba(0, 191, 255, 0.7);
+}
+
+/* IDENTITY/MANTRA (Identity) - Vibrant Green */
+.dossier-module.identity::before {
+    background-color: #39FF14;
+    box-shadow: 0 0 10px #39FF14;
+}
+.dossier-module.identity::after {
+    color: #39FF14;
+    text-shadow: 0 0 8px rgba(57, 255, 20, 0.7);
+}
+
+/* ETHOS (Truth) - White/Cyan Pulse */
+.dossier-module.ethos::before {
+    background-color: #b0e0e6;
+    box-shadow: 0 0 15px #b0e0e6;
+}
+.dossier-module.ethos::after {
+    color: #b0e0e6;
+    text-shadow: 0 0 8px rgba(176, 224, 230, 0.7);
+}
+
+/* Clean up old styles that are no longer needed for the About page */
+.page h1,
+.page h2.section-title {
+    /* NEW: We use .dossier-title and ::after for section headers now.
+       Setting these to display: none; prevents old headers from appearing. */
+    display: none; 
+}.page h1 {
   font-size: 36px;
   margin-bottom: 20px;
 }
