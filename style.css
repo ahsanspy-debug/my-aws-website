@@ -1113,3 +1113,154 @@ header {
     width: 60px;
   }
 }
+/* ========================================================= */
+/* === SPONSORS SECTION: PLASMA BURST REDESIGN (OPTION 3) === */
+/* ========================================================= */
+
+.sponsors-section {
+    /* MODIFIED: Ensure section uses the same dark background as content for consistency */
+    background-color: #0d1623; 
+}
+
+/* MODIFIED: Remove/Override old glow styles */
+.sponsor-card {
+    overflow: hidden; /* Necessary for the radial glow */
+    border: none; /* Clean up old border */
+    transition: transform 0.3s ease;
+}
+.sponsor-card:hover {
+    transform: translateY(-8px); /* Higher lift on hover */
+}
+
+/* DEACTIVATED: Old border/shadow elements are no longer used */
+.sponsor-border {
+    display: none; 
+}
+.sponsor-card.gold .sponsor-border, 
+.sponsor-card.silver .sponsor-border, 
+.sponsor-card.bronze .sponsor-border {
+    display: none; 
+}
+
+
+/* NEW: Radial Glow container (::before) */
+.sponsor-card::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    filter: blur(40px);
+    transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+    z-index: 1;
+}
+
+/* NEW: Plasma burst effect on hover */
+.sponsor-card:hover::before {
+    width: 200%;
+    height: 200%;
+    opacity: 0.9;
+}
+
+/* NEW: Tier-Specific Plasma Colors */
+
+/* Gold Tier: Intense Yellow-Orange Plasma */
+.sponsor-card.gold::before {
+    background: radial-gradient(circle, #ffd700, #ff8c00 60%, transparent);
+}
+
+/* Silver Tier: Cool White/Blue Spark */
+.sponsor-card.silver::before {
+    background: radial-gradient(circle, #ffffff, #add8e6 60%, transparent);
+}
+
+/* Bronze Tier: Warm Red/Copper Burst */
+.sponsor-card.bronze::before {
+    background: radial-gradient(circle, #ff6347, #b87333 60%, transparent);
+}
+
+/* NEW: Ensure text/logo stays on top of the glow and uses the color */
+.sponsor-tier,
+.sponsor-card img,
+.sponsor-card h3,
+.sponsor-card p {
+    position: relative;
+    z-index: 5;
+    /* Clean up the logo filter so it doesn't look flat */
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); 
+}
+
+/* NEW: Text Color Accents matching the glow for high contrast */
+.sponsor-card.gold .sponsor-tier, .sponsor-card.gold h3 { color: #ffd700; text-shadow: 0 0 8px rgba(255, 215, 0, 0.8); }
+.sponsor-card.silver .sponsor-tier, .sponsor-card.silver h3 { color: #ffffff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); }
+.sponsor-card.bronze .sponsor-tier, .sponsor-card.bronze h3 { color: #ff6347; text-shadow: 0 0 8px rgba(255, 99, 71, 0.8); }
+
+/* Ensure the links open in a new tab for consistency */
+.sponsor-card[target="_blank"] {
+    cursor: pointer;
+}
+
+
+/* ========================================================= */
+/* === ABOUT US: MISSION DOSSIER REFINEMENTS === */
+/* ========================================================= */
+
+/* MODIFIED: Header Integration & General Layout Fixes */
+header {
+    padding: 15px 20px; /* MODIFIED: Reduce top/bottom padding for sleeker look */
+    border-bottom: none; /* MODIFIED: Remove separator line for seamless dark flow */
+}
+
+.hero-text {
+    top: 45%; /* MODIFIED: Adjust hero text position slightly down after header change */
+}
+
+/* MODIFIED: Seamless Page Body Flow */
+.page {
+    margin: 0 auto; /* MODIFIED: Remove default top margin to connect to header */
+    padding: 0; /* MODIFIED: Remove side padding */
+}
+
+.page[data-dossier] {
+    /* NEW: Main Dossier Container styling */
+    padding: 40px; 
+    background-color: #0d1623; 
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); /* Inner shadow for depth */
+}
+
+/* MODIFIED: Dossier Module Polish */
+.dossier-module {
+    padding: 30px 40px; /* MODIFIED: Increased padding */
+    background-image: linear-gradient(0deg, rgba(255,255,255,0.01) 1px, transparent 1px), 
+                      linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-color: #0b1221;
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Sharper, cleaner outline */
+}
+
+.dossier-module p {
+    color: #e6e6e6; /* MODIFIED: Slightly brighter text */
+}
+
+/* MODIFIED: Module Title Bar Positioning */
+.dossier-module::after {
+    top: -20px; /* MODIFIED: Push the label further outside the module border */
+    left: 30px; 
+    padding: 3px 12px;
+    background: #0d1623; /* MODIFIED: Ensure background matches the main page area */
+}
+
+
+/* ========================================================= */
+/* === IMAGE OPTIMIZATION (for Home Page Hero) === */
+/* ========================================================= */
+/* This is a global override for the Home Page hero image handling */
+
+.hero {
+  /* MODIFIED: Anchor the image to the bottom-center for action shots */
+  background-position: center 80%; 
+}
