@@ -579,15 +579,24 @@ header img:hover {
     left: 125%; /* Moves the shine across */
 }
 
-/* Image Handling */
+/* Image Handling (FIXED for centering and fitting logos) */
 .sponsor-card img {
+    /* Ensures the logo fits entirely within the box, maintaining aspect ratio */
+    object-fit: contain; 
+    
+    /* Centers the logo both vertically and horizontally */
+    object-position: center; 
+    
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    
     opacity: 0.85; /* Slightly dimmed by default to make text pop */
     transition: opacity 0.3s;
 }
 
+.sponsor-card:hover img {
+    opacity: 1; /* Brightens on hover */
+}
 .sponsor-card:hover img {
     opacity: 1; /* Brightens on hover */
 }
